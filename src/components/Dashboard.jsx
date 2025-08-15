@@ -91,7 +91,7 @@ const Dashboard = () => {
             <div className="flex justify-between items-center py-2">
               <span className="text-gray-600">Atualizações Diárias</span>
               <span className="font-semibold">
-                {datasources.filter(ds => ds.updateFrequency === 'Diário').length}
+                {datasources.filter(ds => ds.updateFrequency && ds.updateFrequency.includes('Diário')).length}
               </span>
             </div>
           </div>

@@ -132,7 +132,7 @@ const DataSourceModal = ({ dataSource, isOpen, onClose }) => {
           <div className="mb-8">
             <h3 className="text-lg font-semibold text-gray-900 mb-4">Tipos de Dados Disponíveis</h3>
             <div className="flex flex-wrap gap-2">
-              {dataSource.dataTypes.map((type, index) => (
+              {dataSource.dataTypes && dataSource.dataTypes.map((type, index) => (
                 <span
                   key={`${dataSource.id}-datatype-${index}-${type.replace(/[^a-zA-Z0-9]/g, '-')}`}
                   className="inline-block bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium"
@@ -148,7 +148,7 @@ const DataSourceModal = ({ dataSource, isOpen, onClose }) => {
             <div>
               <h3 className="text-lg font-semibold text-gray-900 mb-4">Características Principais</h3>
               <ul className="space-y-2">
-                {dataSource.features.map((feature, index) => (
+                {dataSource.features && dataSource.features.map((feature, index) => (
                   <li key={`${dataSource.id}-feature-${index}-${feature.substring(0, 20).replace(/[^a-zA-Z0-9]/g, '-')}`} className="flex items-start space-x-2">
                     <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">{feature}</span>
@@ -160,7 +160,7 @@ const DataSourceModal = ({ dataSource, isOpen, onClose }) => {
             <div>
               <h3 className="text-lg font-semibold text-gray-900 mb-4">Limitações</h3>
               <ul className="space-y-2">
-                {dataSource.limitations.map((limitation, index) => (
+                {dataSource.limitations && dataSource.limitations.map((limitation, index) => (
                   <li key={`${dataSource.id}-limitation-${index}-${limitation.substring(0, 20).replace(/[^a-zA-Z0-9]/g, '-')}`} className="flex items-start space-x-2">
                     <AlertCircle className="h-5 w-5 text-yellow-500 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">{limitation}</span>
@@ -446,46 +446,109 @@ const DataSourceModal = ({ dataSource, isOpen, onClose }) => {
                    <ExternalLink className="h-4 w-4" />
                  </a>
                </div>
-             ) : (
+             ) : dataSource.name === "Copernicus Data Space Ecosystem (CDSE)" ? (
+               <div className="flex flex-wrap gap-2">
+                 <a
+                   href="https://dataspace.copernicus.eu/"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   className="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg transition-colors text-sm"
+                 >
+                   <span>Portal Principal</span>
+                   <ExternalLink className="h-4 w-4" />
+                 </a>
+                 <a
+                   href="https://sentinels.copernicus.eu/-/copernicus-open-access-hub-is-closing-copernicus-sentinel-data-access-is-now-fully-available-through-the-copernicus-data-space-ecosystem"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   className="flex items-center space-x-2 bg-orange-600 hover:bg-orange-700 text-white px-3 py-2 rounded-lg transition-colors text-sm"
+                 >
+                   <span>Sentinel Online</span>
+                   <ExternalLink className="h-4 w-4" />
+                 </a>
+                 <a
+                   href="https://dataspace.copernicus.eu/analyse/apis"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   className="flex items-center space-x-2 bg-green-600 hover:bg-green-700 text-white px-3 py-2 rounded-lg transition-colors text-sm"
+                 >
+                   <span>Catálogo de APIs</span>
+                   <ExternalLink className="h-4 w-4" />
+                 </a>
+                 <a
+                   href="https://documentation.dataspace.copernicus.eu/"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   className="flex items-center space-x-2 bg-purple-600 hover:bg-purple-700 text-white px-3 py-2 rounded-lg transition-colors text-sm"
+                 >
+                   <span>Documentação</span>
+                   <ExternalLink className="h-4 w-4" />
+                 </a>
+               </div>
+             ) : dataSource.name === "EMBRAPA" ? (
                <div className="grid grid-cols-2 gap-2">
-                   <a
-                     href="https://dataspace.copernicus.eu/"
-                     target="_blank"
-                     rel="noopener noreferrer"
-                     className="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg transition-colors text-sm"
-                   >
-                     <span>Página Inicial</span>
-                     <ExternalLink className="h-4 w-4" />
-                   </a>
-                   <a
-                     href="https://sentinels.copernicus.eu/-/copernicus-open-access-hub-is-closing-copernicus-sentinel-data-access-is-now-fully-available-through-the-copernicus-data-space-ecosystem"
-                     target="_blank"
-                     rel="noopener noreferrer"
-                     className="flex items-center space-x-2 bg-orange-600 hover:bg-orange-700 text-white px-3 py-2 rounded-lg transition-colors text-sm"
-                   >
-                     <span>Sentinel Online</span>
-                     <ExternalLink className="h-4 w-4" />
-                   </a>
-                   <a
-                     href="https://dataspace.copernicus.eu/analyse/apis"
-                     target="_blank"
-                     rel="noopener noreferrer"
-                     className="flex items-center space-x-2 bg-green-600 hover:bg-green-700 text-white px-3 py-2 rounded-lg transition-colors text-sm"
-                   >
-                     <span>Catálogo de APIs</span>
-                     <ExternalLink className="h-4 w-4" />
-                   </a>
-                   <a
-                     href="https://documentation.dataspace.copernicus.eu/"
-                     target="_blank"
-                     rel="noopener noreferrer"
-                     className="flex items-center space-x-2 bg-purple-600 hover:bg-purple-700 text-white px-3 py-2 rounded-lg transition-colors text-sm"
-                   >
-                     <span>Documentação</span>
-                     <ExternalLink className="h-4 w-4" />
-                   </a>
-                 </div>
-             )}
+                 <a
+                   href="https://www.agroapi.cnptia.embrapa.br/portal/#loja"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   className="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg transition-colors text-sm"
+                 >
+                   <span>AgroAPI</span>
+                   <ExternalLink className="h-4 w-4" />
+                 </a>
+                 <a
+                   href="https://www.agroapi.cnptia.embrapa.br/portal/assets/docs/agroapi-primeiros-passos.pdf"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   className="flex items-center space-x-2 bg-green-600 hover:bg-green-700 text-white px-3 py-2 rounded-lg transition-colors text-sm"
+                 >
+                   <span>Tutorial</span>
+                   <ExternalLink className="h-4 w-4" />
+                 </a>
+               </div>
+             ) : dataSource.name === "Instituto Nacional de Meteorologia (INMET)" ? (
+               <div className="flex flex-wrap gap-2">
+                 <a
+                   href="https://bdmep.inmet.gov.br/"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   className="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg transition-colors text-sm"
+                 >
+                   <span>Portal Web</span>
+                   <ExternalLink className="h-4 w-4" />
+                 </a>
+                 <a
+                   href="https://github.com/fabinhojorge/INMET-API-temperature"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   className="flex items-center space-x-2 bg-green-600 hover:bg-green-700 text-white px-3 py-2 rounded-lg transition-colors text-sm"
+                 >
+                   <span>Biblioteca em Python</span>
+                   <ExternalLink className="h-4 w-4" />
+                 </a>
+                 <a
+                   href="https://github.com/rodrigolustosa/R-INMET-download"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   className="flex items-center space-x-2 bg-purple-600 hover:bg-purple-700 text-white px-3 py-2 rounded-lg transition-colors text-sm"
+                 >
+                   <span>Biblioteca em R</span>
+                   <ExternalLink className="h-4 w-4" />
+                 </a>
+               </div>
+             ) : dataSource.name === "Cadastro Ambiental Rural (CAR)" ? (
+               <div className="flex flex-wrap gap-2">
+                 <a
+                   href="https://www.directd.com.br/"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   className="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg transition-colors text-sm"
+                 >
+                   <span>CAR API da Directd</span>
+                   <ExternalLink className="h-4 w-4" />
+                 </a>
+               </div>
+             ) : null}
           </div>
         </div>
       </div>

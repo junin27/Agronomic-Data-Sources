@@ -494,7 +494,7 @@ export const datasources = [
   },
   {
     id: 5,
-    name: "CAR",
+    name: "Cadastro Ambiental Rural (CAR)",
     description: "Cadastro Ambiental Rural - Registro público eletrônico obrigatório para todos os imóveis rurais no Brasil",
     type: "Governamental",
     category: "Ambiental",
