@@ -92,6 +92,10 @@ export const datasources = [
       description: 'O ecossistema opera com armazenamento em escala de dezenas de petabytes',
       updateSpeed: 'Produtos disponibilizados até ~15 min após o processamento pela ESA'
     },
+    reliability: 96,
+    completeness: 94,
+    timeliness: 95,
+    accuracy: 93,
     quality: {
       dataQuality: 'Dados oficiais da ESA/União Europeia',
       processing: 'Processamento padronizado e validado',
@@ -1430,7 +1434,7 @@ export const datasources = [
     ]
   },
   {
-    id: 11,
+    id: 12,
     name: "OpenET",
     description: "Plataforma sem fins lucrativos que disponibiliza estimativas de evapotranspiração (ET) baseadas em satélite em escala de talhão para apoiar manejo de irrigação e gestão hídrica; o consórcio é liderado por NASA, Desert Research Institute (DRI) e Environmental Defense Fund (EDF), com operação em Google Earth Engine.",
     type: "Colaborativo",
