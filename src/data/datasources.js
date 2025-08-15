@@ -7,9 +7,11 @@ export const datasources = [
     coverage: 'Global',
     format: 'Raster/Vector',
     updateFrequency: 'Contínua',
+    accessibility: 'Público',
     cost: 'Gratuito com cotas',
     website: 'https://dataspace.copernicus.eu/',
     description: 'O Copernicus Data Space Ecosystem é o novo portal unificado da ESA/União Europeia para acesso aberto e instantâneo aos dados do programa Copernicus, oferecendo navegação, download e processamento em nuvem (APIs e ferramentas) e substituindo o antigo Copernicus Open Access Hub (SciHub).',
+    dataTypes: ['Imagens de Satélite', 'Dados de Radar', 'Índices de Vegetação', 'Temperatura de Superfície', 'Dados Atmosféricos', 'Modelos Digitais de Elevação'],
     dataContent: {
       overview: 'O CDSE distribui todo o acervo e as novas aquisições das missões Sentinel (S1, S2, S3 em terra/zonas costeiras e S5P), além de dados complementares como Copernicus DEM e mosaicos WorldCover; também agrega coleções federadas e de Missões Contribuintes, além de dados de Serviços Copernicus (ex.: Land, Atmosphere, Climate).',
       agriculturalRelevance: 'Para agricultura, isso significa acesso a radar (S1) útil para umidade de solo/estrutura, óptico multiespectral (S2, 10–60 m) para índices de vegetação (NDVI/EVI via processamento), temperatura de superfície/cores da terra (S3) e camadas temáticas de serviços Copernicus.',
