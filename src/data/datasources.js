@@ -186,16 +186,16 @@ export const datasources = [
   },
   {
     id: 2,
-    name: "IBGE",
-    description: "Instituto Brasileiro de Geografia e Estatística - Principal fonte de estatísticas e informações geocientíficas do Brasil",
+    name: "Instituto Brasileiro de Geografia e Estatística (IBGE)",
+    description: "O IBGE é uma das principais fontes de estatísticas e informações geocientíficas do Brasil, oferecendo uma gama de dados econômicos, sociais e territoriais.",
     type: "Governamental",
     category: "Estatística",
     coverage: "Nacional",
-    format: "API/JSON/XML/ODS/CSV/XLS",
+    format: "JSON/XML/ODS/CSV",
     updateFrequency: "Mensal",
     accessibility: "Público",
     cost: "Gratuito",
-    dataTypes: ["Produção Agrícola", "Pecuária", "Silvicultura", "Pesca", "Aquicultura", "Dados Geográficos"],
+    dataTypes: ["Produção Agrícola", "Pecuária", "Produção Florestal", "Pesca", "Aquicultura", "Dados Geográficos", "Informações Econômico-Financeiras", "Emprego"],
     establishment: "1936",
     reliability: 98,
     completeness: 95,
@@ -203,56 +203,120 @@ export const datasources = [
     accuracy: 96,
     website: "https://www.ibge.gov.br",
     logo: "/logos/ibge.png",
-    features: [
-      "Levantamento Sistemático da Produção Agrícola (LSPA) - previsões mensais de safras",
-      "Pesquisas de Estoques, Leite, Ovos de Galinha, Couro e Abate de Animais",
-      "Produção da Extração Vegetal e da Silvicultura (PEVS) por município",
-      "Pesquisa da Pecuária Municipal (PPM) - efetivos e produção animal",
-      "Produção Agrícola Municipal (PAM) - quantidade, área, rendimento e valor",
-      "Censo Agropecuário - estabelecimentos e características do produtor",
-      "API SIDRA para acesso programático aos dados",
-      "Bibliotecas sidrar (R) e sidrapy (Python) disponíveis",
-      "Dados geográficos: divisões regionais e malhas territoriais",
-      "Metodologias padronizadas e normas internacionais",
-      "Granularidade municipal para análises regionalizadas",
-      "Portal de Dados Abertos com acesso livre"
-    ],
-    limitations: [
-      "Desafios orçamentários podem afetar grandes operações",
-      "Cobertura completa em áreas remotas pode ser desafiadora",
-      "Pode necessitar token OAuth 2.0 para algumas funcionalidades da API"
-    ],
-    apiAccess: {
-      "name": "API SIDRA",
-      "description": "Sistema IBGE de Recuperação Automática",
-      "formats": ["JSON", "ODS", "XML"],
-      "authentication": "OAuth 2.0 (quando necessário)"
+    dataContent: {
+      overview: "O IBGE disponibiliza informações econômico-financeiras, de produção, bens e serviços consumidos, e emprego, específicas das atividades da Agricultura, Pecuária, Produção Florestal, Pesca e Aquicultura.",
+      mainProducts: [
+        {
+          name: "Levantamento Sistemático da Produção Agrícola (LSPA)",
+          description: "Fornece previsões de safras agrícolas dos principais produtos, com revisões mensais"
+        },
+        {
+          name: "Pesquisas de Estoques, Leite, Ovos de Galinha, Couro e Abate de Animais",
+          description: "Detalham volumes e características da produção pecuária"
+        },
+        {
+          name: "Produção da Extração Vegetal e da Silvicultura (PEVS)",
+          description: "Quantidade e valor da produção de florestas plantadas e nativas por município"
+        },
+        {
+          name: "Pesquisa da Pecuária Municipal (PPM)",
+          description: "Quantidade e valor da produção de origem animal e efetivos das principais espécies por município"
+        },
+        {
+          name: "Produção Agrícola Municipal (PAM)",
+          description: "Inclui quantidade, área colhida, rendimento médio e valor da produção agrícola por município"
+        },
+        {
+          name: "Censo Agropecuário",
+          description: "Abrange número e área de estabelecimentos, atividades agropecuárias e características do produtor"
+        }
+      ],
+      geographicData: "Dados geográficos como divisões regionais, malhas territoriais e redes geodésicas"
     },
-    mainProducts: [
-      "Levantamento Sistemático da Produção Agrícola (LSPA)",
-      "Pesquisa da Pecuária Municipal (PPM)",
-      "Produção da Extração Vegetal e da Silvicultura (PEVS)",
-      "Produção Agrícola Municipal (PAM)",
-      "Censo Agropecuário"
-    ],
-    qualityAssurance: [
-      "Metodologias padronizadas",
-      "Processos de validação e verificação",
-      "Adoção de normas internacionais",
-      "Relatórios técnicos e notas metodológicas",
-      "Métodos amostrais e censitários representativos"
+    access: {
+      description: "O IBGE oferece acesso programático aos seus dados através da API SIDRA (Sistema IBGE de Recuperação Automática)",
+      apiName: "API SIDRA",
+      apiDescription: "Sistema IBGE de Recuperação Automática",
+      formats: ["JSON", "ODS", "XML"],
+      authentication: "Token de autenticação pode ser necessário, seguindo protocolo OAuth 2.0",
+      publicAccess: "Dados disponíveis para consulta pública na área de Mapas do site",
+      libraries: [
+        {
+          name: "sidrar",
+          language: "R",
+          description: "Interface flexível para consultas a tabelas, variáveis, períodos e níveis geográficos"
+        },
+        {
+          name: "sidrapy", 
+          language: "Python",
+          description: "Interface flexível para consultas a tabelas, variáveis, períodos e níveis geográficos"
+        }
+      ]
+    },
+    pricing: {
+      model: "Gratuito",
+      description: "Como o IBGE é uma instituição pública, os dados disponibilizados através do Portal de Dados Abertos são considerados públicos e de acesso livre e gratuito. O uso da API SIDRA para consulta e extração de dados não envolve nenhuma taxa ou cobrança."
+    },
+    qualityAndVolume: {
+      datasets: [
+        "Levantamento Sistemático da Produção Agrícola (LSPA)",
+        "Pesquisa da Pecuária Municipal (PPM)",
+        "Produção da Extração Vegetal e da Silvicultura (PEVS)",
+        "Produção Agrícola Municipal (PAM)",
+        "Censo Agropecuário"
+      ],
+      dataScope: "Informações sobre produção, área colhida, rendimento médio, valor da produção, efetivos de animais, práticas agrícolas, entre outros aspectos",
+      qualityAssurance: [
+        "Metodologias padronizadas",
+        "Processos de validação e verificação", 
+        "Adoção de normas internacionais",
+        "Publicação de relatórios técnicos e notas metodológicas"
+      ]
+    },
+    dataCollectionConsiderations: {
+      methodology: "O IBGE utiliza métodos amostrais e censitários, com amostras representativas por município, garantindo a precisão dos dados",
+      frequency: "Pesquisas como o LSPA são realizadas mensalmente, proporcionando atualizações frequentes",
+      geographicCoverage: "Os dados são coletados em nível municipal, permitindo análises detalhadas por região"
+    },
+    challenges: [
+      "Orçamentários: Cortes no orçamento podem afetar a realização de grandes operações, como censos e pesquisas de larga escala",
+      "Cobertura Completa: Garantir a cobertura de todos os estabelecimentos agropecuários, especialmente em áreas remotas, pode ser desafiador"
     ],
     opportunities: [
-      "Integração com outras instituições e bases de dados",
-      "Uso de IA e machine learning para análise e previsão",
-      "Promoção contínua da cultura de dados abertos",
-      "Parcerias institucionais para ampliar cobertura"
+      "Integração de Dados: A colaboração com outras instituições e a integração de diferentes bases de dados podem enriquecer as análises e ampliar a compreensão do setor agropecuário",
+      "Tecnologia e Inovação: O uso de tecnologias emergentes, como inteligência artificial e aprendizado de máquina, pode aprimorar a análise e previsão de dados",
+      "Abertura de Dados: A contínua promoção da cultura de dados abertos facilita o acesso e o uso das informações pela sociedade e pesquisadores"
     ],
     recommendations: [
-      "Utilização de APIs para integração com outras fontes",
-      "Padronização de metadados (Perfil MGB)",
-      "Capacitação profissional para uso eficiente",
-      "Estabelecimento de parcerias institucionais"
+      "Utilização de APIs: Integrar os dados do IBGE com outras fontes por meio de APIs facilita a atualização e a consistência das informações",
+      "Padronização de Metadados: Adotar padrões de metadados, como o Perfil de Metadados Geoespaciais do Brasil (Perfil MGB), assegura a interoperabilidade entre diferentes sistemas",
+      "Capacitação: Investir em treinamento e capacitação de profissionais para o uso eficiente das ferramentas e dados disponíveis",
+      "Parcerias Institucionais: Estabelecer parcerias com outras instituições de pesquisa e governo para ampliar a cobertura e a qualidade dos dados"
+    ],
+    features: [
+      "Portal de Dados Abertos com acesso livre e gratuito",
+      "API SIDRA para acesso programático",
+      "Bibliotecas sidrar (R) e sidrapy (Python) disponíveis",
+      "Dados geográficos com divisões regionais e malhas territoriais",
+      "Metodologias padronizadas e normas internacionais",
+      "Granularidade municipal para análises regionalizadas",
+      "Atualizações mensais para pesquisas como LSPA",
+      "Cobertura completa do território nacional",
+      "Relatórios técnicos e notas metodológicas detalhadas",
+      "Processos rigorosos de validação e verificação"
+    ],
+    limitations: [
+      "Desafios orçamentários podem afetar grandes operações censitárias",
+      "Dificuldades de cobertura em áreas remotas",
+      "Dependência de recursos governamentais para manutenção da qualidade"
+    ],
+    keyStrengths: [
+      "Ampla gama de dados agrícolas e pecuários",
+      "Acesso via API SIDRA facilita integração",
+      "Granularidade municipal permite análises regionalizadas",
+      "Atualização mensal de previsões de safra para tomada de decisões em tempo hábil",
+      "Fonte fundamental para análises de tendências de produção e estimativas de safras",
+      "Caracterização socioeconômica completa do setor agropecuário"
     ]
   },
   {
