@@ -71,6 +71,24 @@ const Dashboard = () => {
           <h2 className="text-2xl font-bold text-gray-900 mb-4">Visão Geral</h2>
           <div className="space-y-4">
             <div className="flex justify-between items-center py-2 border-b">
+              <span className="text-gray-600">Fontes Governamentais</span>
+              <span className="font-semibold">
+                {datasources.filter(ds => ds.type === 'Governamental').length}
+              </span>
+            </div>
+            <div className="flex justify-between items-center py-2 border-b">
+              <span className="text-gray-600">Fontes Privadas</span>
+              <span className="font-semibold">
+                {datasources.filter(ds => ds.type === 'Privado').length}
+              </span>
+            </div>
+            <div className="flex justify-between items-center py-2 border-b">
+              <span className="text-gray-600">Fontes Internacionais</span>
+              <span className="font-semibold">
+                {datasources.filter(ds => ds.type === 'Internacional').length}
+              </span>
+            </div>
+            <div className="flex justify-between items-center py-2 border-b">
               <span className="text-gray-600">Fontes Institucionais</span>
               <span className="font-semibold">
                 {datasources.filter(ds => ds.type === 'Institucional').length}
@@ -83,15 +101,15 @@ const Dashboard = () => {
               </span>
             </div>
             <div className="flex justify-between items-center py-2 border-b">
-              <span className="text-gray-600">Fontes Internacionais</span>
+              <span className="text-gray-600">Fontes de Satélite</span>
               <span className="font-semibold">
-                {datasources.filter(ds => ds.type === 'Internacional').length}
+                {datasources.filter(ds => ds.type === 'Satélite').length}
               </span>
             </div>
             <div className="flex justify-between items-center py-2">
-              <span className="text-gray-600">Atualizações Diárias</span>
+              <span className="text-gray-600">Fontes Colaborativas</span>
               <span className="font-semibold">
-                {datasources.filter(ds => ds.updateFrequency && ds.updateFrequency.includes('Diário')).length}
+                {datasources.filter(ds => ds.type === 'Colaborativo').length}
               </span>
             </div>
           </div>
