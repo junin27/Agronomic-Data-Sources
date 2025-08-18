@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Home, Database, BarChart3, Table } from 'lucide-react';
+import { Home, Database, BarChart3, Table, Calendar } from 'lucide-react';
 import LastUpdated from './LastUpdated';
 
 const Navbar = () => {
@@ -16,14 +16,17 @@ const Navbar = () => {
     <nav className="bg-white shadow-lg">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center py-4">
-          <div className="flex flex-col space-y-1">
-            <div className="flex items-center space-x-2">
+          <div className="flex items-start space-x-2">
+            <div className="flex flex-col items-center space-y-1">
               <Database className="h-8 w-8 text-green-600" />
+              <Calendar className="h-4 w-4 text-gray-500" />
+            </div>
+            <div className="flex flex-col space-y-1">
               <h1 className="text-xl font-bold text-gray-800">
                 Mapeamento de Dados Agronômicos
               </h1>
+              <LastUpdated />
             </div>
-            <LastUpdated />
           </div>
           
           <div className="flex space-x-6">

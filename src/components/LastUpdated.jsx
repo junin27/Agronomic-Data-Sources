@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { Calendar } from 'lucide-react';
 
 const LastUpdated = () => {
   const [lastCommitDate, setLastCommitDate] = useState(null);
@@ -48,16 +47,14 @@ const LastUpdated = () => {
 
   if (loading) {
     return (
-      <div className="flex items-center space-x-1 text-sm text-gray-500">
-        <Calendar className="h-4 w-4" />
+      <div className="text-sm text-gray-500">
         <span>Carregando...</span>
       </div>
     );
   }
 
   return (
-    <div className="flex items-center space-x-1 text-sm text-gray-500">
-      <Calendar className="h-4 w-4" />
+    <div className="text-sm text-gray-500">
       <span>Fontes Atualizadas em: {lastCommitDate}</span>
     </div>
   );
