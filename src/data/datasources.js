@@ -2229,120 +2229,88 @@ export const datasources = [
     ]
   },
   {
-    id: 'builtwith-datasets',
-    name: 'BuiltWith Datasets',
-    description: 'Repositório estruturado que disponibiliza, via download, metadados sobre tecnologias presentes em domínios web, cobrindo diversos setores como agricultura digital para análises estratégicas.',
-    category: 'Tecnologia Web',
-    type: 'Privado',
-    coverage: 'Global',
-    format: 'JSON/ZIP',
-    updateFrequency: 'Mensal',
-    cost: 'Pago (Orçamento Personalizado)',
-    accessibility: 'Privado',
-    website: 'https://builtwith.com/',
-    apiDocumentation: 'https://builtwith.com/api',
+    id: 18,
+    name: "BuiltWith Datasets",
+    description: "BuiltWith Datasets é um repositório estruturado que disponibiliza, via download, metadados sobre tecnologias presentes em domínios web, cobrindo diversos setores como agricultura digital para análises estratégicas.",
+    type: "Privado",
+    category: "Tecnologia Web",
+    coverage: "Global",
+    format: "JSON/ZIP",
+    updateFrequency: "Mensal",
+    accessibility: "Privado",
+    cost: "Pago (Orçamento Personalizado)",
+    dataTypes: ["Tecnologias Web", "Metadados de Domínio", "Categorias Tecnológicas", "Histórico de Uso", "IoT", "Rastreamento por Satélite", "CMS", "APIs", "Scripts e Widgets", "Frameworks", "Informações de Contato", "Localização"],
+    establishment: "BuiltWith",
     reliability: 95,
     completeness: 90,
     timeliness: 85,
     accuracy: 95,
-    dataTypes: [
-      'Tecnologias Web',
-      'Metadados de Domínio',
-      'Categorias Tecnológicas',
-      'Histórico de Uso',
-      'IoT',
-      'Rastreamento por Satélite',
-      'CMS',
-      'APIs',
-      'Scripts e Widgets',
-      'Frameworks',
-      'Informações de Contato',
-      'Localização'
-    ],
-    features: [
-      'Rastreamento de mais de 673 milhões de websites ativos',
-      'Identificação de tecnologias implementadas em websites',
-      'Categorização por tipo (IoT, rastreamento satelital, CMS, APIs)',
-      'Dados de domínio, tecnologias, categorias e contagem de registros',
-      'Category Datasets agrupados por categoria tecnológica',
-      'Entire Internet Datasets com cobertura completa',
-      'Datasets de exemplo disponíveis para download',
-      'Estrutura de dados em JSON bem documentada',
-      'Acesso via API para consultas dinâmicas',
-      'Atualização mensal dos dados',
-      'Alta precisão na detecção de scripts, widgets e frameworks',
-      'Cobertura praticamente completa da internet'
-    ],
-    limitations: [
-      'Volume massivo exige infraestrutura robusta para processamento',
-      'Filtragem necessária para isolar domínios do agronegócio',
-      'Custo pode ser elevado dependendo do volume de dados',
-      'Qualidade de metadados de contato pode variar',
-      'Preços não publicados, necessário solicitar orçamento',
-      'Dependência da disponibilidade pública de informações nos websites'
-    ],
-    dataAndContent: {
-      description: 'Oferece informações sobre quais tecnologias estão implementadas em websites, categorizadas por tipo (como IoT, rastreamento por satélite, CMS, APIs, etc). Contém dados de domínio, tecnologias, categorias, contagem de registros e histórico de uso.',
-      categoryDatasets: 'Datasets agrupados por categoria tecnológica com milhões de registros',
-      entireInternetDatasets: 'Cobertura de todos os sites ativos na internet',
-      dataStructure: 'Arquivos JSON com estrutura bem documentada explicando cada propriedade e finalidade',
-      coverage: 'Rastreamento de mais de 673 milhões de websites ativos representando cobertura praticamente completa da internet'
+    website: "https://builtwith.com/",
+    logo: "/logos/builtwith.png",
+    dataContent: {
+      description: "Oferece informações sobre quais tecnologias estão implementadas em websites, categorizadas por tipo (como IoT, rastreamento por satélite, CMS, APIs, etc).",
+      dataStructure: "Contém dados de domínio, tecnologias, categorias, contagem de registros e histórico de uso.",
+      categoryDatasets: "Exemplos incluem datasets como 'Category Datasets' (agrupados por categoria tecnológica) com milhões de registros, e 'Entire Internet Datasets' com cobertura de todos os sites ativos."
     },
     accessAndDocumentation: {
-      primaryAccess: 'Download de datasets em formato ZIP contendo arquivos JSON',
-      sampleDataset: 'Dataset de exemplo disponível para download oferecendo visão prática da estrutura dos dados',
-      documentation: 'Documentação completa sobre campos presentes nos arquivos JSON disponível no site',
-      apiAccess: 'Acesso via API para consultas dinâmicas e detalhadas além dos downloads',
-      dataFormat: 'Arquivos JSON estruturados com metadados detalhados sobre tecnologias web'
+      access: "Os datasets são acessados por download, geralmente em ZIP contendo arquivos JSON.",
+      sampleDataset: "É possível baixar um dataset de exemplo (ZIP) que oferece visão prática da estrutura dos dados.",
+      documentation: "A documentação sobre os campos presentes nos arquivos JSON está disponível no site da BuiltWith, explicando cada propriedade e sua finalidade.",
+      apiAccess: "Embora este pacote específico seja por download, a BuiltWith também oferece acesso via API para consultas dinâmicas e detalhadas, conforme os recursos disponíveis na seção 'API Access'."
     },
     pricing: {
-      model: 'Orçamento personalizado - preços não publicados no site',
-      apiPlans: 'Planos estruturados com base em volume de consultas e tipos de dados',
-      scalability: 'Valores escaláveis conforme necessidade do cliente',
-      contactRequired: 'Necessário solicitar orçamento para acesso completo aos datasets'
+      description: "A BuiltWith não publica preços fixos para os datasets em seu site; é necessário solicitar orçamento personalizado para acesso completo.",
+      apiPlans: "Planos de API são estruturados com base em volume de consultas e tipos de dados, com valores escaláveis conforme necessidade."
     },
-    volumeAndQualityAssessment: {
-      volume: {
-        description: 'Volume massivo com rastreamento de mais de 673 milhões de websites ativos',
-        coverage: 'Cobertura praticamente completa da internet',
-        challenge: 'Para o setor agrícola, o desafio é filtrar e identificar domínios relevantes'
-      },
-      quality: {
-        technologyDetection: 'Alta qualidade e precisão na detecção de scripts, widgets e frameworks',
-        metadata: 'Qualidade de metadados como informações de contato pode variar',
-        updateFrequency: 'Atualização mensal garante dados relativamente recentes',
-        reliability: 'Principal fortaleza da plataforma na identificação de tecnologias'
-      }
+    volumeAndQuality: {
+      volume: "O volume de dados da BuiltWith é massivo. A empresa afirma rastrear mais de 673 milhões de websites ativos, o que representa uma cobertura praticamente completa da internet. Para o setor agrícola, o desafio não é a falta de dados, mas sim a capacidade de filtrar e identificar os domínios relevantes.",
+      quality: "A qualidade dos dados de identificação de tecnologia é considerada alta e é a principal fortaleza da plataforma. A precisão na detecção de scripts, widgets e frameworks é elevada. No entanto, a qualidade de metadados como informações de contato (e-mail, telefone) e localização pode variar, uma vez que depende da disponibilidade pública dessas informações nos próprios websites. A atualização mensal garante que os dados sejam relativamente recentes."
     },
-    dataCollectionConsiderations: {
-      strategicAnalysis: 'Fonte valiosa para análises setoriais em agricultura digital permitindo filtrar domínios relevantes',
-      technologyMapping: 'Permite entender quais tecnologias estão sendo aplicadas no setor',
-      dataIntegration: 'Pode ser combinada com outras bases (meteorologia, sensores, mercado) para inteligência competitiva',
-      filtering: 'Criar filtros por categoria ou domínio relacionados à agricultura é fundamental para insights relevantes',
-      competitiveIntelligence: 'Identificação de tendências tecnológicas no agronegócio'
-    },
-    challengesAndOpportunities: {
-      challenges: [
-        'Volume massivo exige infraestrutura robusta para armazenamento e processamento',
-        'Filtragem manual ou automatizada necessária para isolar domínios do agronegócio',
-        'Custo pode ser elevado dependendo do volume e profundidade dos dados necessários'
-      ],
-      opportunities: [
-        'Mapeamento do ecossistema tecnológico agrícola',
-        'Identificação de fornecedores, plataformas IoT, rastreamento satelital',
-        'Insights para prospecção de clientes, parceiros ou benchmarking',
-        'Análise de adoção tecnológica global ou regional com atualização periódica'
-      ]
-    },
-    integrationRecommendations: [
-      'Obter e estudar dataset de exemplo (ZIP/JSON) e documentação de campos',
-      'Solicitar orçamento personalizado para datasets específicos de interesse',
-      'Avaliar planos API se desejar acesso dinâmico aos dados',
-      'Desenvolver pipelines de ingestão com filtragem por tecnologia relevante',
-      'Armazenar em data warehouse ou sistema de análise',
-      'Enriquecer dados cruzando com outras fontes (mercado, satélite, clima)',
-      'Gerar dashboards e relatórios estratégicos',
-      'Estabelecer processo de atualização periódico alinhado com frequência mensal'
+    dataCollection: [
+      "É uma fonte valiosa para análises setoriais em agricultura digital: permite filtrar domínios relevantes e entender quais tecnologias estão sendo aplicadas",
+      "Pode ser combinada com outras bases (como meteorologia, sensores de campo, mercado) para gerar inteligência competitiva e identificar tendências tecnológicas no agronegócio",
+      "Como os dados são amplos, criar filtros por categoria ou domínio relacionados à agricultura será fundamental para extração de insights relevantes"
+    ],
+    challenges: [
+      "Volume massivo exige infraestrutura robusta para armazenamento e processamento",
+      "Filtragem manual ou automatizada necessária para isolar domínios realmente relacionados ao agronegócio",
+      "Custo pode ser elevado, dependendo do volume e profundidade dos dados necessários (via API ou downloads completos)"
+    ],
+    opportunities: [
+      "Mapeamento do ecossistema tecnológico agrícola: identificação de fornecedores, plataformas IoT, rastreamento satelital etc.",
+      "Insights para prospecção de clientes, parceiros ou benchmarking de soluções tecnológicas",
+      "Potencial para análise de adoção tecnológica global ou regional com atualização periódica (mensal ou conforme frequência dos datasets)"
+    ],
+    recommendations: [
+      "Obtenha e estude o dataset de exemplo (via ZIP/JSON) e a documentação de campos, para entender a estrutura e potenciais filtros",
+      "Solicite orçamento personalizado para os datasets específicos de interesse (categoria ou 'Entire Internet') e avalie planos API se desejar acesso dinâmico",
+      "Desenvolva pipelines de ingestão de dados, com filtragem por tecnologia relevante ao agronegócio e armazenamento em data warehouse ou sistema de análise",
+      "Enriqueça os dados, cruzando com outras fontes (mercado, satélite, clima, locais) para gerar dashboards e relatórios estratégicos",
+      "Estabeleça um processo de atualização periódico, alinhando com a frequência dos dados (geralmente mensal) para manter insights atualizados"
+    ],
+    features: [
+      "Rastreamento de mais de 673 milhões de websites",
+      "Identificação de tecnologias implementadas",
+      "Categorização por tipo (IoT, rastreamento satelital, CMS, APIs)",
+      "Category Datasets agrupados por categoria",
+      "Entire Internet Datasets com cobertura completa",
+      "Datasets de exemplo para download",
+      "Estrutura JSON bem documentada",
+      "Acesso via API para consultas dinâmicas",
+      "Atualização mensal dos dados",
+      "Alta precisão na detecção de tecnologias",
+      "Cobertura praticamente completa da internet",
+      "Metadados detalhados sobre domínios"
+    ],
+    limitations: [
+      "Volume massivo requer infraestrutura robusta",
+      "Necessidade de filtragem para agricultura",
+      "Custo elevado dependendo do volume",
+      "Qualidade de metadados de contato variável",
+      "Preços não publicados",
+      "Dependência de informações públicas",
+      "Processamento complexo dos dados",
+      "Necessidade de orçamento personalizado"
     ]
   }
 ];
