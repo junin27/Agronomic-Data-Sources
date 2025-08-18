@@ -28,53 +28,39 @@ export const datasources = [
       ]
     },
     access: {
-      methods: [
-        'Via navegador para consultar catálogos/baixar',
-        'APIs para processamento sob demanda no próprio ambiente do CDSE',
-        'Integração direta em GIS'
-      ],
+      description: "Via navegador, consultar catálogos/baixar por APIs e processar sob demanda no próprio ambiente do CDSE:",
+      documentation: "Documentação Geral: visão de dados e APIs em um único lugar",
       apis: [
         {
           name: 'STAC API',
-          description: 'Busca por área/tempo/propriedades - endpoint público do catálogo',
+          description: 'STAC API (busca por área/tempo/propriedades): endpoint público do catálogo',
           type: 'REST'
         },
         {
           name: 'OData',
-          description: 'Catálogo/metadata legado-compatível - REST para listar produtos e metadados; útil a quem migrou do SciHub',
+          description: 'OData (catálogo/metadata legado-compatível): REST para listar produtos e metadados; útil a quem migrou do SciHub',
           type: 'REST'
         },
         {
           name: 'S3',
-          description: 'Alto desempenho/paralelismo - acesso a objetos via protocolo S3 para ingestão/bulk em pipelines externos/HPC',
+          description: 'S3 (alto desempenho/parallelismo): acesso a objetos via protocolo S3 para ingestão/bulk em pipelines externos/HPC',
           type: 'S3 Protocol'
         },
         {
           name: 'openEO',
-          description: 'Processamento sob demanda com créditos - construa fluxos (visual ou via API) e rode no acervo completo',
+          description: 'openEO (processamento sob demanda com créditos): construa fluxos (visual ou via API) e rode no acervo completo',
           type: 'Processing API'
         },
         {
           name: 'Sentinel Hub APIs',
-          description: 'Process, Catalog, OGC WMS/WCS/WMTS - renderização, estatística e tiles prontos (ex.: NDVI) e integração direta em GIS',
+          description: 'Sentinel Hub APIs (Process, Catalog, OGC WMS/WCS/WMTS): renderização, estatística e tiles prontos (ex.: NDVI) e integração direta em GIS',
           type: 'OGC/REST'
         }
       ],
       gisIntegration: [
-        'QGIS: plugin oficial do CDSE/Sentinel Hub para buscar e visualizar imagens direto no QGIS',
-        'ArcGIS Pro: conecta via STAC/S3'
+        'QGIS/ArcGIS: plugin oficial do CDSE/Sentinel Hub para buscar e visualizar imagens direto no QGIS; ArcGIS Pro conecta via STAC/S3'
       ],
-      migrationNote: 'O Copernicus Open Access Hub (SciHub) foi descontinuado em outubro/2023; todo acesso deve ocorrer pelo CDSE.'
-    },
-    documentation: {
-      general: 'Documentação Geral: visão de dados e APIs em um único lugar',
-      resources: [
-        'Portal principal com navegação e catálogos',
-        'Documentação completa de APIs',
-        'Guias de migração do SciHub',
-        'Tutoriais de processamento openEO',
-        'Documentação Sentinel Hub APIs'
-      ]
+      migrationNote: 'Observação de migração: o Copernicus Open Access Hub (SciHub) foi descontinuado em outubro/2023; todo acesso deve ocorrer pelo CDSE.'
     },
     pricing: {
       model: 'Freemium com cotas',
@@ -90,52 +76,37 @@ export const datasources = [
       ]
     },
     volume: {
-      scale: 'Petabytes',
-      description: 'O ecossistema opera com armazenamento em escala de dezenas de petabytes',
-      updateSpeed: 'Produtos disponibilizados até ~15 min após o processamento pela ESA'
+      description: "Infraestrutura em larga escala (ex.: ~120 PB de capacidade e ~84 PB de dados em 04/2024; 'maior instalação Ceph do mundo' à época), com ingestão/publicação rápida (~15 min após processamento ESA)"
+    },
+    quality: {
+      description: "Produtos oficiais Sentinel (níveis L1/L2) com calibração/validação da ESA; S1 GRD também em COG_SAFE para acesso escalável; metadados STAC estão em evolução contínua (versão 1.0 implementada). Para S2, imagens em JPEG2000 (SAFE) e, para S3, produtos baseados em NetCDF segundo especificações PDGS"
     },
     reliability: 96,
     completeness: 94,
     timeliness: 95,
     accuracy: 93,
-    quality: {
-      dataQuality: 'Dados oficiais da ESA/União Europeia',
-      processing: 'Processamento padronizado e validado',
-      reliability: 'Alta confiabilidade - infraestrutura oficial Copernicus'
-    },
     dataCollection: {
       considerations: [
-        'Migração obrigatória do antigo SciHub para CDSE',
-        'Familiarização com novas APIs e interfaces',
-        'Configuração de quotas adequadas para uso intensivo',
-        'Integração com ferramentas GIS existentes'
-      ],
-      intelligence: [
-        'Monitoramento contínuo via satélites Sentinel',
-        'Processamento em tempo quase real',
-        'Capacidades de análise temporal e espacial',
-        'Integração com serviços Copernicus temáticos'
+        "Escolha de missão/nivel: S1 (radar, todo tempo) para umidade/estrutura; S2 (óptico) para NDVI/EVI e mapeamentos; S3 para LST/OC/cores da terra; inclua DEM/WorldCover conforme necessário",
+        "Latência/atualidade: em geral muito rápida, mas acompanhe eventos (ex.: atrasos temporários S2 L2A noticiados e resolvidos)",
+        "Filtragem e recorte: use STAC para recortes por bbox/data/nuvem; processe índices no openEO/Process API e exporte como GeoTIFF/COG quando possível",
+        "Cotas e robustez: monitore limites (requisições, PUs, créditos e tráfego 30 d) e implemente retry/backoff e cache",
+        "Integração GIS: para visualização/operacionalização, conecte WMS/WCS/WMTS ou o plugin QGIS; para pipelines de alto volume, prefira S3",
+        "Rastreabilidade e compliance: registre/cheque hashes e proveniência com o Traceability"
       ]
     },
     challenges: [
-      'Curva de aprendizado para migração do SciHub',
-      'Gerenciamento de quotas e limites de uso',
-      'Complexidade das múltiplas APIs disponíveis',
-      'Necessidade de processamento para produtos derivados'
+      "Altíssimo volume (armazenamento/egresso), cotas compartilhadas entre usuários, metadados STAC em evolução, eventuais indisponibilidades pontuais; necessidade de migração de ferramentas antigas (ex.: sentinelsat do SciHub)"
     ],
     opportunities: [
-      'Acesso gratuito a dados de observação da Terra de alta qualidade',
-      'Processamento em nuvem sem necessidade de infraestrutura local',
-      'Integração direta com ferramentas GIS populares',
-      'Capacidades avançadas de análise temporal',
-      'Suporte a múltiplos protocolos e padrões'
+      "Publicação quase em tempo real, processamento sob demanda (openEO/SH Process API), formatos otimizados (COG), integração nativa com QGIS/ArcGIS, Data Workspace/JupyterLab, e serviços comerciais para escalar workloads quando necessário"
     ],
     recommendations: [
-      'Planejar migração do SciHub com antecedência',
-      'Avaliar necessidades de quota baseadas no volume de uso',
-      'Explorar capacidades de processamento openEO',
-      'Integrar com workflows GIS existentes',
-      'Aproveitar APIs especializadas para casos de uso específicos'
+      "Consulte STAC para listar itens/ativos e armazene apenas metadados/links; para lotes grandes, recupere via S3",
+      "Processamento: rode NDVI/EVI/estatísticas usando openEO (créditos mensais) ou Sentinel Hub Process API, preferir exportar COG para análises repetíveis",
+      "Orquestração: trate cotas (limites por minuto/mês e por volume 30d) com fila/retry e logging; configure alertas para service news",
+      "Visualização e entrega: publique camadas WMS/WCS/WMTS para equipes e conecte o plugin QGIS; para auditoria, gere traces dos produtos distribuídos",
+      "Migração: se usava SciHub/sentinelsat, troque para STAC + pystac-client e/ou sentinelhub-py conforme a necessidade de processamento e OGC"
     ],
     limitations: [
       'Dependência de quotas para uso intensivo',
