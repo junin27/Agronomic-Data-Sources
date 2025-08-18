@@ -1623,20 +1623,16 @@ export const datasources = [
       "formats": ["PNG", "GeoTIFF", "JSON"]
     },
     dataAndContent: {
+      "description": "A API cobre satélites (Sentinel-2, Landsat-8/9, MODIS) com geração de NDVI, EVI, EVI2, NDWI, DSWI, NRI, além de imagens true/false color e estatísticas zonais (mín., máx., mediana, desvio-padrão) por polígono",
+      "responseFormats": "As respostas incluem PNG (imagens/tiles), GeoTIFF e JSON de metadados",
+      "historicalNDVI": "O NDVI histórico é atualizado diariamente combinando Landsat, Sentinel e MODIS, com arquivo desde 2001 no plano corporativo",
+      "weatherAndSoilData": "Também entrega tempo atual, previsão de 5 dias/3 h, histórico, temperatura e umidade do solo (superfície e 10 cm), acumulados de precipitação e de temperatura (GDD), e UV",
+      "dashboard": "Em interface de dashboard, cada cena exibe data, nebulosidade, resolução (m/px) e fonte",
+      "resolutions": "Na FAQ constam resoluções mínimas de 10 m (Sentinel-2) e 30 m (Landsat)",
       "satellites": "Sentinel-2, Landsat-8/9, MODIS",
       "vegetationIndices": "NDVI, EVI, EVI2, NDWI, DSWI, NRI",
       "imageTypes": "True/false color",
-      "zonalStatistics": "Mínimo, máximo, mediana, desvio-padrão por polígono",
-      "responseFormats": "PNG (imagens/tiles), GeoTIFF e JSON de metadados",
-      "historicalNDVI": "Atualizado diariamente combinando Landsat, Sentinel e MODIS",
-      "historicalArchive": "Desde 2001 no plano corporativo",
-      "weatherData": "Tempo atual, previsão de 5 dias/3h, histórico",
-      "soilData": "Temperatura e umidade do solo (superfície e 10 cm)",
-      "precipitation": "Acumulados de precipitação",
-      "temperature": "Acumulados de temperatura (GDD)",
-      "uv": "Dados de UV",
-      "dashboard": "Interface com data, nebulosidade, resolução (m/px) e fonte para cada cena",
-      "minimumResolution": "10 m (Sentinel-2) e 30 m (Landsat)"
+      "zonalStatistics": "Mínimo, máximo, mediana, desvio-padrão por polígono"
     },
     features: [
       "Imagens de satélite de Sentinel-2, Landsat-8/9 e MODIS",
@@ -1656,79 +1652,28 @@ export const datasources = [
       "Monitoramento em tempo quase real e histórico"
     ],
     accessAndDocumentation: {
-      "typicalFlow": "Registrar-se e obter API key, criar polígono (GeoJSON, ordem lon,lat) com Polygons API, usar API de busca de imagens (passo 1) seguida do download de produtos/estatísticas (passo 2)",
-      "guides": "Guias 'How to start' e documentação detalhada de imagens, solos e tempo",
-      "searchReturn": "Retorno de busca já traz os links 'data' para GeoTIFF de cada preset",
-      "documentation": "Documentação oficial e dashboard com tutoriais passo a passo",
-      "polygonsAPI": "API para criação de polígonos em formato GeoJSON (ordem lon,lat)",
-      "imageSearchAPI": "API de busca de imagens (passo 1)",
-      "downloadAPI": "API de download de produtos/estatísticas (passo 2)",
-      "tutorials": "Tutoriais passo a passo disponíveis na documentação oficial e dashboard"
+      "typicalFlow": "O fluxo típico é registrar-se e obter a API key, criar um polígono (GeoJSON, ordem lon,lat) com a Polygons API, e então usar a API de busca de imagens (passo 1) seguida do download de produtos/estatísticas (passo 2)",
+      "guides": "Há guias 'How to start' e documentação detalhada de imagens, solos e tempo",
+      "searchReturn": "O retorno de busca já traz os links 'data' para GeoTIFF de cada preset",
+      "documentation": "A documentação oficial e o dashboard têm tutoriais passo a passo"
     },
     pricing: {
-      "plans": [
-        {
-          "name": "Free",
-          "price": "£0",
-          "area": "1.000 ha",
-          "satelliteRequests": "<60 por minuto",
-          "climateRequests": "<500 por dia",
-          "features": "Limitado"
-        },
-        {
-          "name": "Starter",
-          "price": "£20/mês",
-          "area": "4.000 ha",
-          "excess": "£0,02/ha",
-          "satelliteRequests": "<600 por minuto",
-          "climateRequests": "<1.000 por dia",
-          "features": "NDVI histórico, solo histórico, acumulados, clima histórico"
-        },
-        {
-          "name": "Small Kit",
-          "price": "£200/mês",
-          "area": "20.000 ha",
-          "excess": "£0,01/ha",
-          "satelliteRequests": "<3.000 por minuto",
-          "climateRequests": "<10.000 por dia",
-          "features": "Todos os recursos dos planos anteriores"
-        },
-        {
-          "name": "Corporate",
-          "price": "Sob consulta",
-          "area": "Ilimitada",
-          "features": "Customização, arquivo completo, licenças personalizadas"
-        }
-      ],
-      "pricingModel": "Taxa fixa por área total de polígonos/mês + cobrança por excedente",
-      "operationalLimits": "Requisições por minuto a dados de satélite e chamadas/dia a dados de clima",
-      "historicalDepth": "1 ano padrão (arquivo completo sob consulta/corporate)",
-      "licenses": "CC BY-SA 4.0 para mapas/APIs e ODbL para dados/bancos (customização no corporativo)"
+      "plans": "Há camadas Free (£0), Starter (£20/mês), Small Kit (£200/mês) e Corporate (sob consulta)",
+      "pricingModel": "Os planos combinam taxa fixa por área total de polígonos/mês (ex.: 1 000 ha no Free; 4 000 ha no Starter; 20 000 ha no Small Kit) e cobrança por excedente (ex.: £0,02/ha no Starter. £0,01/ha no Small Kit)",
+      "operationalLimits": "Limites operacionais incluem requisições por minuto a dados de satélite (<60 Free; <600 Starter; <3 000 Small Kit) e chamadas/dia a dados de clima (<500 Free; <1 000 Starter; <10 000 Small Kit)",
+      "features": "Recursos variam por plano: NDVI histórico, solo histórico, acumulados e clima histórico ficam disponíveis a partir dos pagos",
+      "historicalDepth": "A profundidade padrão do clima histórico é 1 ano (arquivo completo sob consulta/corporate)",
+      "licenses": "Licenças declaradas: CC BY-SA 4.0 para mapas/APIs e ODbL para dados/bancos (há customização no corporativo)"
     },
     volumeAndQuality: {
-      "volume": {
-        "satelliteData": "Dados quase em tempo real",
-        "sceneAvailability": "Novas cenas a cada 2-4 dias por polígono (dependendo da órbita/sensor e cobertura de nuvens)",
-        "sceneInfo": "Cada cena indica fonte, resolução e nebulosidade",
-        "qualityFilter": "Permite filtrar qualidade antes do processamento"
-      },
-      "quality": {
-        "spatialResolution": "10 m (Sentinel-2) e 30 m (Landsat)",
-        "ndviDaily": "NDVI diário combina múltiplas constelações, aumentando cadência temporal",
-        "climateUpdates": "<1h nos planos pagos para clima",
-        "soilUpdates": "2×/dia para temperatura/umidade",
-        "additionalData": "Acumulados e UV",
-        "dailyLimits": "Limites diários de chamadas orientam volume processável por dia"
-      }
+      "volume": "Em satélite, o serviço reporta dados quase em tempo real e, no dashboard, disponibilidade típica de novas cenas a cada 2–4 dias por polígono, dependendo da órbita/sensor e cobertura de nuvens; cada cena indica fonte, resolução e nebulosidade, permitindo filtrar qualidade antes do processamento",
+      "quality": "A qualidade espacial é compatível com 10 m (Sentinel-2) e 30 m (Landsat). O NDVI diário combina múltiplas constelações, aumentando a cadência temporal. Em clima/solo, há atualizações <1 h nos planos pagos para clima e solo 2×/dia para temperatura/umidade, com acumulados e UV, limites diários de chamadas orientam o volume processável por dia"
     },
     dataCollection: [
-      "Definir polígonos coerentes com a resolução (≥10-30 m) para evitar mistura de culturas/bordas",
-      "Filtrar por nebulosidade e cobertura antes de calcular indicadores",
-      "Preferir estatísticas zonais da própria API para padronizar séries e reduzir ruído",
-      "Normalizar séries quando misturar sensores",
-      "Tratar unidades (ex.: Kelvin em solo/clima) e timestamps UNIX/UTC",
-      "Gerenciar rate limits e quotas por área com filas e cache de GeoTIFF/tiles",
-      "Para lacunas por nuvens, usar acumulados climáticos e modelos de interpolação como features substitutas"
+      "Defina polígonos coerentes com a resolução (≥10–30 m) para evitar mistura de culturas/bordas",
+      "Filtre por nebulosidade e cobertura antes de calcular indicadores; prefira estatísticas zonais da própria API para padronizar séries e reduzir ruído; normalize séries quando misturar sensores",
+      "Trate unidades (ex.: Kelvin em solo/clima) e timestamps UNIX/UTC; gerencie rate limits e quotas por área com filas e cache de GeoTIFF/tiles",
+      "Para lacunas por nuvens, use acumulados climáticos e modelos de interpolação como features substitutas"
     ],
     intelligence: [
       "Combinação de NDVI diário, acumulados térmicos/chuva, umidade/temperatura do solo",
@@ -1741,32 +1686,18 @@ export const datasources = [
       "Integração de múltiplas fontes de dados satelitais"
     ],
     challenges: [
-      "Nuvens e sazonalidade orbital podem criar buracos temporais mesmo com fusão de sensores",
-      "No plano Free, histórico/meteo são limitados e podem restringir análises multi-safra",
-      "Necessidade de gerenciamento de rate limits e quotas por área",
-      "Tratamento de diferentes unidades e formatos de timestamp",
-      "Mistura de sensores requer normalização de séries temporais",
-      "Lacunas por cobertura de nuvens exigem estratégias de interpolação"
+      "Nuvens e sazonalidade orbital podem criar buracos temporais mesmo com fusão de sensores; no plano Free, histórico/meteo são limitados e podem restringir análises multi-safra"
     ],
     opportunities: [
-      "Combinação de NDVI diário, acumulados térmicos/chuva, umidade/temperatura do solo",
-      "Estatísticas zonais por talhão abrem espaço para alertas de estresse",
-      "Estratégias de irrigação/fertilização baseadas em dados",
-      "Análise de vigor intra-talhão",
-      "Modelagem de produtividade com menor custo de aquisição de dados",
-      "Desenvolvimento de sistemas de agricultura de precisão",
-      "Integração com IoT e sensores de campo",
-      "Criação de dashboards personalizados para produtores"
+      "Por outro lado, a combinação de NDVI diário, acumulados térmicos/chuva, umidade/temperatura do solo e estatísticas zonais por talhão abre espaço para alertas de estresse, estratégias de irrigação/fertilização, análise de vigor intra-talhão e modelagem de produtividade com menor custo de aquisição de dados"
     ],
     recommendations: [
-      "Modelar o pipeline como 'polígono-centro': persistir polygon_id, agendar busca de cenas",
-      "Quando houver janela sem nuvens, baixar GeoTIFF e salvar estatísticas zonais",
-      "Complementar dias sem imagem com séries de clima/solo e acumulados",
-      "Padronizar CRS/escala ao cruzar com camadas de gestão",
-      "Monitorar consumo por área e limites de requisições",
-      "Registrar atribuição/licença conforme CC BY-SA/ODbL e políticas do plano",
-      "Para começar rápido, seguir guia 'How to start', Polygons API (GeoJSON lon,lat) e fluxo 2-passos de imagens",
-      "Para análises avançadas, utilizar links 'data' para GeoTIFF e processar no GIS/ETL"
+      "Modele o pipeline como 'polígono-centro': persistir polygon_id, agendar a busca de cenas e, quando houver janela sem nuvens, baixar GeoTIFF e salvar as estatísticas zonais",
+      "Complemente dias sem imagem com séries de clima/solo e acumulados",
+      "Padronize CRS/escala ao cruzar com camadas de gestão; monitore consumo por área e limites de requisições",
+      "Registre atribuição/licença conforme CC BY-SA/ODbL e políticas do plano",
+      "Para começar rápido, siga o guia de 'How to start', Polygons API (GeoJSON lon,lat) e o fluxo 2-passos de imagens",
+      "Para análises avançadas, utilize os links 'data' para GeoTIFF e processe no seu GIS/ETL"
     ],
     limitations: [
       "Dependência de condições climáticas para qualidade das imagens",
