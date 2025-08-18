@@ -966,7 +966,7 @@ export const datasources = [
     },
     dataGroups: [
       "Divisão hidrográfica",
-      "Quantidade e qualidade de água",
+      "Quantidade e qualidade de água", 
       "Usos da água",
       "Balanço hídrico",
       "Eventos hidrológicos críticos",
@@ -992,20 +992,20 @@ export const datasources = [
       "Dados essenciais para manejo da água na agricultura"
     ],
     accessAndDocumentation: {
-      "primaryAccess": "Plataforma de Dados Abertos da ANA",
-      "apiName": "Search API em conformidade com OGC API - Records",
-      "dataFormats": ["Feature Service (GeoJSON/Shapefile)", "CSV", "JSON"],
-      "apiCapabilities": "Consultar, filtrar e buscar o catálogo de dados programaticamente",
+      "primaryAccess": "Nova Plataforma de Dados Abertos da ANA",
+      "apiName": "Search API em conformidade com especificação OGC API - Records",
+      "dataFormats": ["Feature Service (que implica compatibilidade com GeoJSON e Shapefile)", "CSV", "JSON"],
+      "apiCapabilities": "Permite consultar, filtrar e buscar o catálogo de dados programaticamente",
       "standards": "Conformidade com padrões Open Geospatial Consortium (OGC)",
-      "interoperability": "Facilita interoperabilidade com sistemas GIS",
-      "geospatialData": "Disponibilização de dados hídricos em formatos geoespaciais",
-      "integration": "Integração direta de informações sobre disponibilidade e uso da água em modelos de gestão agrícola e de risco hídrico"
+      "interoperability": "A conformidade com padrões OGC facilita a interoperabilidade com sistemas GIS",
+      "geospatialData": "Disponibilização de dados hídricos em formatos geoespaciais via API é um diferencial significativo da ANA",
+      "integration": "Permite a integração direta de informações sobre disponibilidade e uso da água em modelos de gestão agrícola e de risco hídrico"
     },
     pricing: {
-      "model": "Totalmente gratuito",
-      "description": "Acesso à plataforma de Dados Abertos e à API do SNIRH é totalmente gratuito",
-      "clarification": "A cobrança que a ANA realiza se refere ao uso da água como recurso natural (taxa paga por empresas e indústrias), não tem relação com a obtenção de dados",
-      "policy": "Política de gestão hídrica separada do acesso aos dados"
+      "model": "Não há precificação para o acesso aos dados da ANA",
+      "description": "O acesso à plataforma de Dados Abertos e à API do Sistema Nacional de Informações sobre Recursos Hídricos (SNIRH) é totalmente gratuito",
+      "clarification": "A cobrança que a ANA realiza se refere ao uso da água como recurso natural, o que é uma taxa paga por empresas e indústrias que utilizam a água em seus processos",
+      "policy": "Isso é uma política de gestão hídrica e não tem relação com a obtenção de dados por meio da API da agência"
     },
     volume: {
       "totalDatasets": "97 conjuntos de dados",
