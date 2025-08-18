@@ -2002,24 +2002,19 @@ export const datasources = [
       }
     },
     accessAndDocumentation: {
-      "primaryAccess": "FAS Open Data Services (Swagger)",
-      "apiDocumentation": "Documenta as APIs de PS&D, Export Sales (ESR) e GATS, além do portal da fas",
-      "authentication": "API key do api.data.gov necessária para uso programático",
-      "endpoints": ["PS&D API", "Export Sales API", "GATS API"],
+      "primaryAccess": "O ponto único é o FAS Open Data Services (Swagger), que documenta as APIs de PS&D, Export Sales (ESR) e GATS, além do portal da fas",
+      "authentication": "Para uso programático é necessário API key do api.data.gov; a documentação indica como obter a chave e os principais endpoints (incluindo consulta de datas de release)",
       "webPortals": {
-        "psdOnline": "PS&D Online com consulta web e download de arquivos para planilhas/bancos",
-        "exportSalesPortal": "Página oficial publica o relatório semanal, links para séries históricas, ferramentas de consulta e referência direta ao ESR Data API",
-        "gatsPortal": "Portal oferece consultas e link para a GATS Data API",
-        "cropExplorerPortal": "Acesso via visualização web de mapas e imagens com descrição das fontes/modelos; ideal para análise contextual e monitoramento"
+        "psdOnline": "Para PS&D, além da API, existe o PS&D Online com consulta web e download de arquivos para planilhas/bancos",
+        "exportSalesPortal": "Para Export Sales, a página oficial publica o relatório semanal, links para séries históricas, ferramentas de consulta e referência direta ao ESR Data API",
+        "gatsPortal": "Para GATS, o portal oferece consultas e link para a GATS Data API",
+        "cropExplorerPortal": "Para Crop Explorer, o acesso é via visualização web de mapas e imagens com descrição das fontes/modelos; é ideal para análise contextual e monitoramento, não como feed numérico estruturado"
       },
-      "apiUsage": "Com a chave do api.data.gov, as APIs aceitam autenticação por cabeçalho (ex.: X-Api-Key) ou parâmetro, conforme o manual do api.data.gov, e possuem limites de requisição",
-      "swaggerDocumentation": "Consulte o Swagger do FAS para formatos/rotas específicas por produto"
+      "apiUsage": "Como usar (API): com a chave do api.data.gov, as APIs aceitam autenticação por cabeçalho (ex.: X-Api-Key) ou parâmetro, conforme o manual do api.data.gov, e possuem limites de requisição. Consulte o Swagger do FAS para formatos/rotas específicas por produto"
     },
     pricing: {
-      "model": "Gratuito (open data)",
-      "rateLimits": "Uso via api.data.gov está sujeito a rate limits padrão (por exemplo, 1.000 req/hora, podendo variar por serviço)",
-      "apiKey": "Exige uma chave individual do api.data.gov",
-      "description": "Acesso gratuito aos dados, mas com limitações de frequência de requisições"
+      "model": "A acesso é gratuito (open data)",
+      "rateLimits": "O uso via api.data.gov está sujeito a rate limits padrão (por exemplo, 1.000 req/hora, podendo variar por serviço) e exige uma chave individual"
     },
     volumeAndQuality: {
       "volume": "O PS&D cobre um amplo conjunto de commodities agrícolas e países, com séries históricas extensas (muitas desde 1960). O Export Sales fornece granularidade semanal por commodity/destino desde fins dos anos 1990; o GATS cobre todo o comércio agro dos EUA (exportações/importações). O GAIN adiciona ~2.000 relatórios/ano desde 1995, enriquecendo o contexto.",
@@ -2028,18 +2023,10 @@ export const datasources = [
       "historicalData": "Dados históricos desde 1960 para muitas commodities"
     },
     dataCollection: [
-      "Coleta de dados de produção, suprimentos e distribuição por commodity/país",
-      "Monitoramento semanal de vendas de exportação dos EUA",
-      "Integração de estatísticas de comércio de fontes como U.S. Census e UN Comtrade",
-      "Coleta de dados agroclimáticos via satélite para monitoramento de safras",
-      "Produção de relatórios de inteligência de mercado pelos adidos agrícolas",
-      "Revisões mensais alinhadas com o calendário do WASDE",
-      "Processamento de dados de precipitação, temperatura e umidade do solo",
-      "Análise de NDVI/MODIS para condições de vegetação",
-      "Tratamento cuidadoso de anos-safra (Marketing Year) que variam por país/commodity",
-      "Registro do Release Schedule e datas de publicação para reproducibilidade",
-      "Consideração de sazonalidades fortes e revisões para séries semanais",
-      "Acompanhamento de cortes de produção e mudanças metodológicas"
+      "Trate com cuidado anos-safra (Marketing Year), que variam por país/commodity e diferem de ano-calendário; as tabelas do PS&D equilibram fluxos nos respectivos anos locais e alguns relatórios trazem notas específicas de MY por produto/país",
+      "Registre o Release Schedule e as datas de publicação para reproducibilidade",
+      "Para séries semanais (Export Sales), considere sazonalidades fortes e revisões; para mensais (PS&D), acompanhe cortes de produção e mudanças metodológicas divulgadas nos circulares/relatórios",
+      "Ao usar inteligência de GAIN, lembre-se de que são análises de campo e podem divergir de números oficiais do PS&D; use-as para contexto, risco regulatório, logística e sinais de curto prazo"
     ],
     intelligence: [
       "Estimativas oficiais do USDA para produção e consumo global",
@@ -2052,40 +2039,20 @@ export const datasources = [
       "Previsões e projeções para mercados de commodities"
     ],
     challenges: [
-      "Esquemas diferentes entre APIs (PS&D, ESR, GATS)",
-      "Necessidade de chave de API e rate limits",
-      "Mapeamento de códigos de commodity e harmonização de MY vs. CY",
-      "Crop Explorer voltado a imagens/mapas, exigindo tratamento específico para séries numéricas",
-      "Complexidade na integração de múltiplas bases de dados",
-      "Dependência de fontes externas como U.S. Census e UN Comtrade",
-      "Necessidade de conhecimento técnico para uso eficiente das APIs",
-      "Possíveis atrasos na disponibilização de dados devido a processos de validação",
-      "GAIN traz análises de campo que podem divergir de números oficiais do PS&D"
+      "Esquemas diferentes entre APIs (PS&D, ESR, GATS), necessidade de chave e rate limits, mapeamento de códigos de commodity e harmonização de MY vs. CY",
+      "Além disso, o Crop Explorer é voltado a imagens/mapas, exigindo tratamento específico se você quiser derivar séries numéricas"
     ],
     opportunities: [
       "Combinar Export Sales (semanal) com PS&D (mensal) para nowcasting de comércio/saldos",
       "Usar NDVI/umidade do solo do Crop Explorer para explicar revisões de produção",
-      "Integrar o GATS para granularidade do comércio dos EUA por código HS/país",
-      "Enriquecer análises de competitividade e share de mercado",
-      "Desenvolvimento de sistemas de análise de mercado agrícola",
-      "Integração com plataformas de trading de commodities",
-      "Criação de dashboards para monitoramento de safras globais",
-      "Desenvolvimento de modelos preditivos para preços de commodities",
-      "Análise de impactos climáticos na produção global",
-      "Sistemas de alerta para condições adversas de safra"
+      "Integrar o GATS para granularidade do comércio dos EUA por código HS/país, enriquecendo análises de competitividade e share"
     ],
     recommendations: [
-      "Implementar modelo canônico de dados por commodity–país–ano com chaves de mapeamento",
-      "Guardar data/hora de release de cada atualização para versionamento",
-      "Programar rotina semanal (5ª feira, horário de Washington) para Export Sales",
-      "Programar rotina mensal para PS&D, sincronizada às datas do WASDE",
-      "Registrar alterações e notas metodológicas dos circulares",
-      "Obter chave no api.data.gov e autenticar conforme manual (ex.: cabeçalho X-Api-Key)",
-      "Implementar cache e fila de chamadas se atingir limites de API",
-      "Usar GATS API para validar séries de comércio dos EUA",
-      "Usar GAIN para sinais qualitativos (mudanças regulatórias, logística, clima local)",
-      "Consumir Crop Explorer como camadas de contexto, não como feed tabular",
-      "Integrar imagens e metadados ao pipeline analítico/BI"
+      "Implemente um modelo canônico de dados por commodity–país–ano com chaves de mapeamento (códigos PS&D e HS), guardando data/hora de release de cada atualização para versionamento; o Swagger do FAS inclui endpoint para datas de release, útil para backfill e reprocessamento",
+      "Programe uma rotina semanal (5ª feira, horário de Washington) para Export Sales e uma rotina mensal para PS&D, sincronizada às datas do WASDE; registre alterações e notas metodológicas dos circulares",
+      "Para acesso programático, obtenha a chave no api.data.gov e autentique conforme o manual (ex.: cabeçalho X-Api-Key); se atingir limites, solicite ajuste ao órgão responsável ou implemente cache e fila de chamadas",
+      "Use o GATS API para validar séries de comércio dos EUA e o GAIN para sinais qualitativos (mudanças regulatórias, logística, clima local) que expliquem quebras de tendência",
+      "Para Crop Explorer, consuma imagens e metadados como camadas de contexto (não como feed tabular), integrando-as ao pipeline analítico/BI"
     ],
     limitations: [
       "Rate limits padrão (ex.: 1.000 req/hora) podem limitar aplicações intensivas",
