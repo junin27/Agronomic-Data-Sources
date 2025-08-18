@@ -728,11 +728,11 @@ export const datasources = [
       "Mais de mil produtos considerando variedades"
     ],
     accessAndDocumentation: {
-      "primaryAccess": "Portal de Informações Agropecuárias via download direto",
-      "governmentAPI": "API de Dados do Portal da Transparência (genérica, requer token)",
-      "mappingFormats": "Shapefiles para mapeamentos agrícolas",
-      "dataFormats": "Planilhas para séries históricas e dados de produção",
-      "internalAPI": "ADP-JAVA (TRL 4 - não pública, uso interno)"
+      "primaryAccess": "Portal de Informações Agropecuárias via download direto de arquivos",
+      "governmentAPI": "Portal da Transparência do Governo Federal lista 'API de Dados' que inclui informações relacionadas à CONAB, mas é mais genérica para dados governamentais e requer cadastro para obter token",
+      "mappingFormats": "Mapeamentos agrícolas disponíveis para download no formato Shapefile",
+      "dataFormats": "Séries históricas e outros dados de produção agrícola, custos e abastecimento em formatos de arquivo não especificados, geralmente planilhas",
+      "internalAPI": "API de Integração com dados e processos da CONAB - ADP-JAVA foi desenvolvida, mas é programa para tratamento e extração de dados de data warehouses internos da CONAB, com nível de maturidade tecnológica TRL 4, indicando que não é API pública para consumo externo"
     },
     dataCollectionSources: [
       "Pesquisas diretas com produtores",
@@ -773,19 +773,19 @@ export const datasources = [
       "Ampliação do acesso e utilização dos dados"
     ],
     recommendations: [
-      "Desenvolvimento de APIs públicas robustas e dedicadas para dados agronômicos",
-      "Adoção de padrões de dados abertos e interoperáveis",
-      "Investimento em capacitação contínua para servidores",
-      "Estabelecimento de parcerias com outras instituições",
-      "Participação em iniciativas de governo aberto",
-      "Padronização de dados para facilitar integração e compartilhamento"
+      "Desenvolvimento de APIs públicas robustas e dedicadas para os dados agronômicos da CONAB facilitaria a integração com outras plataformas e sistemas",
+      "Adoção de padrões de dados abertos e interoperáveis facilitaria a integração e o compartilhamento de informações",
+      "Investir em capacitação contínua para os servidores da CONAB é essencial para lidar com as demandas do setor agrícola e melhorar a gestão de dados",
+      "Estabelecer parcerias com outras instituições e participar de iniciativas de governo aberto pode ampliar o acesso e a utilização dos dados da CONAB",
+      "Adoção de tecnologias avançadas para a integração e gerenciamento de dados pode melhorar a eficiência e a qualidade das informações"
     ],
     limitations: [
-      "Ausência de API pública robusta e dedicada",
-      "Dependência de downloads diretos de arquivos",
-      "Possível necessidade de web scraping para dados atualizados",
-      "Complexidade aumentada para integração com projetos de inteligência agronômica",
-      "API interna (ADP-JAVA) não disponível para uso público externo"
+      "Ausência de uma API pública robusta e dedicada para os dados agronômicos da CONAB",
+      "Dependência de downloads diretos e, possivelmente, de web scraping para obter informações atualizadas e em volume",
+      "Isso pode aumentar a complexidade da integração e a necessidade de processamento de dados para projetos de inteligência agronômica",
+      "API interna (ADP-JAVA) com nível de maturidade tecnológica TRL 4 não disponível para uso público externo",
+      "Integração de dados de diferentes fontes pode ser desafiadora devido a diferenças nos formatos e padrões de dados",
+      "Falta de comunicação entre os diferentes sistemas e equipamentos de coleta de dados era um obstáculo importante no passado"
     ]
   },
   {
