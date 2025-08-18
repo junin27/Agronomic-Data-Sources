@@ -2079,21 +2079,11 @@ export const datasources = [
         "Constitutions"
       ]
     },
-    access: {
-      methods: [
-        "Interface web com busca simples/avançada",
-        "Downloads em CSV na página de Open Data",
-        "Acesso direto aos documentos PDF/TXT"
-      ],
-      apis: [
-        {
-          name: "Download CSV",
-          description: "Não há API pública documentada específica do FAOLEX, para ingestão programática, a via oficial é o download dos pacotes CSV",
-          type: "Download direto"
-        }
-      ],
+    accessAndDocumentation: {
+      access: "O acesso pode ser feito pela interface web (busca simples/avançada) e por downloads em CSV na página de Open Data. A FAO fornece um Guia de Busca com operadores de campo e uma página de Metadados descrevendo cada coluna do CSV.",
+      apis: "Não há API pública documentada específica do FAOLEX, para ingestão programática, a via oficial é o download dos pacotes CSV (atente às datas de atualização na página).",
       documentation: [
-        "Página principal/Busca avançada (navegação e filtros)",
+        "Página principal/Busca avançada (navegação e filtros), FAOLEX",
         "Open Data (links de download, tamanhos, última atualização, citação recomendada/licença)",
         "Metadados FAOLEX (dicionário de dados/colunas)",
         "Guia de Busca (sintaxe/operadores)",
@@ -2101,10 +2091,7 @@ export const datasources = [
       ]
     },
     pricing: {
-      model: "Gratuito",
-      license: "CC BY-NC-SA 3.0 IGO (restrição de uso comercial)",
-      description: "Os datasets corporativos da FAO são disponibilizados sem custo; no caso do FAOLEX Open Data, a página de download apresenta citação recomendada com licença CC BY-NC-SA 3.0 IGO",
-      terms: "Para FAOLEX prevalece o aviso da própria página de Open Data com restrição de uso comercial"
+      cost: "O acesso é gratuito. Os datasets corporativos da FAO são disponibilizados sem custo; no caso do FAOLEX Open Data, a página de download apresenta citação recomendada com licença CC BY-NC-SA 3.0 IGO (restrição de uso comercial), enquanto os termos gerais dos bancos estatísticos FAO indicam CC BY 4.0 'salvo especificado de outra forma' — portanto, para FAOLEX prevalece o aviso da própria página de Open Data."
     },
     features: [
       "Banco de dados jurídico-político global",
