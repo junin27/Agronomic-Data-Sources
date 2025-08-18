@@ -1845,36 +1845,24 @@ export const datasources = [
     accuracy: 95,
     website: "https://www.fao.org/faostat",
     logo: "/logos/faostat.png",
-    mainDomains: [
-      {
-        "name": "Crops and Livestock Products (QCL)",
-        "description": "Dados de produção de culturas e produtos pecuários"
-      },
-      {
-        "name": "Temperature Change",
-        "description": "Tendências de anomalia de temperatura desde 1961, atualizado até 2024"
-      },
-      {
-        "name": "Emissions Totals",
-        "description": "Estimativas anuais de CH₄, N₂O, CO₂ e equivalentes por país com notas metodológicas"
-      },
-      {
-        "name": "Prices",
-        "description": "Séries mensais e anuais de preços ao produtor e índices"
-      },
-      {
-        "name": "Trade",
-        "description": "Dados de comércio internacional de produtos agrícolas e alimentares"
-      },
-      {
-        "name": "Land Use",
-        "description": "Dados sobre uso da terra e cobertura florestal"
-      },
-      {
-        "name": "Food Balances",
-        "description": "Balanças alimentares e indicadores de segurança alimentar"
-      }
-    ],
+    mainDomains: {
+      "description": "A base abrange dezenas de domínios temáticos (p.ex., Crops and Livestock Products – QCL, comércio, uso da terra, florestas, insumos, balança alimentar, segurança alimentar, preços, emissões e clima)",
+      "examples": [
+        {
+          "name": "Temperature Change",
+          "description": "O domínio Temperature Change publica tendências de anomalia de temperatura desde 1961 e foi atualizado até 2024"
+        },
+        {
+          "name": "Prices",
+          "description": "Os domínios de Preços incluem séries mensais e anuais de preços ao produtor e índices"
+        },
+        {
+          "name": "Emissions Totals",
+          "description": "O domínio Emissions Totals traz estimativas anuais de CH₄, N₂O, CO₂ e equivalentes por país com notas metodológicas próprias"
+        }
+      ],
+      "metadata": "Em todos os domínios, metadados e notas metodológicas acompanham os dados"
+    },
     features: [
       "Cobertura global com mais de 245 países/territórios",
       "Séries históricas longas desde 1961 até o ano mais recente",
@@ -1893,58 +1881,36 @@ export const datasources = [
       "Calendários de revisão anual para manutenção da qualidade"
     ],
     accessAndDocumentation: {
-      "primaryAccess": "Portal web FAOSTAT com página Statistics como porta de entrada",
+      "description": "Há duas formas principais de acesso:",
       "webPortal": {
-        "description": "Exploração e download manual com navegação por domínio",
-        "features": ["Filtros avançados", "Exportação de dados", "Visualizações interativas"]
+        "name": "Portal web (exploração e download manual)",
+        "description": "Navegação por domínio com filtros e exportação; a página 'Statistics' centraliza a porta de entrada do FAOSTAT"
       },
       "apiAccess": {
-        "type": "API pública REST (JSON)",
-        "baseService": "Serviços FENIX",
-        "authentication": "Sem autenticação para consultas públicas",
-        "endpoints": ["Endpoints por domínio", "Endpoints de definitions para códigos de áreas/itens/elementos"],
-        "documentation": "Repositório público com descrição dos serviços e diretório"
-      },
-      "dataFormats": ["JSON", "CSV", "Bulk CSV normalized"]
+        "name": "API pública REST (JSON)",
+        "description": "Baseada nos serviços 'FENIX', sem autenticação para consultas públicas, com endpoints por domínio e endpoints de definitions para descobrir códigos de áreas/itens/elementos",
+        "documentation": "O repositório público descreve os serviços, e também no diretório"
+      }
     },
     pricing: {
-      "model": "Totalmente gratuito",
-      "license": "CC BY 4.0",
-      "attribution": "FAO. [ano]. FAOSTAT: [domínio]. Acessado em [data]",
-      "commercialUse": "Para usos comerciais fora do escopo, a FAO orienta solicitar autorização",
-      "legacyContent": "Alguns conteúdos anteriores a 30/11/2019 podem ter políticas legadas",
-      "verification": "Sempre verificar rodapé/ícone de licença do domínio específico"
+      "model": "O acesso é gratuito",
+      "license": "As 'FAO Statistical Database Terms of Use' indicam licença CC BY 4.0, exigindo atribuição adequada (ex.: 'FAO. [ano]. FAOSTAT: [domínio]. Acessado em [data]')",
+      "legacyContent": "Alguns conteúdos mais antigos podem ter políticas legadas (p.ex., orientações sobre licenças para bases anteriores a 30/11/2019); verifique sempre o rodapé/ícone de licença do domínio específico",
+      "commercialUse": "Para usos comerciais fora do escopo, a FAO orienta solicitar autorização"
     },
     volume: {
-      "coverage": "245+ países/territórios",
-      "timespan": "Séries longas de 1961 até atual",
-      "domains": "Dezenas de domínios (≈70+)",
-      "format": "Arquivos bulk volumosos em CSV normalized (longo)",
-      "metadata": "Colunas de flags e notes acompanham os dados",
-      "updateCycle": "Muitos domínios têm atualização anual"
+      "coverage": "Cobertura global (245+ países/territórios) e séries longas (1961–atual)",
+      "domains": "A oferta inclui dezenas de domínios (≈70+) com arquivos bulk volumosos em CSV 'normalized' (longo), geralmente acompanhados de colunas de flags e notes"
     },
-    qualityAssurance: [
-      "Produção segue o FAO Statistical Quality Assurance Framework (SQAF)",
-      "Framework SQAF abrange relevância, exatidão, tempestividade, comparabilidade, coerência e acessibilidade",
-      "Notas metodológicas por domínio (ex.: Emissions Totals)",
-      "Calendários de revisão anual para manutenção da qualidade",
-      "Metadados e notas metodológicas acompanham todos os dados",
-      "Flags de qualidade indicam dados oficiais, estimados ou imputados",
-      "Sistemas de validação e verificação seguindo padrões internacionais",
-      "Documentação de unidades por elemento (toneladas, hectares, índices)",
-      "Controle de mudanças de classificação ao longo do tempo"
-    ],
+    qualityAssurance: {
+      "framework": "A produção segue o FAO Statistical Quality Assurance Framework (SQAF) (relevância, exatidão, tempestividade, comparabilidade, coerência, acessibilidade)",
+      "methodology": "Com notas metodológicas por domínio (ex.: Emissions Totals) e calendários de revisão anual"
+    },
     dataCollection: [
-      "Coleta de dados de mais de 245 países/territórios",
-      "Integração de dados nacionais de agricultura e alimentos",
-      "Padronização de códigos de área (M49/ISO3), itens (FAO/CPC) e elementos",
-      "Trabalho no formato normalized (longo) para consistência",
-      "Preservação de flags/metadados para análises de qualidade",
-      "Documentação de unidades por elemento",
-      "Tratamento de mudanças de classificação ao longo do tempo",
-      "Gestão de agregações para evitar dupla contagem",
-      "Sistemas de ingestão Bulk (CSV) e API para atualizações",
-      "Manutenção de dicionários e normalização de dados"
+      "Para ingestão em larga escala, prefira Bulk (CSV) para backfill histórico e API para atualizações incrementais",
+      "Use os dicionários da API para padronizar códigos de área (M49/ISO3), itens (FAO/CPC) e elementos",
+      "Trabalhe no formato 'normalized' (longo) e preserve flags/metadados (oficial, estimado, imputado) para análises de qualidade",
+      "Documente as unidades por elemento (toneladas, hectares, índices, etc.) e trate mudanças de classificação ao longo do tempo (ex.: itens agregados)"
     ],
     intelligence: [
       "Ampla cobertura para benchmarks e nowcasting híbrido",
@@ -1959,42 +1925,22 @@ export const datasources = [
       "Dashboards de data quality alinhados ao SQAF"
     ],
     challenges: [
-      "Defasagem temporal - muitos domínios têm atualização anual",
-      "Diferenças metodológicas nacionais e revisões históricas afetam comparabilidade",
+      "Defasagem temporal: muitos domínios têm atualização anual",
+      "Comparabilidade: diferenças metodológicas nacionais e revisões históricas",
       "Classificações e códigos evoluem (FAO/CPC), exigindo crosswalks",
-      "Quebras de série e agregações podem levar a dupla contagem",
-      "Casos clássicos como China em agregações históricas requerem tratamento especial",
-      "Necessidade de utilitários em clientes para tratar inconsistências",
-      "Complexidade na integração de múltiplas fontes de dados",
-      "Necessidade de expertise técnica para trabalhar com dados normalizados",
-      "Manutenção de tabelas mestras de códigos e classificações",
-      "Gestão de versionamento de classificações ao longo do tempo"
+      "Quebras de série e agregações que podem levar a dupla contagem se o usuário não observar as notas (caso clássico com China em agregações históricas, tratado por utilitários em clientes)"
     ],
     opportunities: [
-      "Ampla cobertura para benchmarks globais e análises comparativas",
-      "Nowcasting híbrido combinando FAOSTAT com satélite/clima/local",
-      "Séries longas ideais para modelagem causal/estrutural",
-      "Integração com SDG Data para monitoramento de objetivos de desenvolvimento",
-      "Uso do novo FAODATA Explorer (beta) para exploração avançada",
-      "Desenvolvimento de pipelines de disseminação automatizados",
-      "Criação de dashboards de qualidade de dados",
-      "Integração com outras fontes brasileiras (INMET/ANA/CONAB/EO)",
-      "Desenvolvimento de aplicações de monitoramento agrícola global",
-      "Análises de segurança alimentar e sustentabilidade"
+      "Ampla cobertura para benchmarks e nowcasting híbrido (combinar FAOSTAT com satélite/clima/local)",
+      "Séries longas para modelagem causal/estrutural",
+      "Integração com SDG Data e o novo FAODATA Explorer (beta) para exploração e pipelines de disseminação"
     ],
     recommendations: [
-      "Arquitetura de ingestão em duas vias: Bulk (job inicial) → API (jobs incrementais)",
-      "Armazenar staging em formato longo com dicionários para padronização",
-      "Manter tabelas mestras de área (M49/ISO3), itens (FAO/CPC) e elementos",
-      "Aplicar surrogate keys estáveis e versionamento de classificações",
-      "Propagar flags e notes até as camadas analíticas",
-      "Construir dashboards de data quality alinhados ao SQAF",
-      "Monitorar completude, revisões e pontualidade por domínio",
-      "Usar campos de release/year para disparar ingests seletivos",
-      "Padronizar unidades por elemento na camada semântica",
-      "Criar views com medidas derivadas (produtividade, intensidades, balanços)",
-      "Manter crosswalks para integrar FAOSTAT com outras fontes",
-      "Implementar governança de atualizações baseada em catálogos/bulk"
+      "Arquitetura de ingestão em duas vias: Bulk (job inicial) → armazene staging em formato longo com dicionários; depois API (jobs incrementais) por domínio/ano",
+      "Dicionários e normalização: mantenha tabelas mestras de área (M49/ISO3), itens (FAO/CPC) e elementos vindas dos endpoints definitions; aplique surrogate keys estáveis e versionamento de classificações",
+      "Metadados de qualidade: propague flags e notes até as camadas analíticas. Construa dashboards de data quality alinhados ao SQAF (ex.: completude, revisões, pontualidade por domínio)",
+      "Governança de atualizações: use campos de release/year expostos por clientes (ex.: list_datasets_df() do pacote Python) ou por catálogos/bulk para disparar ingests seletivos",
+      "Camada semântica: padronize unidades por elemento, crie views com medidas derivadas (produtividade, intensidades, balanços) e mantenha crosswalks para integrar FAOSTAT com outras fontes (INMET/ANA/CONAB/EO)"
     ],
     limitations: [
       "Defasagem temporal com atualizações anuais em muitos domínios",
