@@ -791,104 +791,152 @@ export const datasources = [
   {
     id: 5,
     name: "Cadastro Ambiental Rural (CAR)",
-    description: "Cadastro Ambiental Rural - Registro público eletrônico obrigatório para todos os imóveis rurais no Brasil",
+    description: "O Cadastro Ambiental Rural (CAR) é um registro público eletrônico obrigatório para todos os imóveis rurais no Brasil, integrando informações ambientais de propriedades e posses rurais para controle, monitoramento e planejamento ambiental.",
     type: "Governamental",
     category: "Ambiental",
     coverage: "Nacional",
-    format: "API/CSV",
+    format: "API/CSV/Restrito",
     updateFrequency: "Contínuo",
-    accessibility: "Restrito",
-    cost: "Pago",
-    dataTypes: ["Áreas de Preservação Permanente", "Reserva Legal", "Vegetação Nativa", "Georreferenciamento", "Dados Ambientais"],
+    accessibility: "Restrito - Informação Pessoal",
+    cost: "Restrito (API terceiros: Pago)",
+    dataTypes: ["Áreas de Preservação Permanente (APP)", "Áreas de Uso Restrito", "Reserva Legal", "Remanescentes de Vegetação Nativa", "Áreas Consolidadas", "Georreferenciamento", "Informações Ambientais"],
     establishment: "2012",
     reliability: 75,
-    completeness: 85,
+    completeness: 60,
     timeliness: 70,
-    accuracy: 78,
-    website: "https://www.directd.com.br/",
+    accuracy: 65,
+    website: "https://www.car.gov.br/publico/imoveis/index",
     logo: "/logos/car.png",
-    features: [
+    officialDataset: {
+      "platform": "Portal de Dados Abertos do Governo Federal",
+      "classification": "Não Aberto - Restrito (Informação Pessoal)",
+      "availableData": [
+        "Metadados em CSV sobre número de imóveis por município/UF",
+        "Dados de sobreposição de registros",
+        "Informações sobre temas ambientais",
+        "Estatísticas agregadas"
+      ],
+      "restriction": "Acesso direto aos dados detalhados é restrito devido à natureza das informações pessoais envolvidas"
+    },
+    dataContent: [
       "Informações georreferenciadas do perímetro do imóvel",
       "Áreas de Preservação Permanente (APP)",
       "Áreas de uso restrito",
       "Reserva Legal",
       "Remanescentes de vegetação nativa",
       "Áreas consolidadas",
-      "Áreas de interesse social e utilidade pública",
-      "Localização de vegetação nativa",
-      "Metadados sobre número de imóveis por município/UF",
-      "Dados sobre sobreposição de registros",
-      "Informações sobre temas ambientais"
+      "Áreas de interesse social e de utilidade pública",
+      "Localização de vegetação nativa"
     ],
-    limitations: [
-      "Acesso direto aos dados detalhados é restrito devido à natureza das informações pessoais",
-      "Apenas 3,4% dos cadastros foram analisados até 2020",
-      "Inconsistências nos dados como sobreposições de áreas",
-      "Registros em zonas urbanas comprometem a precisão",
-      "Necessidade de verificação manual dos dados é demorada e custosa",
-      "Falta de capacitação técnica em alguns estados e municípios",
-      "Dados desatualizados em alguns registros"
-    ],
-    apiAccess: {
-      "name": "API CAR da Directd",
-      "description": "API de terceiros para acesso a dados cadastrais e ambientais",
-      "formats": ["JSON", "CSV", "PDF"],
-      "authentication": "TOKEN obrigatório"
+    thirdPartyAccess: {
+      "provider": "API CAR da Directd",
+      "description": "API de terceiros que oferece acesso a dados cadastrais e ambientais do imóvel, situação do cadastro e histórico de retificações",
+      "authentication": "TOKEN obrigatório",
+      "formats": ["JSON", "PDF"],
+      "additionalServices": "Geração de comprovantes em PDF com custo adicional"
     },
     pricing: {
-      "model": "Por consulta com franquia mínima",
-      "costPerQuery": "R$ 0,05 a R$ 0,20 (varia com volume)",
-      "minimumMonthly": "R$ 100,00",
-      "additionalServices": "PDF do CAR: R$ 0,10 por consulta",
-      "prepaidOption": "Créditos a partir de R$ 50,00"
+      "model": "Por consulta com volume escalonado",
+      "costPerQuery": "R$ 0,05 a R$ 0,20 (dependendo do volume mensal de requisições)",
+      "minimumMonthlySpend": "R$ 100,00 (franquia mínima mensal)",
+      "additionalServices": "Demonstrativo do CAR em PDF: R$ 0,10 por consulta",
+      "prepaidModel": "Modelo pré-pago disponível com créditos a partir de R$ 50,00",
+      "volumeDiscounts": "Valor unitário diminui conforme aumenta o volume mensal de uso"
     },
-    volume: {
-      "totalProperties": "6.503.840 imóveis (até abril 2022)",
-      "totalArea": "618 milhões de hectares cadastrados",
-      "praAdhesion": "52% solicitaram adesão ao Programa de Regularização Ambiental"
+    volumeAssessment: {
+      "registrationMandatory": "Registro obrigatório para todos os imóveis rurais no Brasil",
+      "totalRegistered": "Aproximadamente 6.503.840 imóveis (até abril de 2022)",
+      "totalArea": "Cerca de 618 milhões de hectares cadastrados",
+      "praAdhesion": "52% solicitaram adesão ao Programa de Regularização Ambiental (PRA)",
+      "environmentalLiabilities": "Indicativo de passivos ambientais a serem recompostos"
     },
-    qualityAssurance: [
-      "Registro obrigatório para todos os imóveis rurais",
-      "Integração de informações ambientais",
-      "Controle e monitoramento ambiental",
-      "Planejamento territorial",
-      "Verificação manual necessária para validação"
-    ],
-    dataCollection: [
-      "Georreferenciamento com GPS de alta precisão",
-      "Imagens de satélite de alta resolução",
-      "Sistema de Cadastro Ambiental Rural (SICAR)",
-      "Cadastro Nacional de Imóveis Rurais (CNIR)",
-      "Fontes confiáveis para consistência e integridade"
-    ],
-    intelligence: [
-      "Análise automatizada para acelerar validação",
-      "Integração com outras bases ambientais e fundiárias",
-      "Visão abrangente da situação ambiental",
-      "Redução de custos e aumento de eficiência"
-    ],
+    qualityAssessment: {
+      "variableQuality": "Qualidade dos dados é variável com desafios significativos",
+      "analysisRate": "Apenas 3,4% dos cadastros foram analisados até 2020",
+      "analysisChallenge": "Necessidade de verificação manual é demorada e custosa",
+      "dataInconsistencies": [
+        "Sobreposições de áreas",
+        "Registros em zonas urbanas",
+        "Informações desatualizadas"
+      ],
+      "precisionCompromise": "Inconsistências comprometem a precisão das informações"
+    },
+    dataCollectionConsiderations: {
+      "georeferencingRequirements": [
+        "Dados geoespaciais precisos e atualizados",
+        "Tecnologias como GPS de alta precisão",
+        "Imagens de satélite de alta resolução"
+      ],
+      "reliableDataSources": [
+        "Sistema de Cadastro Ambiental Rural (SICAR)",
+        "Cadastro Nacional de Imóveis Rurais (CNIR)",
+        "Garantia de consistência e integridade dos dados"
+      ]
+    },
+    intelligenceRecommendations: {
+      "automatedAnalysis": [
+        "Implementar ferramentas de análise automatizada",
+        "Acelerar processo de validação dos dados",
+        "Reduzir custos e aumentar eficiência"
+      ],
+      "dataIntegration": [
+        "Integrar dados do CAR com outras bases ambientais e fundiárias",
+        "Obter visão mais abrangente e precisa da situação ambiental",
+        "Melhorar qualidade das análises de imóveis rurais"
+      ]
+    },
     challenges: [
-      "Análise manual é processo demorado e oneroso",
-      "Inconsistências nos dados com sobreposições",
-      "Registros em zonas urbanas",
-      "Informações desatualizadas",
-      "Falta de capacitação técnica em estados e municípios",
-      "Limitação na capacidade de análise em larga escala"
+      "Análise manual é processo demorado e oneroso, limitando capacidade de análise em larga escala",
+      "Inconsistências nos dados com sobreposições de áreas, registros em zonas urbanas e informações desatualizadas",
+      "Falta de capacitação técnica em alguns estados e municípios dificulta implementação eficaz",
+      "Apenas 3,4% dos cadastros analisados até 2020 devido à complexidade da verificação",
+      "Acesso restrito aos dados detalhados limita uso para inteligência agronômica",
+      "Necessidade de recorrer a APIs de terceiros ou dados agregados"
     ],
     opportunities: [
-      "Desenvolvimento de ferramentas de análise automatizada",
-      "Parcerias com instituições de pesquisa e universidades",
-      "Parcerias com organizações não governamentais",
-      "Programas de capacitação para técnicos e gestores",
-      "Melhoria na eficiência de validação dos dados"
+      "Desenvolvimento e implementação de ferramentas de análise automatizada podem melhorar significativamente a eficiência na validação",
+      "Estabelecer parcerias com instituições de pesquisa, universidades e organizações não governamentais",
+      "Investir em programas de capacitação para técnicos e gestores ambientais",
+      "Fortalecimento da implementação e monitoramento do CAR",
+      "Melhoria da qualidade e eficiência na gestão ambiental"
     ],
-    recommendations: [
-      "Integração com CNIR e Sistema de Informação sobre a Biodiversidade Brasileira (SiBBr)",
-      "Padronização de dados para coleta, armazenamento e análise",
-      "Garantia de consistência e interoperabilidade entre sistemas",
-      "Disponibilização transparente e acessível ao público",
-      "Promoção da participação social",
-      "Gestão mais eficiente e integrada"
+    integrationRecommendations: [
+      "Integração de Sistemas: Integrar o CAR com outros sistemas de informação ambiental e fundiária, como o CNIR e o Sistema de Informação sobre a Biodiversidade Brasileira (SiBBr)",
+      "Padronização de Dados: Estabelecer padrões para coleta, armazenamento e análise de dados, garantindo consistência e interoperabilidade",
+      "Transparência e Acesso Público: Disponibilizar dados do CAR de forma transparente e acessível, promovendo participação social e controle social",
+      "Monitoramento Contínuo: Implementar mecanismos de monitoramento contínuo para acompanhar evolução dos cadastros e identificar áreas que necessitam atenção especial"
+    ],
+    accessibilityIssues: [
+      "Dataset oficial classificado como 'Não Aberto' e 'Restrito - Informação Pessoal'",
+      "Acesso direto aos dados brutos representa desafio para obtenção de informações detalhadas",
+      "Necessidade de recorrer a APIs de terceiros limita granularidade e flexibilidade das análises",
+      "Restrições de acesso impactam desenvolvimento de soluções de inteligência agronômica"
+    ],
+    technicalSources: [
+      "Portal de Dados Abertos do Governo Federal",
+      "Sistema de Cadastro Ambiental Rural (SICAR)",
+      "Cadastro Nacional de Imóveis Rurais (CNIR)",
+      "API CAR da Directd (terceiros)",
+      "Relatório Final de Exibição (dados estatísticos)",
+      "Portal da Câmara dos Deputados (análises de qualidade)"
+    ],
+    useCases: [
+      "Controle e monitoramento ambiental de propriedades rurais",
+      "Planejamento territorial e ambiental",
+      "Verificação de regularidade ambiental de imóveis",
+      "Análise de passivos ambientais",
+      "Suporte ao Programa de Regularização Ambiental (PRA)",
+      "Estudos de impacto ambiental",
+      "Desenvolvimento de políticas públicas ambientais"
+    ],
+    limitations: [
+      "Apenas 3,4% dos cadastros analisados comprometem confiabilidade dos dados",
+      "Processo de verificação manual é demorado e custoso",
+      "Inconsistências significativas nos dados cadastrados",
+      "Restrições de acesso limitam uso para pesquisa e desenvolvimento",
+      "Falta de padronização em alguns procedimentos de coleta",
+      "Capacitação técnica insuficiente em algumas regiões",
+      "Dependência de APIs de terceiros para acesso detalhado"
     ]
   },
   {
