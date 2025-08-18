@@ -1282,8 +1282,8 @@ export const datasources = [
   },
   {
     id: 8,
-    name: "Repositório Brasileiro Livre para Dados Abertos do Solo (febr)",
-    description: "Repositório centralizado para armazenar e fornecer dados abertos do solo em formato padronizado e harmonizado no Brasil",
+    name: "Repositório Brasileiro Livre para Dados Abertos do Solo (FEBR)",
+    description: "O febr é uma iniciativa focada na padronização e disponibilização de dados de solo no Brasil",
     type: "Acadêmico",
     category: "Solo e Recursos Naturais",
     coverage: "Nacional",
@@ -1301,7 +1301,7 @@ export const datasources = [
     logo: "/logos/febr.png",
     mainDatabase: {
       "name": "febr - Free Brazilian Repository for Open Soil Data",
-      "description": "Repositório com 14.477 observações de solo de 232 conjuntos de dados, sendo 42% do sul e sudeste do Brasil",
+      "description": "O Repositório Brasileiro Livre para Dados Abertos do Solo (FEBR), é um repositório centralizado para armazenar e fornecer dados abertos do solo em formato padronizado e harmonizado. Ele contém 14.477 observações de solo de 232 conjuntos de dados, sendo 42% do sul e sudeste do Brasil. A estrutura é orientada por conjunto de dados, com armazenamento em planilhas acessíveis via aplicação online",
       "coverage": "Nacional (concentração Sul e Sudeste)",
       "updateFrequency": "Contínua conforme novos levantamentos"
     },
@@ -1318,32 +1318,31 @@ export const datasources = [
     accessAndDocumentation: {
       "access": "Acesso gratuito via GitHub e aplicação online",
       "formats": "Planilhas, arquivos ZIP, pacote R, integração QGIS",
-      "api": "Sem API RESTful explícita, mas acesso programático via pacotes R e QGIS",
-      "documentation": "Documentação detalhada disponível para mantenedores e colaboradores",
-      "integration": "Conexão via pacote febr (R) e QGIS"
+      "api": "Embora não haja uma API RESTful explícita, a conexão via pacotes de programação e a disponibilização de dados em planilhas e arquivos zip permitem o acesso programático",
+      "documentation": "A documentação detalhada está disponível para guiar mantenedores e colaboradores. Os dados podem ser baixados diretamente do Repositório GitHub",
+      "integration": "O febr oferece múltiplas facilidades de download, incluindo formatos de arquivo padrão e conexões com R e QGIS através do pacote febr"
     },
     pricing: {
-      "cost": "Totalmente gratuito",
-      "license": "Licenças abertas com citação das fontes originais",
-      "restrictions": "Nenhuma cobrança por download, utilização ou integração"
+      "cost": "O acesso ao febr é totalmente gratuito",
+      "license": "Os dados são disponibilizados sob licenças abertas, permitindo uso, redistribuição e adaptação, desde que sejam citadas as fontes originais",
+      "restrictions": "Não há cobrança por download, utilização ou integração com ferramentas como R e QGIS"
     },
     volumeAndQuality: {
-      "volume": "14.477 observações de solo de 232 conjuntos de dados, cobrindo principalmente Sul e Sudeste (42%)",
-      "quality": "Dados padronizados e harmonizados seguindo protocolos científicos, com metadados detalhados incluindo localização, profundidade e atributos químicos/físicos. Distribuição geográfica desigual pode impactar estudos nacionais de alta resolução"
+      "volume": "O febr contém atualmente 14.477 observações de solo provenientes de 232 conjuntos de dados, cobrindo principalmente regiões do Sul e Sudeste do Brasil (42%), mas com representatividade também em outras regiões. Os dados estão organizados por conjunto e podem ser baixados integralmente ou filtrados",
+      "quality": "Os dados passam por processos de padronização e harmonização, seguindo protocolos científicos. Há metadados detalhados para cada conjunto, incluindo informações de localização, profundidade, atributos químicos e físicos. No entanto, a distribuição geográfica ainda é desigual, o que pode impactar estudos nacionais de alta resolução"
     },
     dataCollection: {
-      "methods": "Coleta de múltiplas fontes (instituições de pesquisa, universidades, levantamentos governamentais) com processos de integração para uniformizar formatos e nomenclaturas",
+      "methods": "A coleta é feita a partir de múltiplas fontes (instituições de pesquisa, universidades, levantamentos governamentais), exigindo processos de integração para uniformizar formatos e nomenclaturas",
       "frequency": "Contínua conforme disponibilidade de novos levantamentos",
-      "automation": "Granularidade espacial e temporal varia entre conjuntos. Recomenda-se uso do pacote febr (R), QGIS ou scripts personalizados",
-      "businessContext": "Cruzamento com variáveis ambientais, climáticas e de uso do solo. Alinhamento com padrões internacionais (ISO, OGC) facilita interoperabilidade"
+      "automation": "É importante considerar que a granularidade espacial e temporal varia entre conjuntos. Para inteligência de dados, recomenda-se uso de ferramentas como pacote febr (R), QGIS ou scripts personalizados para cruzamento com variáveis ambientais, climáticas e de uso do solo",
+      "businessContext": "O alinhamento com padrões internacionais (ex. ISO, OGC) facilita interoperabilidade com outras bases globais de dados de solo"
     },
     intelligence: [
-      "Derivação de produtos como bancos de dados especializados",
+      "Os dados do febr podem ser utilizados para derivar produtos como bancos de dados especializados",
       "Funções de pedotransferência",
       "Guias de recomendação de fertilizantes",
-      "Sistemas de classificação de solo",
-      "Mapas detalhados do solo",
-      "Análises de aptidão agrícola",
+      "Sistemas de classificação e mapas detalhados do solo",
+      "A existência de um repositório dedicado a dados de solo, com foco em padronização e ferramentas de acesso via R e QGIS, é um recurso valioso para análises de aptidão agrícola",
       "Manejo de nutrientes",
       "Estudos de degradação do solo"
     ],
