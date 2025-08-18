@@ -156,16 +156,16 @@ export const datasources = [
   },
   {
     id: 1,
-    name: "EMBRAPA",
-    description: "Empresa Brasileira de Pesquisa Agropecuária",
+    name: "Empresa Brasileira de Pesquisa Agropecuária (EMBRAPA)",
+    description: "A EMBRAPA, como principal instituição de pesquisa agropecuária do Brasil, tem investido na disponibilização de suas vastas informações e modelos por meio de APIs. A EMBRAPA consolidou suas APIs na Plataforma AgroAPI, que visa o mercado de tecnologias de agricultura digital.",
     type: "Institucional",
     category: "Pesquisa",
     coverage: "Nacional",
-    format: "API/CSV",
-    updateFrequency: "Mensal",
-    accessibility: "Público",
-    cost: "Gratuito",
-    dataTypes: ["Clima", "Solo", "Culturas", "Pecuária"],
+    format: "API/JSON",
+    updateFrequency: "Variável por API",
+    accessibility: "Freemium/Gratuito",
+    cost: "Freemium com limites",
+    dataTypes: ["Agricultura Digital", "Modelos Agronômicos", "Dados Climáticos", "Informações Fitossanitárias", "Bioinformática", "Terminologia Agrícola", "Classificação de Solos", "Monitoramento de Vegetação"],
     establishment: "1973",
     reliability: 95,
     completeness: 90,
@@ -173,15 +173,247 @@ export const datasources = [
     accuracy: 93,
     website: "https://www.embrapa.br",
     logo: "/logos/embrapa.png",
+    platform: {
+      name: "Plataforma AgroAPI",
+      description: "Plataforma consolidada que oferece informações e modelos gerados pela Embrapa e seus parceiros, abrangendo diversas áreas da agronomia",
+      access: "Para começar a usar as APIs, crie uma conta na plataforma AgroAPI. Assim, você pode escolher as APIs do seu interesse e criar aplicações para acessá-las",
+      authentication: "Depois de gerar os tokens de acesso para as aplicações, devem ser escolhidas as APIs que serão utilizadas"
+    },
+    pricing: {
+      freemiumAPIs: {
+        description: "O acesso às APIs freemium (Agritec, ClimAPI e SATVeg) é gratuito por 1 mês para o máximo de 1.000 requisições por API",
+        limitation: "Após o consumo das 1.000 requisições ou o término do período de 1 mês (o que ocorrer primeiro), o acesso será interrompido",
+        continuation: "Só poderá continuar utilizando a API mediante assinatura de contrato para pagamento",
+        contact: "agroapi@embrapa.br"
+      },
+      freeAPIs: {
+        description: "O acesso às APIs: Agrofit, Agrotermos, Bioinsumos, Blue Star Sting, Responde Agro, SmartSolos Expert e PlantAnnot é gratuito",
+        limit: "Volume máximo de 100 mil requisições por mês, sem necessidade de assinatura de contrato"
+      }
+    },
+    apis: [
+      {
+        name: "AgriTec API",
+        status: "DEPRECATED (desde agosto de 2024)",
+        description: "Fornece informações e modelos para gerenciamento da produção agrícola, especialmente para culturas como arroz, feijão, milho, soja e trigo",
+        dataContent: [
+          "Época ideal de plantio com base no Zoneamento Agrícola de Risco Climático (ZARC)",
+          "Cultivares mais aptas para 12 culturas (arroz, algodão, amendoim, cevada, feijão, feijão caupi, girassol, mamona, milho, soja, sorgo e trigo)",
+          "Recomendações de adubação e correção de solo conforme análise prévia",
+          "Estimativas de produtividade para arroz, feijão, milho, soja e trigo baseadas em modelos empíricos regionalizados",
+          "Informações de balanço hídrico e condições climáticas antes e durante a safra"
+        ],
+        volume: "Dados abrangentes para diversas culturas e sistemas de produção, com informações por decêndio para épocas de plantio",
+        quality: "Baseado em metodologias confiáveis como ZARC, Registro Nacional de Cultivares (RNC) do MAPA, e modelos empíricos ajustados para cada região do Brasil",
+        benefits: "Beneficia agricultores, cooperativas, assistência técnica, bancos e seguradoras",
+        pricing: "Freemium - 1.000 requisições em 1 mês gratuito"
+      },
+      {
+        name: "ClimAPI",
+        status: "Ativa",
+        description: "Provê dados agrometeorológicos de previsão do tempo para todo o território nacional, sendo ideal para agricultura de precisão e suporte ao planejamento agrícola",
+        dataContent: [
+          "17 variáveis climáticas",
+          "Temperatura do ponto de orvalho a 2m",
+          "Precipitação total",
+          "Velocidade e componentes do vento",
+          "Cobertura de nuvens (alta, média e baixa)",
+          "Evaporação potencial",
+          "Umidade relativa e umidade volumétrica do solo (0‑10cm, 10‑40cm, 40cm‑1m)",
+          "Temperaturas máxima, mínima e da superfície",
+          "Duração da luz solar"
+        ],
+        technicalSpecs: {
+          baseData: "Baseado no Global Forecast System (GFS) da NOAA",
+          spatialResolution: "Maior precisão espacial e temporal (latitude/longitude e áreas de ~25 km)",
+          updateFrequency: "Atualizados a cada 6 horas, fornecendo quatro atualizações diárias",
+          forecast: "Previsões de até 10 dias à frente e histórico de dados para os 10 dias anteriores"
+        },
+        useCases: "Planejamento agrícola, identificando janelas para voo de drones, plantio, pulverização, colheita, além de apoio logístico",
+        pricing: "Freemium - 1.000 requisições em 1 mês gratuito"
+      },
+      {
+        name: "SATVeg API",
+        status: "DEPRECATED (desde 27 de setembro de 2024)",
+        description: "Derivada do Sistema de Análise Temporal da Vegetação (SATVeg), oferece curvas temporais dos índices vegetativos NDVI e EVI",
+        dataContent: [
+          "Índices NDVI (Normalized Difference Vegetation Index) e EVI (Enhanced Vegetation Index)",
+          "Baseado em imagens do sensor MODIS (produtos MOD13Q1 e MYD13Q1) dos satélites Terra e Aqua",
+          "Cobertura geográfica: Brasil e toda a América do Sul",
+          "Dados desde o ano 2000 até a data mais recente disponível",
+          "Resolução temporal de 16 dias e espacial de 250 metros"
+        ],
+        volume: "Série temporal completa desde fevereiro de 2000 (Terra) e julho de 2002 (Aqua), pixels de 250m x 250m (6,25 hectares)",
+        quality: "Baseado em imagens multiespectrais da NASA e repositório oficial da LP DAAC, qualidade radiométrica de 12 bits",
+        features: "Funcionalidades de pré-filtragem e suavização das séries temporais (FlatBottom, Wavelet–Coiflet4 e Savitzky–Golay)",
+        pricing: "Freemium - 1.000 requisições em 1 mês gratuito"
+      },
+      {
+        name: "AgroFit API",
+        status: "Ativa",
+        description: "Banco de dados completo sobre produtos fitossanitários registrados no Brasil, incluindo defensivos agrícolas, agrotóxicos, bioinsumos e outros registros do MAPA",
+        dataContent: [
+          "Produtos formulados e técnicos",
+          "Pragas (insetos e doenças) e plantas daninhas",
+          "Ingredientes ativos, modo de ação, formulação, e técnica de aplicação",
+          "Titular do registro, marca comercial",
+          "Classificações toxicológicas, ambientais, indicação para agricultura orgânica",
+          "Inflamabilidade, corrosividade",
+          "Documentação associada (data de inclusão, tipo de documento e link)"
+        ],
+        dataSource: "Dados obtidos diretamente do MAPA, ANVISA e IBAMA",
+        quality: "Dados considerados corretos e seguros, contribuindo para evitar uso inadequado de agrotóxicos",
+        pricing: "Gratuito - até 100 mil requisições por mês, sem necessidade de contrato"
+      },
+      {
+        name: "AgroTermos API",
+        status: "Ativa",
+        description: "Plataforma de organização e qualificação terminológica e conceitual do conhecimento agropecuário, baseada em vocabulários controlados robustos",
+        dataContent: [
+          "Cerca de 55 mil termos (algumas fontes mencionam mais de 248 mil)",
+          "Baseado em vocabulários como Thesagro e Agrovoc",
+          "6 serviços principais: Consulta Exata, Consulta Parcial, Consulta por ID, Consulta com Relacionamentos, Consulta de Todas as Relações, Consulta de Relação Exata"
+        ],
+        technology: "Utiliza Engenharia da Informação, PNL, Linguística de Corpus e modelagem semântica",
+        applications: "Processamento de Linguagem Natural (PLN), mineração de texto, indexação semântica, aprendizado de máquina, web semântica",
+        pricing: "Gratuito - até 100 mil requisições por mês"
+      },
+      {
+        name: "Bioinsumos API",
+        status: "Ativa (v2 - v1 deprecated)",
+        description: "Informações técnicas sobre bioinsumos registrados no MAPA, incluindo inoculantes e produtos para controle de pragas",
+        dataContent: [
+          "Listagem completa de produtos biológicos para controle de pragas",
+          "Informações de inoculantes: identificação, registro, fornecedor, tipo, espécie, garantia",
+          "Dados como número de registro, marca comercial, titular, classe agronômica, formulação",
+          "Classificação toxicológica e ambiental, aprovação para agricultura orgânica"
+        ],
+        dataSource: "Dados oficiais do MAPA, incluindo base AGROFIT",
+        pricing: "Gratuito - até 100 mil requisições por mês"
+      },
+      {
+        name: "BlueStar Sting API",
+        status: "Ativa",
+        description: "Interface para dados sobre descritores físico-químicos, geométricos, espaciais e estruturais de aminoácidos em estruturas proteicas do Protein Data Bank (PDB)",
+        dataContent: [
+          "Área de superfície acessível ao solvente por resíduo",
+          "Identificação atômica e área acessível dos átomos",
+          "Tipos de cadeia e contatos intra/intercadeias",
+          "Curvatura dos resíduos em nível atômico",
+          "Densidade local usando sondas esféricas",
+          "Estrutura secundária, distâncias estruturais, ângulos conformacionais"
+        ],
+        applications: "Biologia estrutural computacional, desenvolvimento de biofármacos, controle biotecnológico de pragas",
+        coverage: "14 tipos de contatos intra e intercadeias, 12 tipos de contatos entre cadeias proteicas e moléculas de DNA/RNA",
+        pricing: "Gratuito - até 100 mil requisições por mês"
+      },
+      {
+        name: "Responde Agro API",
+        status: "Ativa",
+        description: "Mecanismo de busca para consultar o conteúdo da série de publicações Coleção 500 Perguntas 500 Respostas da Embrapa",
+        dataContent: [
+          "Pares pergunta–resposta extraídos das obras indexadas",
+          "Conteúdo em formato HTML com imagens codificadas em Base64",
+          "Temas relacionados à agricultura e pecuária",
+          "Perguntas de produtores, cooperativas respondidas por pesquisadores Embrapa"
+        ],
+        features: [
+          "Busca por pergunta específica dentro de livro específico",
+          "Busca por texto em livro ou toda coleção com paginação",
+          "Recurso de autocompletar",
+          "Listagem de identificadores de livros indexados"
+        ],
+        pricing: "Gratuito - até 100 mil requisições por mês"
+      },
+      {
+        name: "SmartSolos Expert API",
+        status: "Ativa",
+        description: "Infraestrutura para classificação de perfis de solos no Brasil, utilizando sistema especialista baseado na 5ª edição do Sistema Brasileiro de Classificação de Solos (SiBCS)",
+        dataContent: [
+          "Classificação automática de perfis de solo",
+          "Validação de classificações prévias",
+          "Níveis: ORDEM, SUBORDEM, GDE_GRUPO e SUBGRUPO",
+          "Dados de horizontes: profundidades, textura, cor, pH, estrutura, nutrientes"
+        ],
+        technology: "Sistema implementado em SWI-Prolog, comunicação via JSON",
+        applications: "Ensino de pedologia, padronização de dados de solos, curadoria de bases georreferenciadas",
+        baseSystem: "5ª edição do SiBCS (2018) - sistema taxonômico oficial do Brasil",
+        pricing: "Gratuito - até 100 mil requisições por mês"
+      },
+      {
+        name: "PlantAnnot API",
+        status: "Ativa",
+        description: "Acesso a informações sobre genes, transcritos e proteínas de mais de 50 espécies de plantas, desenvolvida para identificar proteínas de função desconhecida (PUFs)",
+        dataContent: [
+          "Localização cromossômica, referências externas (DBxRefs), sequências e artigos",
+          "Anotações funcionais: similaridade (BLAST, Diamond), ontologia genética (Gene Ontology)",
+          "Domínios proteicos (InterPro)",
+          "Expressão gênica em diferentes condições experimentais",
+          "Grupos de ortólogos entre espécies"
+        ],
+        coverage: "Mais de 50 espécies de plantas, com expressão gênica para Arabidopsis thaliana, Soja, Arroz e Milho",
+        applications: "Identificação de PUFs ligados a estresses abióticos, melhoramento genético, resiliência climática",
+        sdks: "Disponível para Java e Android, documentação Swagger",
+        pricing: "Gratuito - até 100 mil requisições por mês"
+      }
+    ],
+    generalRecommendations: [
+      "Verificar status atual das APIs (algumas estão deprecated)",
+      "Planejar volume de uso conforme modelo de precificação",
+      "Implementar caching inteligente para otimizar performance",
+      "Modularizar integrações por funcionalidade",
+      "Monitorar contratos e versões das APIs",
+      "Criar fallbacks para APIs deprecated ou instáveis",
+      "Validar dados e realizar testes periódicos",
+      "Manter contato com equipes técnicas da Embrapa"
+    ],
+    opportunities: [
+      "Rapidez no desenvolvimento de soluções agrodigitais",
+      "Redução da necessidade de processamento próprio de dados",
+      "Alta compatibilidade com apps de agricultura de precisão",
+      "Cobertura estruturada de todos os biomas brasileiros",
+      "Dados amplamente validados e integráveis",
+      "Facilita desenvolvimento ágil de aplicações digitais",
+      "Suporte a múltiplas áreas: clima, solo, vegetação, fitossanidade, bioinformática"
+    ],
+    challenges: [
+      "APIs com status deprecated (AgriTec, SATVeg)",
+      "Limitações de uso gratuito exigem planejamento",
+      "Documentação pública limitada para algumas APIs",
+      "Necessidade de conhecimento técnico específico para algumas APIs",
+      "Dependência de atualizações e políticas da Embrapa"
+    ],
+    keyContacts: [
+      "agroapi@embrapa.br - Suporte geral da plataforma",
+      "cnptia.climapi@embrapa.br - ClimAPI",
+      "cnptia.satveg@embrapa.br - SATVeg",
+      "cnptia.agrofit@embrapa.br - AgroFit",
+      "cnptia.bioinsumos@embrapa.br - Bioinsumos",
+      "cnptia.smartsolosexpert@embrapa.br - SmartSolos Expert",
+      "gtermos@embrapa.br - AgroTermos (negócios)",
+      "leandro.oliveira@embrapa.br - AgroTermos (técnico)",
+      "glauber.vaz@embrapa.br - Responde Agro",
+      "mauricio.mudadu@embrapa.br - PlantAnnot (negócios)",
+      "adhemar.zerlotini@embrapa.br - PlantAnnot (técnico)"
+    ],
     features: [
-      "Dados climáticos históricos",
-      "Informações sobre variedades de culturas",
-      "Pesquisas em sustentabilidade",
-      "Dados de produtividade agrícola"
+      "Plataforma AgroAPI consolidada com múltiplas APIs especializadas",
+      "Modelo freemium com generosos limites gratuitos",
+      "Cobertura abrangente: clima, vegetação, solo, fitossanidade, bioinformática",
+      "APIs RESTful com autenticação por token",
+      "Ambientes sandbox e produção disponíveis",
+      "SDKs disponíveis para algumas APIs (Java, Android)",
+      "Documentação interativa (Swagger) para algumas APIs",
+      "Dados baseados em metodologias científicas rigorosas",
+      "Integração com órgãos oficiais (MAPA, NOAA, NASA)",
+      "Suporte a caching e otimizações de performance"
     ],
     limitations: [
-      "Alguns dados com acesso restrito",
-      "Interface não muito intuitiva"
+      "Algumas APIs estão deprecated (AgriTec desde agosto 2024, SATVeg desde setembro 2024)",
+      "Limitações de volume para uso gratuito",
+      "Necessidade de contrato pago para uso intensivo de APIs freemium",
+      "Documentação técnica limitada publicamente para algumas APIs",
+      "Dependência de tokens e autenticação para acesso"
     ]
   },
   {
