@@ -1,7 +1,27 @@
 import { Database, TrendingUp, Users, Globe } from 'lucide-react';
 import { datasources } from '../data/datasources';
+import { useState } from 'react';
 
 const Dashboard = () => {
+  const [hoveredType, setHoveredType] = useState(null);
+  const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 });
+
+  const handleMouseEnter = (type, event) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    setTooltipPosition({
+      x: rect.right + 10,
+      y: rect.top + rect.height / 2
+    });
+    setHoveredType(type);
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredType(null);
+  };
+
+  const getSourcesByType = (type) => {
+    return datasources.filter(ds => ds.type === type);
+  };
   const stats = [
     {
       title: 'Total de Fontes',
@@ -67,52 +87,101 @@ const Dashboard = () => {
       {/* Quick Access */}
       <div className="grid md:grid-cols-2 gap-8">
         {/* Overview */}
-        <div className="bg-white rounded-lg shadow-md p-6">
+        <div className="bg-white rounded-lg shadow-md p-6 relative">
           <h2 className="text-2xl font-bold text-gray-900 mb-4">Visão Geral</h2>
           <div className="space-y-4">
-            <div className="flex justify-between items-center py-2 border-b">
+            <div 
+              className="flex justify-between items-center py-2 border-b hover:bg-gray-50 rounded px-2 transition-colors cursor-pointer"
+              onMouseEnter={(e) => handleMouseEnter('Governamental', e)}
+              onMouseLeave={handleMouseLeave}
+            >
               <span className="text-gray-600">Fontes Governamentais</span>
               <span className="font-semibold">
                 {datasources.filter(ds => ds.type === 'Governamental').length}
               </span>
             </div>
-            <div className="flex justify-between items-center py-2 border-b">
+            <div 
+              className="flex justify-between items-center py-2 border-b hover:bg-gray-50 rounded px-2 transition-colors cursor-pointer"
+              onMouseEnter={(e) => handleMouseEnter('Privado', e)}
+              onMouseLeave={handleMouseLeave}
+            >
               <span className="text-gray-600">Fontes Privadas</span>
               <span className="font-semibold">
                 {datasources.filter(ds => ds.type === 'Privado').length}
               </span>
             </div>
-            <div className="flex justify-between items-center py-2 border-b">
+            <div 
+              className="flex justify-between items-center py-2 border-b hover:bg-gray-50 rounded px-2 transition-colors cursor-pointer"
+              onMouseEnter={(e) => handleMouseEnter('Internacional', e)}
+              onMouseLeave={handleMouseLeave}
+            >
               <span className="text-gray-600">Fontes Internacionais</span>
               <span className="font-semibold">
                 {datasources.filter(ds => ds.type === 'Internacional').length}
               </span>
             </div>
-            <div className="flex justify-between items-center py-2 border-b">
+            <div 
+              className="flex justify-between items-center py-2 border-b hover:bg-gray-50 rounded px-2 transition-colors cursor-pointer"
+              onMouseEnter={(e) => handleMouseEnter('Institucional', e)}
+              onMouseLeave={handleMouseLeave}
+            >
               <span className="text-gray-600">Fontes Institucionais</span>
               <span className="font-semibold">
                 {datasources.filter(ds => ds.type === 'Institucional').length}
               </span>
             </div>
-            <div className="flex justify-between items-center py-2 border-b">
+            <div 
+              className="flex justify-between items-center py-2 border-b hover:bg-gray-50 rounded px-2 transition-colors cursor-pointer"
+              onMouseEnter={(e) => handleMouseEnter('Acadêmico', e)}
+              onMouseLeave={handleMouseLeave}
+            >
               <span className="text-gray-600">Fontes Acadêmicas</span>
               <span className="font-semibold">
                 {datasources.filter(ds => ds.type === 'Acadêmico').length}
               </span>
             </div>
-            <div className="flex justify-between items-center py-2 border-b">
+            <div 
+              className="flex justify-between items-center py-2 border-b hover:bg-gray-50 rounded px-2 transition-colors cursor-pointer"
+              onMouseEnter={(e) => handleMouseEnter('Satélite', e)}
+              onMouseLeave={handleMouseLeave}
+            >
               <span className="text-gray-600">Fontes de Satélite</span>
               <span className="font-semibold">
                 {datasources.filter(ds => ds.type === 'Satélite').length}
               </span>
             </div>
-            <div className="flex justify-between items-center py-2">
+            <div 
+              className="flex justify-between items-center py-2 hover:bg-gray-50 rounded px-2 transition-colors cursor-pointer"
+              onMouseEnter={(e) => handleMouseEnter('Colaborativo', e)}
+              onMouseLeave={handleMouseLeave}
+            >
               <span className="text-gray-600">Fontes Colaborativas</span>
               <span className="font-semibold">
                 {datasources.filter(ds => ds.type === 'Colaborativo').length}
               </span>
             </div>
           </div>
+
+          {/* Tooltip */}
+          {hoveredType && (
+            <div 
+              className="fixed z-50 bg-gray-900 text-white p-3 rounded-lg shadow-lg max-w-xs"
+              style={{
+                left: `${tooltipPosition.x}px`,
+                top: `${tooltipPosition.y}px`,
+                transform: 'translateY(-50%)'
+              }}
+            >
+              <h4 className="font-semibold mb-2">Fontes {hoveredType}s:</h4>
+              <ul className="space-y-1 text-sm">
+                {getSourcesByType(hoveredType).map(source => (
+                  <li key={source.id} className="text-gray-200">
+                    • {source.name}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
 
         {/* Recent Sources */}
