@@ -184,7 +184,7 @@ const DataSourceModal = ({ dataSource, isOpen, onClose }) => {
 
           {/* Actions */}
           <div className="pt-2">
-            {dataSource.name === "IBGE" ? (
+            {dataSource.name === "Instituto Brasileiro de Geografia e Estatística (IBGE)" ? (
               <div className="flex flex-wrap gap-2">
                 <a
                   href="https://apisidra.ibge.gov.br/home/ajuda"
@@ -490,7 +490,7 @@ const DataSourceModal = ({ dataSource, isOpen, onClose }) => {
                    <ExternalLink className="h-4 w-4" />
                  </a>
                </div>
-             ) : dataSource.name === "EMBRAPA" ? (
+             ) : dataSource.name === "Empresa Brasileira de Pesquisa Agropecuária (EMBRAPA)" ? (
                <div className="flex flex-wrap gap-2">
                  <a
                    href="https://www.agroapi.cnptia.embrapa.br/portal/#loja"
