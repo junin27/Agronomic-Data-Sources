@@ -36,7 +36,7 @@ const Dashboard = () => {
       {/* Header */}
       <div className="text-center">
         <h1 className="text-4xl font-bold text-gray-900 mb-4">
-          Dashboard - Fontes de Dados Agronômicos
+          Página Inicial - Fontes de Dados Agronômicos
         </h1>
         <p className="text-xl text-gray-600 max-w-3xl mx-auto">
           Explore e compare as principais fontes de dados agronômicos do Brasil e do mundo.

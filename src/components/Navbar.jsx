@@ -6,7 +6,7 @@ const Navbar = () => {
   const location = useLocation();
 
   const navItems = [
-    { path: '/', name: 'Dashboard', icon: Home },
+    { path: '/', name: 'Página Inicial', icon: Home },
     { path: '/data-sources', name: 'Fontes de Dados', icon: Database },
     { path: '/comparison', name: 'Comparação', icon: Table },
     { path: '/charts', name: 'Gráficos', icon: BarChart3 }
