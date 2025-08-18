@@ -778,6 +778,20 @@ export const datasources = [
     accuracy: 65,
     website: "https://www.car.gov.br/publico/imoveis/index",
     logo: "/logos/car.png",
+    features: [
+      "Registro público eletrônico obrigatório",
+      "Informações georreferenciadas do perímetro",
+      "Áreas de Preservação Permanente (APP)",
+      "Áreas de uso restrito",
+      "Reserva Legal",
+      "Remanescentes de vegetação nativa",
+      "Áreas consolidadas",
+      "Sistema integrado de monitoramento",
+      "Controle ambiental nacional",
+      "Mais de 6,5 milhões de imóveis cadastrados",
+      "618 milhões de hectares cadastrados",
+      "Adesão ao Programa de Regularização Ambiental"
+    ],
     officialDataset: {
       "platform": "Portal de Dados Abertos do Governo Federal",
       "classification": "Não Aberto - Restrito (Informação Pessoal)",

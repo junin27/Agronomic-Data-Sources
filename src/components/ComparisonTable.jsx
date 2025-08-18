@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Filter, Download, ArrowUpDown, CheckCircle, XCircle } from 'lucide-react';
 import { comparisonCategories } from '../data/datasources';
+import * as XLSX from 'xlsx';
 
 const ComparisonTable = ({ dataSources }) => {
   const [selectedSources, setSelectedSources] = useState(dataSources.slice(0, 4));
@@ -23,6 +24,301 @@ const ComparisonTable = ({ dataSources }) => {
       setSortField(field);
       setSortDirection('asc');
     }
+  };
+
+  const handleExport = () => {
+    if (selectedSources.length === 0) {
+      alert('Selecione pelo menos uma fonte de dados para exportar.');
+      return;
+    }
+
+    // Criar workbook
+    const wb = XLSX.utils.book_new();
+
+    // ================= ABA PRINCIPAL - COMPARAÇÃO FORMATADA =================
+    const mainData = [];
+    
+    // Título principal
+    mainData.push(['RELATÓRIO DE COMPARAÇÃO - FONTES DE DADOS AGRONÔMICOS']);
+    mainData.push([]);
+    mainData.push([`Gerado em: ${new Date().toLocaleDateString('pt-BR')} às ${new Date().toLocaleTimeString('pt-BR')}`]);
+    mainData.push([`Total de fontes analisadas: ${selectedSources.length}`]);
+    mainData.push([]);
+    mainData.push(['═══════════════════════════════════════════════════════════════════════════════════════════════════════']);
+    mainData.push([]);
+
+    // Cabeçalhos organizados
+    const headers = [
+      'FONTE DE DADOS',
+      'TIPO',
+      'COBERTURA',
+      'CUSTO',
+      'ATUALIZAÇÃO',
+      'FORMATO',
+      'CONFIAB.(%)',
+      'COMPLET.(%)',
+      'PONTUAL.(%)',
+      'PRECISÃO(%)',
+      'FUNDAÇÃO',
+      'ACESSO'
+    ];
+    
+    mainData.push(headers);
+    mainData.push(['─'.repeat(20), '─'.repeat(12), '─'.repeat(15), '─'.repeat(12), '─'.repeat(15), '─'.repeat(12), '─'.repeat(12), '─'.repeat(12), '─'.repeat(12), '─'.repeat(12), '─'.repeat(10), '─'.repeat(15)]);
+
+    // Dados das fontes com formatação
+    selectedSources.forEach((source, index) => {
+      mainData.push([
+        source.name,
+        source.type,
+        source.coverage,
+        source.cost,
+        source.updateFrequency,
+        source.format,
+        `${source.reliability}%`,
+        `${source.completeness}%`,
+        `${source.timeliness}%`,
+        `${source.accuracy}%`,
+        source.establishment,
+        source.accessibility
+      ]);
+    });
+
+    mainData.push([]);
+    mainData.push(['═══════════════════════════════════════════════════════════════════════════════════════════════════════']);
+
+    const wsMain = XLSX.utils.aoa_to_sheet(mainData);
+
+    // Formatação das colunas
+    wsMain['!cols'] = [
+      {wch: 35}, // FONTE DE DADOS
+      {wch: 15}, // TIPO
+      {wch: 20}, // COBERTURA
+      {wch: 15}, // CUSTO
+      {wch: 18}, // ATUALIZAÇÃO
+      {wch: 15}, // FORMATO
+      {wch: 12}, // CONFIABILIDADE
+      {wch: 12}, // COMPLETUDE
+      {wch: 12}, // PONTUALIDADE
+      {wch: 12}, // PRECISÃO
+      {wch: 12}, // FUNDAÇÃO
+      {wch: 18}  // ACESSO
+    ];
+
+    // ================= ABA DE RANKING E ANÁLISE =================
+    const rankingData = [];
+    
+    rankingData.push(['📊 RANKING E ANÁLISE ESTATÍSTICA']);
+    rankingData.push([]);
+    
+    // Calcular médias e criar ranking
+    const sourcesWithAvg = selectedSources.map(source => ({
+      ...source,
+      average: (source.reliability + source.completeness + source.timeliness + source.accuracy) / 4
+    })).sort((a, b) => b.average - a.average);
+
+    rankingData.push(['🏆 RANKING GERAL (por média das métricas)']);
+    rankingData.push(['═══════════════════════════════════════════════════════════════════']);
+    rankingData.push(['POS.', 'FONTE', 'MÉDIA GERAL', 'CONFIAB.', 'COMPLET.', 'PONTUAL.', 'PRECISÃO', 'CLASSIFICAÇÃO']);
+    rankingData.push(['────', '──────────────────────────────────', '─────────', '─────────', '─────────', '─────────', '─────────', '─────────────']);
+
+    sourcesWithAvg.forEach((source, index) => {
+      const getClassification = (score) => {
+        if (score >= 90) return '🌟 EXCELENTE';
+        if (score >= 80) return '⭐ MUITO BOM';
+        if (score >= 70) return '👍 BOM';
+        if (score >= 60) return '📊 REGULAR';
+        return '⚠️ PRECISA MELHORAR';
+      };
+
+      const medal = index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : `${index + 1}º`;
+      
+      rankingData.push([
+        medal,
+        source.name,
+        `${source.average.toFixed(1)}%`,
+        `${source.reliability}%`,
+        `${source.completeness}%`,
+        `${source.timeliness}%`,
+        `${source.accuracy}%`,
+        getClassification(source.average)
+      ]);
+    });
+
+    rankingData.push([]);
+    rankingData.push(['📈 ESTATÍSTICAS GERAIS POR MÉTRICA']);
+    rankingData.push(['═══════════════════════════════════════════════════════════════════']);
+
+    // Calcular estatísticas detalhadas
+    const metrics = [
+      {name: 'Confiabilidade', key: 'reliability', icon: '🔒'},
+      {name: 'Completude', key: 'completeness', icon: '📊'},
+      {name: 'Pontualidade', key: 'timeliness', icon: '⏰'},
+      {name: 'Precisão', key: 'accuracy', icon: '🎯'}
+    ];
+
+    rankingData.push(['MÉTRICA', 'MÉDIA', 'MÁXIMO', 'MÍNIMO', '🏆 MELHOR FONTE (Valor)', '⚠️ PIOR FONTE (Valor)']);
+    rankingData.push(['─────────────', '─────', '───────', '───────', '──────────────────────────', '──────────────────────────']);
+
+    metrics.forEach(metric => {
+      const values = selectedSources.map(s => s[metric.key]);
+      const avg = (values.reduce((a, b) => a + b, 0) / values.length).toFixed(1);
+      const max = Math.max(...values);
+      const min = Math.min(...values);
+      const maxSource = selectedSources.find(s => s[metric.key] === max);
+      const minSource = selectedSources.find(s => s[metric.key] === min);
+      
+      rankingData.push([
+        `${metric.icon} ${metric.name}`,
+        `${avg}%`,
+        `${max}%`,
+        `${min}%`,
+        `${maxSource.name} (${max}%)`,
+        `${minSource.name} (${min}%)`
+      ]);
+    });
+
+    // Adicionar seção de destaques
+    rankingData.push([]);
+    rankingData.push(['⭐ DESTAQUES E OPORTUNIDADES']);
+    rankingData.push(['═══════════════════════════════════════════════════════════════════']);
+    
+    // Encontrar a fonte com maior pontuação geral
+    const bestOverall = sourcesWithAvg[0];
+    const worstOverall = sourcesWithAvg[sourcesWithAvg.length - 1];
+    
+    rankingData.push(['🏆 CAMPEÃ GERAL:', `${bestOverall.name} (${bestOverall.average.toFixed(1)}%)`]);
+    rankingData.push(['📈 OPORTUNIDADE:', `${worstOverall.name} (${worstOverall.average.toFixed(1)}%)`]);
+    rankingData.push([]);
+    
+    // Encontrar os melhores e piores por métrica individual
+    metrics.forEach(metric => {
+      const best = selectedSources.reduce((prev, current) => 
+        current[metric.key] > prev[metric.key] ? current : prev
+      );
+      const worst = selectedSources.reduce((prev, current) => 
+        current[metric.key] < prev[metric.key] ? current : prev
+      );
+      
+      rankingData.push([
+        `${metric.icon} MELHOR ${metric.name.toUpperCase()}:`,
+        `${best.name} (${best[metric.key]}%)`
+      ]);
+      
+      if (best[metric.key] !== worst[metric.key]) {
+        rankingData.push([
+          `${metric.icon} MENOR ${metric.name.toUpperCase()}:`,
+          `${worst.name} (${worst[metric.key]}%)`
+        ]);
+      }
+      rankingData.push([]);
+    });
+
+    rankingData.push(['📊 DISTRIBUIÇÃO POR CATEGORIAS']);
+    rankingData.push(['═══════════════════════════════════════════════════════════════════']);
+
+    // Distribuição por tipo
+    const typeCount = {};
+    selectedSources.forEach(source => {
+      typeCount[source.type] = (typeCount[source.type] || 0) + 1;
+    });
+    
+    rankingData.push(['TIPO DE FONTE', 'QUANTIDADE', 'PERCENTUAL']);
+    rankingData.push(['──────────────────', '──────────', '──────────']);
+    Object.entries(typeCount).forEach(([type, count]) => {
+      const percentage = ((count / selectedSources.length) * 100).toFixed(1);
+      rankingData.push([type, count, `${percentage}%`]);
+    });
+
+    rankingData.push([]);
+
+    // Distribuição por custo
+    const costCount = {};
+    selectedSources.forEach(source => {
+      costCount[source.cost] = (costCount[source.cost] || 0) + 1;
+    });
+    
+    rankingData.push(['MODELO DE CUSTO', 'QUANTIDADE', 'PERCENTUAL']);
+    rankingData.push(['──────────────────', '──────────', '──────────']);
+    Object.entries(costCount).forEach(([cost, count]) => {
+      const percentage = ((count / selectedSources.length) * 100).toFixed(1);
+      rankingData.push([cost, count, `${percentage}%`]);
+    });
+
+    const wsRanking = XLSX.utils.aoa_to_sheet(rankingData);
+    wsRanking['!cols'] = [
+      {wch: 25}, // MÉTRICA/INFORMAÇÃO
+      {wch: 40}, // VALOR/FONTE (expandido para acomodar nomes)
+      {wch: 12}, // MÉDIA/VALORES
+      {wch: 10}, // MÁXIMO
+      {wch: 10}, // MÍNIMO
+      {wch: 30}, // MELHOR FONTE (expandido)
+      {wch: 30}, // PIOR FONTE (expandido)
+      {wch: 18}  // CLASSIFICAÇÃO
+    ];
+
+    // ================= ABA DE DETALHES POR FONTE =================
+    const detailsData = [];
+    detailsData.push(['📋 RELATÓRIO DETALHADO POR FONTE']);
+    detailsData.push([]);
+
+    selectedSources.forEach((source, index) => {
+      const avgScore = (source.reliability + source.completeness + source.timeliness + source.accuracy) / 4;
+      const getStatus = (score) => {
+        if (score >= 90) return '🌟 EXCELENTE';
+        if (score >= 80) return '⭐ MUITO BOM';
+        if (score >= 70) return '👍 BOM';
+        if (score >= 60) return '📊 REGULAR';
+        return '⚠️ PRECISA MELHORAR';
+      };
+
+      detailsData.push([`📊 FONTE ${index + 1}: ${source.name.toUpperCase()}`]);
+      detailsData.push(['═'.repeat(80)]);
+      detailsData.push([]);
+      
+      detailsData.push(['🏢 INFORMAÇÕES GERAIS']);
+      detailsData.push(['──────────────────────────────────────────────────']);
+      detailsData.push(['Tipo de Fonte:', source.type]);
+      detailsData.push(['Cobertura Geográfica:', source.coverage]);
+      detailsData.push(['Modelo de Custo:', source.cost]);
+      detailsData.push(['Frequência de Atualização:', source.updateFrequency]);
+      detailsData.push(['Formato dos Dados:', source.format]);
+      detailsData.push(['Ano de Estabelecimento:', source.establishment]);
+      detailsData.push(['Nível de Acessibilidade:', source.accessibility]);
+      detailsData.push([]);
+      
+      detailsData.push(['🎯 MÉTRICAS DE QUALIDADE']);
+      detailsData.push(['──────────────────────────────────────────────────']);
+      detailsData.push(['🔒 Confiabilidade:', `${source.reliability}%`, getStatus(source.reliability)]);
+      detailsData.push(['📊 Completude:', `${source.completeness}%`, getStatus(source.completeness)]);
+      detailsData.push(['⏰ Pontualidade:', `${source.timeliness}%`, getStatus(source.timeliness)]);
+      detailsData.push(['🎯 Precisão:', `${source.accuracy}%`, getStatus(source.accuracy)]);
+      detailsData.push([]);
+      detailsData.push(['📈 PONTUAÇÃO GERAL:', `${avgScore.toFixed(1)}%`, getStatus(avgScore)]);
+      detailsData.push([]);
+      detailsData.push(['═'.repeat(80)]);
+      detailsData.push([]);
+    });
+
+    const wsDetails = XLSX.utils.aoa_to_sheet(detailsData);
+    wsDetails['!cols'] = [{wch: 30}, {wch: 30}, {wch: 20}];
+
+    // ================= ADICIONAR TODAS AS ABAS =================
+    XLSX.utils.book_append_sheet(wb, wsMain, '📊 Dados Principais');
+    XLSX.utils.book_append_sheet(wb, wsRanking, '🏆 Ranking e Análise');
+    XLSX.utils.book_append_sheet(wb, wsDetails, '📋 Detalhes por Fonte');
+
+    // ================= EXPORTAR COM NOME MELHORADO =================
+    const now = new Date();
+    const dateStr = now.toISOString().split('T')[0];
+    const timeStr = now.toTimeString().split(' ')[0].replace(/:/g, '');
+    const fileName = `Relatorio_Fontes_Agronomicas_${dateStr}_${timeStr}_${selectedSources.length}fontes.xlsx`;
+    
+    XLSX.writeFile(wb, fileName);
+    
+    // Mensagem de sucesso melhorada
+    const topSource = sourcesWithAvg[0];
+    alert(`✅ RELATÓRIO EXPORTADO COM SUCESSO!\n\n📊 Arquivo: ${fileName}\n🏆 Melhor fonte: ${topSource.name} (${topSource.average.toFixed(1)}%)\n📈 ${selectedSources.length} fontes analisadas\n📋 3 abas com análises completas\n\n💡 Dica: Abra o arquivo no Excel para melhor formatação!`);
   };
 
   const sortedSources = [...selectedSources].sort((a, b) => {
@@ -91,7 +387,7 @@ const ComparisonTable = ({ dataSources }) => {
             </div>
             
             <select
-              className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none"
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
             >
@@ -108,7 +404,10 @@ const ComparisonTable = ({ dataSources }) => {
             <span className="text-sm text-gray-600">
               {selectedSources.length} de {dataSources.length} selecionadas
             </span>
-            <button className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+            <button 
+              onClick={handleExport}
+              className="flex items-center space-x-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+            >
               <Download className="h-4 w-4" />
               <span>Exportar</span>
             </button>
@@ -131,7 +430,7 @@ const ComparisonTable = ({ dataSources }) => {
                 disabled={!isSelected && selectedSources.length >= 6}
                 className={`p-3 text-left rounded-lg border-2 transition-all ${
                   isSelected
-                    ? 'border-blue-500 bg-blue-50 text-blue-900'
+                    ? 'border-green-500 bg-green-50 text-green-900'
                     : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'
                 } ${!isSelected && selectedSources.length >= 6 ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
               >
@@ -222,6 +521,8 @@ const ComparisonTable = ({ dataSources }) => {
               const average = selectedSources.reduce((sum, source) => sum + source[metric], 0) / selectedSources.length;
               const best = Math.max(...selectedSources.map(s => s[metric]));
               const worst = Math.min(...selectedSources.map(s => s[metric]));
+              const bestSource = selectedSources.find(s => s[metric] === best);
+              const worstSource = selectedSources.find(s => s[metric] === worst);
               
               return (
                 <div key={metric} className="text-center p-4 border rounded-lg">
@@ -235,10 +536,10 @@ const ComparisonTable = ({ dataSources }) => {
                       Média: <span className="font-semibold">{average.toFixed(1)}%</span>
                     </div>
                     <div className="text-sm text-green-600">
-                      Melhor: <span className="font-semibold">{best}%</span>
+                      Melhor: <span className="font-semibold">{bestSource?.name?.substring(0, 20) || 'N/A'} - {best}%</span>
                     </div>
                     <div className="text-sm text-red-600">
-                      Menor: <span className="font-semibold">{worst}%</span>
+                      Menor: <span className="font-semibold">{worstSource?.name?.substring(0, 20) || 'N/A'} - {worst}%</span>
                     </div>
                   </div>
                 </div>
