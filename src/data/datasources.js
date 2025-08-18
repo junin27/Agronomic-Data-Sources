@@ -2147,105 +2147,85 @@ export const datasources = [
      ]
   },
   {
-    id: 'openweathermap',
-    name: 'OpenWeatherMap',
-    description: 'Plataforma privada de dados meteorológicos que fornece condições atuais, previsões, alertas e históricos globais via APIs REST, com produtos especializados (incluindo Agro API) e pacotes de histórico em alta resolução temporal.',
-    category: 'Meteorológico',
-    type: 'Privado',
-    coverage: 'Global',
-    format: 'JSON/XML/HTML',
-    updateFrequency: 'Tempo Real',
-    cost: 'Freemium',
-    accessibility: 'Freemium',
-    website: 'https://openweathermap.org/',
-    apiDocumentation: 'https://openweathermap.org/api',
+    id: 17,
+    name: "OpenWeatherMap",
+    description: "OpenWeatherMap é uma plataforma privada de dados meteorológicos que fornece condições atuais, previsões, alertas e históricos globais via APIs REST, com produtos especializados (incluindo Agro API) e pacotes de histórico em alta resolução temporal.",
+    type: "Privado",
+    category: "Meteorológico",
+    coverage: "Global",
+    format: "JSON/XML/HTML", 
+    updateFrequency: "Tempo Real",
+    accessibility: "Freemium",
+    cost: "Freemium",
+    dataTypes: ["Dados Meteorológicos", "Previsões", "Alertas", "Histórico Climático", "Mapas Meteorológicos", "Índices de Vegetação", "NDVI", "EVI"],
+    establishment: "OpenWeatherMap Ltd",
     reliability: 85,
     completeness: 90,
     timeliness: 95,
     accuracy: 80,
-    features: [
-      'Condições meteorológicas atuais',
-      'Previsões minuto-a-minuto (1h)',
-      'Previsões horárias (até 48h)',
-      'Previsões diárias (até 8 dias)',
-      'Alertas governamentais',
-      'Histórico meteorológico (46+ anos)',
-      'Weather Maps 2.0',
-      'Agro API com NDVI e EVI',
-      'Geocoding API',
-      'History Bulk API'
-    ],
-    dataAndContent: {
-      description: 'A base "Weather API" cobre tempo atual, previsões minuto-a-minuto (1 h), horárias (até 48 h), diárias (até 8 dias), alertas governamentais e histórico; pela One Call API 3.0 há acesso consolidado a atual, previsões, histórico de 46+ anos e previsões agregadas de longo prazo (até ~1,5 ano). Respostas em JSON (e, em alguns endpoints, XML/HTML).',
-      weatherMaps: 'Weather Maps 2.0 oferece camadas de temperatura, precipitação, vento, pressão etc. com dados atuais, previsão e histórico, disponibilizados como tiles para Leaflet/OpenLayers/Google Maps.',
-      agroAPI: 'A Agro API permite cadastrar polígonos de talhões e obter imagens de satélite (verdadeira/falsa cor) e índices de vegetação NDVI e EVI, além de séries históricas desses índices para cada polígono.',
-      historyAPI: 'History API / History Bulk disponibiliza observações horárias de ~15 variáveis desde 1º jan 1979, entregues em JSON/CSV (download em lote via Marketplace).',
-      geocodingAPI: 'Geocoding API (direto e reverso) para resolver nomes/CEPs em coordenadas, útil para padronizar entradas de locais.'
+    website: "https://openweathermap.org/",
+    logo: "/logos/openweathermap.png",
+    dataContent: {
+      weatherAPI: "A base 'Weather API' cobre tempo atual, previsões minuto-a-minuto (1 h), horárias (até 48 h), diárias (até 8 dias), alertas governamentais e histórico; pela One Call API 3.0 há acesso consolidado a atual, previsões, histórico de 46+ anos e previsões agregadas de longo prazo (até ~1,5 ano). Respostas em JSON (e, em alguns endpoints, XML/HTML).",
+      weatherMaps: "Para análises em mapas, há Weather Maps 2.0 (camadas de temperatura, precipitação, vento, pressão etc.) com dados atuais, previsão e histórico, disponibilizados como tiles para Leaflet/OpenLayers/Google Maps.",
+      agroAPI: "Para uso agronômico, a Agro API permite cadastrar polígonos de talhões e obter imagens de satélite (verdadeira/falsa cor) e índices de vegetação NDVI e EVI, além de séries históricas desses índices para cada polígono.",
+      historyAPI: "Para backfill e modelagem, o History API / History Bulk disponibiliza observações horárias de ~15 variáveis desde 1º jan 1979, entregues em JSON/CSV (download em lote via Marketplace).",
+      geocodingAPI: "Há também Geocoding API (direto e reverso) para resolver nomes/CEPs em coordenadas, útil para padronizar entradas de locais."
     },
     accessAndDocumentation: {
-      integration: 'Integração via APIs REST com API key (APPID). O fluxo típico: criar conta, obter a chave e chamar endpoints HTTPS com lat/lon (ou usar o Geocoding API para converter nomes em coordenadas).',
-      authentication: 'API key (APPID)',
-      endpoints: 'HTTPS com coordenadas lat/lon'
+      description: "A integração é via APIs REST com API key (APPID). O fluxo típico: criar conta, obter a chave e chamar endpoints HTTPS com lat/lon (ou usar o Geocoding API para converter nomes em coordenadas)."
     },
     pricing: {
-      oneCallAPI: 'One Call API 3.0 opera em modelo "pay as you call": inclui 1.000 chamadas/dia grátis; excedentes são cobrados (£0,0012 por chamada).',
-      monthlyPlans: 'Planos mensais maiores (Developer/Professional/Expert/Enterprise) definem limites de chamadas por minuto/mês e acesso a coleções/produtos adicionais.',
-      historicalProducts: 'Produtos históricos em lote (History Bulk) e mapas avançados podem ter precificação específica via Marketplace/"Get a quote".'
+      oneCallAPI: "A One Call API 3.0 opera em modelo 'pay as you call': inclui 1.000 chamadas/dia grátis; excedentes são cobrados (a OpenWeather divulga a tarifa como £0,0012 por chamada).",
+      monthlyPlans: "Planos mensais maiores (Developer/Professional/Expert/Enterprise) definem limites de chamadas por minuto/mês e acesso a coleções/produtos adicionais (p.ex., mapas avançados).",
+      historicalProducts: "Produtos históricos em lote (History Bulk) e mapas avançados podem ter precificação específica via Marketplace/'Get a quote'."
     },
-    volumeAndQualityAssessment: {
-      volume: {
-        description: 'Cobertura global com amplo portfólio (tempo atual, previsões diversas, mapas, histórico desde 1979 com passo horário), além de camadas especializadas (p.ex., precipitação histórica em passo de 10 minutos em mapas de alta resolução).'
-      },
-      quality: {
-        description: 'Os dados são fundidos de múltiplas fontes: modelos globais/locais, radares, satélites e uma rede extensa de estações, combinados por modelos proprietários/ML para gerar previsões e nowcasting. Isso assegura atualização frequente e boa robustez, embora a acurácia em microclimas possa variar.'
-      }
+    volumeAndQuality: {
+      volume: "Cobertura global com amplo portfólio (tempo atual, previsões diversas, mapas, histórico desde 1979 com passo horário), além de camadas especializadas (p.ex., precipitação histórica em passo de 10 minutos em mapas de alta resolução).",
+      quality: "Os dados são fundidos de múltiplas fontes: modelos globais/locais, radares, satélites e uma rede extensa de estações, combinados por modelos proprietários/ML para gerar previsões e nowcasting. Isso assegura atualização frequente e boa robustez, embora a acurácia em microclimas possa variar."
     },
-    dataCollectionConsiderations: {
-      agriculturalApplications: 'Para aplicações agronômicas, use One Call 3.0 para unificar atual+previsão+histórico por coordenada e Agro API para análises por talhão (polígonos e NDVI/EVI).',
-      backfill: 'Faça backfill com History Bulk para treinar modelos de rendimento/risco.',
-      technicalConsiderations: 'Estruture cache e limitação de taxa (rate-limit) conforme o plano, padronize unidades (metric/imperial) e fuso/UTC nos timestamps, e resolva localidades via Geocoding API.',
-      intelligence: 'Para inteligência, cruze precipitação, temperatura e índices de vegetação por janela fenológica e aplique features agregadas (acumulados/degree-days).'
-    },
-    challengesAndOpportunities: {
-      challenges: [
-        'Custo variável em alto volume (pay-as-you-go)',
-        'Necessidade de orquestrar múltiplos produtos (One Call, Agro, History)',
-        'Heterogeneidade espacial/temporal vs. microclima local',
-        'Gestão de tiles/mapas se você embutir camadas cartográficas'
-      ],
-      opportunities: [
-        'Cobertura histórica longa para modelagem',
-        'NDVI/EVI por polígono para monitorar vigor e estresse',
-        'Precipitação/vento/temperatura com alta cadência para alertas operacionais',
-        'Fácil integração com stacks de mapas (Leaflet/OpenLayers/Google Maps)'
-      ]
-    },
-    integrationRecommendations: {
-      priority: 'Priorize One Call 3.0 como fonte "única" por coordenada e habilite cache (e.g., TTL de 10–30 min para atual/nowcast e 1–3 h para previsões horárias) para otimizar custos.',
-      geocoding: 'Use Geocoding API para entrada do usuário; armazene identificadores de talhões e suas geometrias e integre Agro API para NDVI/EVI e imagens.',
-      dataManagement: 'Faça backfill inicial com History Bulk e atualize diariamente.',
-      standardization: 'Normalize unidades/UTC; monitore consumo e quotas no painel da OpenWeather.',
-      visualization: 'Para visualização, sobreponha Weather Maps 2.0 como tiles (com chave) no seu WebGIS.'
-    },
-    dataTypes: [
-      'Temperatura',
-      'Precipitação',
-      'Umidade',
-      'Pressão atmosférica',
-      'Velocidade do vento',
-      'Direção do vento',
-      'Visibilidade',
-      'Cobertura de nuvens',
-      'Índice UV',
-      'NDVI',
-      'EVI'
+    dataCollection: [
+      "Para aplicações agronômicas, use One Call 3.0 para unificar atual+previsão+histórico por coordenada e Agro API para análises por talhão (polígonos e NDVI/EVI)",
+      "Faça backfill com History Bulk para treinar modelos de rendimento/risco",
+      "Estruture cache e limitação de taxa (rate-limit) conforme o plano, padronize unidades (metric/imperial) e fuso/UTC nos timestamps, e resolva localidades via Geocoding API",
+      "Para inteligência, cruze precipitação, temperatura e índices de vegetação por janela fenológica e aplique features agregadas (acumulados/degree-days)"
+    ],
+    challenges: [
+      "Custo variável em alto volume (pay-as-you-go), necessidade de orquestrar múltiplos produtos (One Call, Agro, History), heterogeneidade espacial/temporal vs. microclima local, e gestão de tiles/mapas se você embutir camadas cartográficas"
+    ],
+    opportunities: [
+      "Cobertura histórica longa para modelagem, NDVI/EVI por polígono para monitorar vigor e estresse, precipitação/vento/temperatura com alta cadência para alertas operacionais, e fácil integração com stacks de mapas (Leaflet/OpenLayers/Google Maps)"
+    ],
+    recommendations: [
+      "Priorize One Call 3.0 como fonte 'única' por coordenada e habilite cache (e.g., TTL de 10–30 min para atual/nowcast e 1–3 h para previsões horárias) para otimizar custos",
+      "Use Geocoding API para entrada do usuário; armazene identificadores de talhões e suas geometrias e integre Agro API para NDVI/EVI e imagens; faça backfill inicial com History Bulk e atualize diariamente",
+      "Normalize unidades/UTC; monitore consumo e quotas no painel da OpenWeather; e, para visualização, sobreponha Weather Maps 2.0 como tiles (com chave) no seu WebGIS"
+    ],
+    features: [
+      "Weather API com condições atuais",
+      "Previsões minuto-a-minuto (1h)",
+      "Previsões horárias (até 48h)",
+      "Previsões diárias (até 8 dias)",
+      "Alertas governamentais",
+      "One Call API 3.0",
+      "Histórico de 46+ anos",
+      "Weather Maps 2.0",
+      "Agro API com NDVI e EVI",
+      "History Bulk API",
+      "Geocoding API",
+      "Múltiplas fontes de dados",
+      "Cache e rate limiting",
+      "Integração com mapas web"
     ],
     limitations: [
-      'Custo variável em alto volume',
-      'Limitações de taxa por plano',
-      'Acurácia pode variar em microclimas',
-      'Necessidade de múltiplas APIs para funcionalidades completas',
-      'Dependência de conectividade para dados em tempo real'
+      "Custo variável conforme uso",
+      "Necessidade de múltiplas APIs",
+      "Limitações de taxa por plano",
+      "Variação de acurácia em microclimas",
+      "Gestão complexa de tiles/mapas",
+      "Dependência de conectividade",
+      "Necessidade de cache para otimização",
+      "Orquestração de produtos diversos"
     ]
   },
   {
