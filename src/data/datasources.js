@@ -1798,7 +1798,7 @@ export const datasources = [
     website: "https://openet.dri.edu",
     logo: "/logos/openet.png",
     dataAndContent: {
-      "description": "A plataforma fornece séries diárias e mensais de ET em 30 m (resolução Landsat), além do valor 'ensemble' (média filtrada por MAD) de seis modelos (ALEXI/DisALEXI, eeMETRIC, geeSEBAL, PT-JPL, SIMS e SSEBop).",
+      "description": "A plataforma fornece séries diárias e mensais de ET em 30 m (resolução Landsat), além do valor 'ensemble' (média filtrada por MAD) de seis modelos (ALEXI/DisALEXI, eeMETRIC, geeSEBAL, PT-JPL, SIMS e SSEBop). Também expõe variáveis de apoio como ETo (referência grama), ETr (referência alfafa), ETof/ETrf (fração de referência), NDVI, contagens de modelos e precipitação (PR), com unidades configuráveis (mm ou polegadas). Em Earth Engine, há 57 coleções mensais públicas (licença CC-BY-4.0) cobrindo o CONUS com disponibilidade de 1999-10 a 2024-12. Na API, além de mensais, é possível consultar dados diários por geometria.",
       "variables": [
         "ET (evapotranspiração)",
         "ETo (referência grama)",
@@ -1817,44 +1817,39 @@ export const datasources = [
       "apiAccess": "Dados diários por geometria além dos mensais"
     },
     accessAndDocumentation: {
-      "manualExploration": "Data Explorer para visualização e download limitado",
+      "manualExploration": "Para exploração manual, use o Data Explorer (visualização e download limitado)",
       "programmaticAccess": {
-        "documentation": "Documentação oficial da API com Quick Start",
+        "documentation": "Para uso programático, a documentação oficial da API traz 'Quick Start', endpoints Geodatabase (consultas pré-computadas) e Raster (consultas customizadas, inclusive GeoTIFF), parâmetros aceitos e exemplos",
         "endpoints": {
           "geodatabase": "Consultas pré-computadas",
           "raster": "Consultas customizadas, inclusive GeoTIFF"
         },
-        "authentication": "Necessário criar conta para obter chave de API",
+        "authentication": "É necessário criar conta para obter a chave de API",
         "parameters": "Parâmetros aceitos e exemplos disponíveis"
       },
       "integrations": [
-        "Integração opcional com Earth Engine",
+        "Há integração opcional com Earth Engine",
         "Suporte a exportação para Google Drive",
-        "Escolha da fonte de referência ET (CIMIS na Califórnia ou gridMET)",
-        "Previsão de 7 dias de ETo (NOAA FRET) como referência"
+        "Escolher a fonte de referência ET (CIMIS na Califórnia ou gridMET)",
+        "Usar a previsão de 7 dias de ETo (NOAA FRET) como referência"
       ],
-      "earthEngineAccess": "Consumo direto das coleções públicas do OpenET no Google Earth Engine para históricos mensais"
+      "earthEngineAccess": "Para históricos mensais prontos, também é possível consumir diretamente as coleções públicas do OpenET no Google Earth Engine"
     },
     pricing: {
-      "dataExplorer": "Visualização gratuita e download de volumes limitados",
-      "apiAccess": "Níveis de cota com possibilidade de níveis superiores ao vincular Earth Engine",
-      "businessModel": "Modelo busca manter acesso público gratuito, uso em grande escala pela API é o caminho para operações pagas/sustentação do serviço",
-      "commercialDetails": "Detalhes comerciais além das cotas públicas devem ser tratados diretamente com a equipe"
+      "dataExplorer": "A visualização no Data Explorer é gratuita e o download de volumes limitados também",
+      "apiAccess": "Para acesso em larga escala existe a API, com níveis de cota e possibilidade de níveis superiores ao vincular o Earth Engine",
+      "businessModel": "A página de FAQ deixa claro que o modelo busca manter o acesso público gratuito e que o uso em grande escala pela API é o caminho para operações pagas/sustentação do serviço",
+      "commercialDetails": "Os detalhes comerciais além das cotas públicas devem ser tratados diretamente com a equipe"
     },
     volumeAndQuality: {
-      "volume": "Volume considerável, abrangendo vastas áreas geográficas e histórico de tempo significativo",
-      "quality": "Qualidade alta - plataforma utiliza variedade de modelos validados por cientistas e especialistas, dados de satélite de fontes confiáveis, metodologia revisada por pares, dados constantemente atualizados garantindo precisão nas estimativas"
+      "volume": "O volume de dados na OpenET é considerável, abrangendo vastas áreas geográficas e um histórico de tempo significativo",
+      "quality": "A qualidade dos dados é considerada alta, pois a plataforma utiliza uma variedade de modelos validados por cientistas e especialistas, e os dados de satélite são de fontes confiáveis. A metodologia é revisada por pares e os dados são constantemente atualizados, garantindo precisão nas estimativas"
     },
     dataCollection: [
-      "Para análises operacionais, privilegie o valor ensemble de ET",
-      "Registre ETo/ETr e a fração (ETof/ETrf) para normalizar sazonalidade",
-      "Inclua precipitação (PR) da própria coleção",
-      "Facilita calcular ET líquida e orçamentar água com outros insumos locais",
-      "Considere chuva efetiva, lençol raso, calendário fenológico",
-      "Trate lacunas por nuvens conforme indicado em 'Known Issues'",
-      "Monitore a latência - mensais tendem a estabilizar até seis semanas após o mês de interesse",
-      "Padronize unidades (mm) na ingestão",
-      "Use metadados da API (COUNT/MODEL_COUNT) para qualificar incerteza por período/local"
+      "Para análises operacionais, privilegie o valor ensemble de ET e registre, junto, ETo/ETr e a fração (ETof/ETrf) para normalizar sazonalidade, além de precipitação (PR) da própria coleção",
+      "Isso facilita calcular ET líquida e orçamentar água com outros insumos locais (chuva efetiva, lençol raso, calendário fenológico)",
+      "Trate lacunas por nuvens conforme indicado em 'Known Issues' e monitore a latência, mensais tendem a estabilizar até seis semanas após o mês de interesse",
+      "Padronize unidades (mm) na ingestão e use metadados da API (COUNT/MODEL_COUNT) para qualificar incerteza por período/local"
     ],
     intelligence: [
       "Estimativas de evapotranspiração baseadas em satélite em escala de talhão",
@@ -1867,35 +1862,17 @@ export const datasources = [
       "Previsão de 7 dias de ETo como referência"
     ],
     challenges: [
-      "Principal desafio para o Brasil é a cobertura: OpenET está focado no oeste dos EUA",
-      "Consórcio pretende expandir e alongar o arquivo histórico",
-      "Diferenças entre modelos aumentam em ET muito baixa, corpos d'água e ambientes áridos",
-      "Exige diagnóstico local e, às vezes, seleção de um subconjunto de modelos",
-      "Latência nos dados mensais (até seis semanas)",
-      "Lacunas por nuvens conforme 'Known Issues'",
-      "Necessidade de tratamento de casos específicos listados em 'Known Issues'"
+      "O principal desafio para o seu caso no Brasil é a cobertura: OpenET está focado no oeste dos EUA, embora o consórcio pretenda expandir e alongar o arquivo histórico",
+      "Diferenças entre modelos aumentam em ET muito baixa, corpos d'água e ambientes áridos, exigindo diagnóstico local e, às vezes, seleção de um subconjunto de modelos"
     ],
     opportunities: [
-      "Grande oportunidade de integrar ET de 30 m em plataformas de contas de água",
-      "Aplicações em trading e monitoramento de aquíferos",
-      "Apoio à irrigação com acesso gratuito para exploração",
-      "Coleções públicas no Earth Engine para prototipagem reprodutível",
-      "Expansão futura da cobertura geográfica",
-      "Alongamento do arquivo histórico",
-      "Integração com outras fontes de dados climáticos e de solo"
+      "Há grande oportunidade de integrar ET de 30 m em plataformas de contas de água, trading, monitoramento de aquíferos e apoio à irrigação, com acesso gratuito para exploração e coleções públicas no Earth Engine para prototipagem reprodutível"
     ],
     recommendations: [
-      "Para protótipos e estudos: consuma as coleções mensais do OpenET no Earth Engine",
-      "Processamento e reprodutibilidade sem infraestrutura própria",
-      "Cruze com clima/solo/culturas locais",
-      "Para operação: use API Geodatabase para agregados rápidos por talhão/ID",
-      "Use API Raster para diários/GeoTIFF ou geometrias customizadas",
-      "Armazene séries de ET, ETo/ETr, ETof/ETrf e PR com carimbo de versão/modelo",
-      "Vincule conta do Earth Engine à OpenET para ampliar cotas",
-      "Monitore limites mensais",
-      "Trate casos listados em 'Known Issues' com regras de negócio",
-      "Para agro brasileiro: use OpenET como referência metodológica e de benchmarking",
-      "Combine fontes regionais/alternativas para ET até expansão oficial do escopo espacial"
+      "Para protótipos e estudos, consuma as coleções mensais do OpenET no Earth Engine (processamento e reprodutibilidade sem infraestrutura própria) e cruze com clima/solo/culturas locais",
+      "Para operação, use a API Geodatabase quando precisar de agregados rápidos por talhão/ID e a API Raster quando precisar de diários/GeoTIFF ou geometrias customizadas, armazenando em seu data lake as séries de ET, ETo/ETr, ETof/ETrf e PR com carimbo de versão/modelo",
+      "Vincule sua conta do Earth Engine à OpenET para ampliar cotas, monitore limites mensais e trate os casos listados em 'Known Issues' com regras de negócio (ex.: mascaramento de água, filtros por MODEL_COUNT)",
+      "Como a cobertura atual é dos EUA, se o objetivo for o agro brasileiro, use OpenET como referência metodológica e de benchmarking, e combine, no curto prazo, fontes regionais/alternativas para ET até que o escopo espacial da OpenET seja expandido oficialmente"
     ],
     limitations: [
       "Cobertura limitada ao oeste dos Estados Unidos",
