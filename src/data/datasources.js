@@ -1164,12 +1164,12 @@ export const datasources = [
       "specialAccess": "Dados do ZARC acessíveis via API e também disponíveis em formato CSV"
     },
     pricing: {
-      "model": "Totalmente gratuito",
-      "description": "O Portal de Dados Abertos do MAPA é uma iniciativa do governo federal e sua API CKAN não tem custo",
-      "usage": "Dados podem ser usados para pesquisa, desenvolvimento de aplicações e análises sem necessidade de pagar taxas",
+      "model": "O acesso aos dados do Ministério da Agricultura e Pecuária (MAPA) é gratuito",
+      "description": "O Portal de Dados Abertos do MAPA é uma iniciativa do governo federal, e sua API CKAN não tem custo. Você pode usar os dados para pesquisa, desenvolvimento de aplicações e análises sem a necessidade de pagar taxas",
+      "usage": "O uso de um token de autenticação, que pode ser solicitado para algumas operações, serve para controle de uso, e não para cobrança. É uma prática comum para monitorar a frequência de acesso e garantir a estabilidade do serviço",
       "tokenAuthentication": "Token de autenticação serve para controle de uso, não para cobrança",
-      "clarification": "Não confundir o acesso à API com as taxas de serviços regulatórios que o MAPA cobra por outros procedimentos, como registro de cultivares",
-      "policy": "Política de transparência e acesso à informação do governo federal"
+      "clarification": "É importante não confundir o acesso à API com as taxas de serviços regulatórios que o MAPA cobra por outros procedimentos, como o registro de cultivares (que é o que foi encontrado em algumas buscas). O uso do portal de dados abertos para pesquisa e desenvolvimento não tem custo",
+      "policy": "O governo federal disponibiliza esses dados como parte da política de transparência e acesso à informação"
     },
     volume: {
       "scope": "Diversas bases de dados relacionadas à agricultura e pecuária",
@@ -1252,14 +1252,14 @@ export const datasources = [
       "Documentação pode ser complexa para usuários iniciantes"
     ],
     volumeAndQuality: {
-      volume: "Portal com 13 conjuntos de dados disponíveis, conforme listado na página principal de datasets",
-      quality: "Licença clara e aberta (CC-BY), diversidade de formatos estruturados (CSV, PDF, XLSX), infraestrutura robusta baseada em CKAN com API REST padronizada e confiável"
+      volume: "O Portal de Dados Abertos do MAPA apresenta 13 conjuntos de dados disponíveis, conforme listado diretamente na página principal de datasets do portal",
+      quality: "Embora não haja métricas numéricas específicas publicadas no portal (como acurácia ou completude), alguns pontos reforçam a qualidade da fonte: Licença clara e aberta (todos os dados são disponibilizados sob licença CC-BY, o que assegura liberdade de uso com atribuição correta), diversidade de formatos estruturados (os dados estão disponíveis em CSV, PDF, XLSX — formatos amplamente compatíveis com ingestão e análise automatizada), infraestrutura robusta (CKAN: o portal utiliza API CKAN baseada em REST, renomada por sua padronização e confiabilidade, facilitando a exploração, paginação e acesso programático aos recursos)"
     },
     dataCollection: {
-      methods: "API CKAN baseada em REST (/api/3/action/*) para listar/buscar pacotes e recursos, com suporte a CRUD mediante token",
-      frequency: "Variável: semanal (SIPEAGRO), mensal (SIGSIF), eventual (ZARC conforme portarias)",
-      automation: "Use package_search com parâmetros q, rows, start e filtros; atenção à paginação. Priorize CSV/XLSX para ingestão tabular; PDF para dicionários/explicações; XML (Thesagro) para taxonomias/glossários",
-      businessContext: "Combine ZARC (época/cultivar) + INMET/CONAB para séries climáticas e safras; SIGSIF para sanidade/abate e SIPEAGRO para insumos/registro"
+      methods: "Acesso programático (CKAN): o portal é CKAN-based e expõe a API REST (/api/3/action/*) para listar/buscar pacotes e recursos (e CRUD com token quando aplicável). Use package_search com q, rows, start e filtros; atenção a paginação",
+      frequency: "Atualidade operacional: planeje rotinas distintas conforme o dataset: semanal (SIPEAGRO), mensal (SIGSIF) e eventual (ZARC conforme portarias). Trate 'carimbos de atualização' do próprio CKAN como gatilho de coleta",
+      automation: "Formatação: priorize CSV/XLSX para ingestão tabular; PDF costuma conter dicionários/explicações (úteis para schema mapping). XML (Thesagro) é ideal para taxonomias/glossários",
+      businessContext: "Contexto de negócio: para analytics, combine: ZARC (época/cultivar) + INMET/CONAB (fora do MAPA) para séries climáticas e safras. SIGSIF para sanidade/abate e SIPEAGRO para insumos/registro"
     },
     enhancedChallenges: [
       "Heterogeneidade temporal: variação na frequência de atualização e presença de conjuntos mais antigos (Base de Conhecimento, Thesagro) exige curadoria e versionamento de schema",
