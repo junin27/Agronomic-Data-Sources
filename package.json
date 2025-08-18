@@ -5,9 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "npm run update-date && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "update-date": "powershell -ExecutionPolicy Bypass -File scripts/update-date.ps1"
   },
   "dependencies": {
     "lucide-react": "^0.539.0",
