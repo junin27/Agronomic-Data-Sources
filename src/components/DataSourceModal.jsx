@@ -170,9 +170,9 @@ const DataSourceModal = ({ dataSource, isOpen, onClose }) => {
             </div>
           </div>
 
-          {/* Actions */}
-          <div className="flex justify-between items-center pt-6 border-t">
-            <div className="flex space-x-3">
+          {/* Badges */}
+          <div className="pt-4 border-t">
+            <div className="flex flex-wrap gap-2 mb-4">
               <span className="inline-block bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm">
                 {dataSource.category}
               </span>
@@ -180,14 +180,17 @@ const DataSourceModal = ({ dataSource, isOpen, onClose }) => {
                 {dataSource.accessibility}
               </span>
             </div>
-            
+          </div>
+
+          {/* Actions */}
+          <div className="pt-2">
             {dataSource.name === "IBGE" ? (
               <div className="flex flex-wrap gap-2">
                 <a
                   href="https://apisidra.ibge.gov.br/home/ajuda"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg transition-colors text-sm"
+                  className="inline-flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg transition-colors text-sm"
                 >
                   <span>Visitar Sidra API</span>
                   <ExternalLink className="h-4 w-4" />
@@ -196,7 +199,7 @@ const DataSourceModal = ({ dataSource, isOpen, onClose }) => {
                   href="https://cran.r-project.org/web/packages/sidrar/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center space-x-2 bg-green-600 hover:bg-green-700 text-white px-3 py-2 rounded-lg transition-colors text-sm"
+                  className="inline-flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg transition-colors text-sm"
                 >
                   <span>Visitar Sidra R</span>
                   <ExternalLink className="h-4 w-4" />
@@ -205,29 +208,31 @@ const DataSourceModal = ({ dataSource, isOpen, onClose }) => {
                   href="https://pypi.org/project/sidrapy/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center space-x-2 bg-yellow-600 hover:bg-yellow-700 text-white px-3 py-2 rounded-lg transition-colors text-sm"
+                  className="inline-flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg transition-colors text-sm"
                 >
                   <span>Visitar Sidra PY</span>
                   <ExternalLink className="h-4 w-4" />
                 </a>
               </div>
             ) : dataSource.name === "Companhia Nacional de Abastecimento (CONAB)" ? (
-              <a
-                href="https://portaldeinformacoes.conab.gov.br/produtos-360.html"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors"
-              >
-                <span>Visitar Site</span>
-                <ExternalLink className="h-4 w-4" />
-              </a>
+              <div className="flex flex-wrap gap-2">
+                <a
+                  href="https://portaldeinformacoes.conab.gov.br/produtos-360.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors"
+                >
+                  <span>Visitar Site</span>
+                  <ExternalLink className="h-4 w-4" />
+                </a>
+              </div>
             ) : dataSource.name === "Agência Nacional de Águas e Saneamento Básico (ANA)" ? (
               <div className="flex flex-wrap gap-2">
                 <a
                   href="https://dadosabertos.ana.gov.br/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg transition-colors text-sm"
+                  className="inline-flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg transition-colors text-sm"
                 >
                   <span>Dados Aberto da Ana</span>
                   <ExternalLink className="h-4 w-4" />
@@ -236,19 +241,19 @@ const DataSourceModal = ({ dataSource, isOpen, onClose }) => {
                   href="https://dadosabertos.ana.gov.br/api/search/definition/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center space-x-2 bg-green-600 hover:bg-green-700 text-white px-3 py-2 rounded-lg transition-colors text-sm"
+                  className="inline-flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg transition-colors text-sm"
                 >
                   <span>Search API</span>
                   <ExternalLink className="h-4 w-4" />
                 </a>
               </div>
             ) : dataSource.name === "Ministério da Agricultura e Pecuária (MAPA)" ? (
-               <div className="flex flex-row space-x-2">
+               <div className="flex flex-wrap gap-2">
                  <a
                    href="https://dados.agricultura.gov.br/"
                    target="_blank"
                    rel="noopener noreferrer"
-                   className="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors"
+                   className="inline-flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors"
                  >
                    <span>Portal de Dados do Mapa</span>
                    <ExternalLink className="h-4 w-4" />
@@ -257,14 +262,14 @@ const DataSourceModal = ({ dataSource, isOpen, onClose }) => {
                    href="https://docs.ckan.org/en/2.6/api/"
                    target="_blank"
                    rel="noopener noreferrer"
-                   className="flex items-center space-x-2 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition-colors"
+                   className="inline-flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors"
                  >
                    <span>CKAN API</span>
                    <ExternalLink className="h-4 w-4" />
                  </a>
                </div>
             ) : dataSource.name === "Repositório Brasileiro Livre para Dados Abertos do Solo (febr)" ? (
-               <div className="flex flex-row space-x-2">
+               <div className="flex flex-wrap gap-2">
                  <a
                    href="https://github.com/Laboratorio-de-Pedometria/febr-data/tree/master"
                    target="_blank"
@@ -278,14 +283,14 @@ const DataSourceModal = ({ dataSource, isOpen, onClose }) => {
                    href="https://www.pedometria.org/soildata/"
                    target="_blank"
                    rel="noopener noreferrer"
-                   className="inline-flex items-center px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+                   className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
                  >
                    <ExternalLink className="w-4 h-4 mr-2" />
                    SoilData
                  </a>
                </div>
              ) : dataSource.name === "Leaf Agriculture" ? (
-               <div className="flex flex-row space-x-2">
+               <div className="flex flex-wrap gap-2">
                  <a
                    href="https://withleaf.io/"
                    target="_blank"
@@ -299,14 +304,14 @@ const DataSourceModal = ({ dataSource, isOpen, onClose }) => {
                    href="https://docs.withleaf.io/docs/"
                    target="_blank"
                    rel="noopener noreferrer"
-                   className="inline-flex items-center px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+                   className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
                  >
                    <ExternalLink className="w-4 h-4 mr-2" />
                    Documentação
                  </a>
                </div>
              ) : dataSource.name === "AgroMonitoring" ? (
-               <div className="flex flex-row space-x-2">
+               <div className="flex flex-wrap gap-2">
                  <a
                    href="https://agromonitoring.com/"
                    target="_blank"
@@ -320,7 +325,7 @@ const DataSourceModal = ({ dataSource, isOpen, onClose }) => {
                    href="https://agromonitoring.com/api"
                    target="_blank"
                    rel="noopener noreferrer"
-                   className="inline-flex items-center px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+                   className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
                  >
                    <ExternalLink className="w-4 h-4 mr-2" />
                    API
@@ -332,7 +337,7 @@ const DataSourceModal = ({ dataSource, isOpen, onClose }) => {
                    href="https://www.fao.org/statistics/en"
                    target="_blank"
                    rel="noopener noreferrer"
-                   className="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg transition-colors text-sm"
+                   className="inline-flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg transition-colors text-sm"
                  >
                    <span>Portal Web</span>
                    <ExternalLink className="h-4 w-4" />
@@ -341,7 +346,7 @@ const DataSourceModal = ({ dataSource, isOpen, onClose }) => {
                    href="https://jamesfell0000.github.io/posts/faostat_api/"
                    target="_blank"
                    rel="noopener noreferrer"
-                   className="flex items-center space-x-2 bg-green-600 hover:bg-green-700 text-white px-3 py-2 rounded-lg transition-colors text-sm"
+                   className="inline-flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg transition-colors text-sm"
                  >
                    <span>API</span>
                    <ExternalLink className="h-4 w-4" />
@@ -350,7 +355,7 @@ const DataSourceModal = ({ dataSource, isOpen, onClose }) => {
                    href="https://github.com/FAOSTAT/faostat-api"
                    target="_blank"
                    rel="noopener noreferrer"
-                   className="flex items-center space-x-2 bg-purple-600 hover:bg-purple-700 text-white px-3 py-2 rounded-lg transition-colors text-sm"
+                   className="inline-flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg transition-colors text-sm"
                  >
                    <span>Diretório GitHub</span>
                    <ExternalLink className="h-4 w-4" />
@@ -359,7 +364,7 @@ const DataSourceModal = ({ dataSource, isOpen, onClose }) => {
                    href="https://search.r-project.org/CRAN/refmans/FAOSTAT/html/download_faostat_bulk.html"
                    target="_blank"
                    rel="noopener noreferrer"
-                   className="flex items-center space-x-2 bg-orange-600 hover:bg-orange-700 text-white px-3 py-2 rounded-lg transition-colors text-sm"
+                   className="inline-flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg transition-colors text-sm"
                  >
                    <span>Arquivos Bulk</span>
                    <ExternalLink className="h-4 w-4" />
@@ -371,7 +376,7 @@ const DataSourceModal = ({ dataSource, isOpen, onClose }) => {
                    href="https://etdata.org/"
                    target="_blank"
                    rel="noopener noreferrer"
-                   className="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg transition-colors text-sm"
+                   className="inline-flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg transition-colors text-sm"
                  >
                     <span>OpenET</span>
                     <ExternalLink className="h-4 w-4" />
@@ -380,7 +385,7 @@ const DataSourceModal = ({ dataSource, isOpen, onClose }) => {
                    href="https://openet.gitbook.io/docs"
                    target="_blank"
                    rel="noopener noreferrer"
-                   className="flex items-center space-x-2 bg-green-600 hover:bg-green-700 text-white px-3 py-2 rounded-lg transition-colors text-sm"
+                   className="inline-flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg transition-colors text-sm"
                  >
                    <span>API</span>
                    <ExternalLink className="h-4 w-4" />
@@ -389,7 +394,7 @@ const DataSourceModal = ({ dataSource, isOpen, onClose }) => {
                    href="https://developers.google.com/earth-engine/datasets/catalog/OpenET_ENSEMBLE_CONUS_GRIDMET_MONTHLY_v2_0?hl=pt-br#description"
                    target="_blank"
                    rel="noopener noreferrer"
-                   className="flex items-center space-x-2 bg-purple-600 hover:bg-purple-700 text-white px-3 py-2 rounded-lg transition-colors text-sm"
+                   className="inline-flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg transition-colors text-sm"
                  >
                    <span>Catálago</span>
                    <ExternalLink className="h-4 w-4" />
@@ -401,7 +406,7 @@ const DataSourceModal = ({ dataSource, isOpen, onClose }) => {
                    href="https://openweathermap.org/"
                    target="_blank"
                    rel="noopener noreferrer"
-                   className="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg transition-colors text-sm"
+                   className="inline-flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg transition-colors text-sm"
                  >
                    <span>Página Inicial</span>
                    <ExternalLink className="h-4 w-4" />
@@ -410,7 +415,7 @@ const DataSourceModal = ({ dataSource, isOpen, onClose }) => {
                    href="https://openweathermap.org/api"
                    target="_blank"
                    rel="noopener noreferrer"
-                   className="flex items-center space-x-2 bg-green-600 hover:bg-green-700 text-white px-3 py-2 rounded-lg transition-colors text-sm"
+                   className="inline-flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg transition-colors text-sm"
                  >
                    <span>API</span>
                    <ExternalLink className="h-4 w-4" />
@@ -422,7 +427,7 @@ const DataSourceModal = ({ dataSource, isOpen, onClose }) => {
                    href="https://builtwith.com/"
                    target="_blank"
                    rel="noopener noreferrer"
-                   className="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg transition-colors text-sm"
+                   className="inline-flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg transition-colors text-sm"
                  >
                    <span>BuiltWith</span>
                    <ExternalLink className="h-4 w-4" />
@@ -431,7 +436,7 @@ const DataSourceModal = ({ dataSource, isOpen, onClose }) => {
                    href="https://builtwith.com/api"
                    target="_blank"
                    rel="noopener noreferrer"
-                   className="flex items-center space-x-2 bg-green-600 hover:bg-green-700 text-white px-3 py-2 rounded-lg transition-colors text-sm"
+                   className="inline-flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg transition-colors text-sm"
                  >
                    <span>API</span>
                    <ExternalLink className="h-4 w-4" />
@@ -440,7 +445,7 @@ const DataSourceModal = ({ dataSource, isOpen, onClose }) => {
                    href="https://builtwith.com/datasets"
                    target="_blank"
                    rel="noopener noreferrer"
-                   className="flex items-center space-x-2 bg-purple-600 hover:bg-purple-700 text-white px-3 py-2 rounded-lg transition-colors text-sm"
+                   className="inline-flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg transition-colors text-sm"
                  >
                    <span>Datasets</span>
                    <ExternalLink className="h-4 w-4" />
@@ -452,7 +457,7 @@ const DataSourceModal = ({ dataSource, isOpen, onClose }) => {
                    href="https://dataspace.copernicus.eu/"
                    target="_blank"
                    rel="noopener noreferrer"
-                   className="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg transition-colors text-sm"
+                   className="inline-flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg transition-colors text-sm"
                  >
                    <span>Portal Principal</span>
                    <ExternalLink className="h-4 w-4" />
@@ -461,7 +466,7 @@ const DataSourceModal = ({ dataSource, isOpen, onClose }) => {
                    href="https://sentinels.copernicus.eu/-/copernicus-open-access-hub-is-closing-copernicus-sentinel-data-access-is-now-fully-available-through-the-copernicus-data-space-ecosystem"
                    target="_blank"
                    rel="noopener noreferrer"
-                   className="flex items-center space-x-2 bg-orange-600 hover:bg-orange-700 text-white px-3 py-2 rounded-lg transition-colors text-sm"
+                   className="inline-flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg transition-colors text-sm"
                  >
                    <span>Sentinel Online</span>
                    <ExternalLink className="h-4 w-4" />
@@ -470,7 +475,7 @@ const DataSourceModal = ({ dataSource, isOpen, onClose }) => {
                    href="https://dataspace.copernicus.eu/analyse/apis"
                    target="_blank"
                    rel="noopener noreferrer"
-                   className="flex items-center space-x-2 bg-green-600 hover:bg-green-700 text-white px-3 py-2 rounded-lg transition-colors text-sm"
+                   className="inline-flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg transition-colors text-sm"
                  >
                    <span>Catálogo de APIs</span>
                    <ExternalLink className="h-4 w-4" />
@@ -479,19 +484,19 @@ const DataSourceModal = ({ dataSource, isOpen, onClose }) => {
                    href="https://documentation.dataspace.copernicus.eu/"
                    target="_blank"
                    rel="noopener noreferrer"
-                   className="flex items-center space-x-2 bg-purple-600 hover:bg-purple-700 text-white px-3 py-2 rounded-lg transition-colors text-sm"
+                   className="inline-flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg transition-colors text-sm"
                  >
                    <span>Documentação</span>
                    <ExternalLink className="h-4 w-4" />
                  </a>
                </div>
              ) : dataSource.name === "EMBRAPA" ? (
-               <div className="grid grid-cols-2 gap-2">
+               <div className="flex flex-wrap gap-2">
                  <a
                    href="https://www.agroapi.cnptia.embrapa.br/portal/#loja"
                    target="_blank"
                    rel="noopener noreferrer"
-                   className="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg transition-colors text-sm"
+                   className="inline-flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg transition-colors text-sm"
                  >
                    <span>AgroAPI</span>
                    <ExternalLink className="h-4 w-4" />
@@ -500,7 +505,7 @@ const DataSourceModal = ({ dataSource, isOpen, onClose }) => {
                    href="https://www.agroapi.cnptia.embrapa.br/portal/assets/docs/agroapi-primeiros-passos.pdf"
                    target="_blank"
                    rel="noopener noreferrer"
-                   className="flex items-center space-x-2 bg-green-600 hover:bg-green-700 text-white px-3 py-2 rounded-lg transition-colors text-sm"
+                   className="inline-flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg transition-colors text-sm"
                  >
                    <span>Tutorial</span>
                    <ExternalLink className="h-4 w-4" />
@@ -512,7 +517,7 @@ const DataSourceModal = ({ dataSource, isOpen, onClose }) => {
                    href="https://bdmep.inmet.gov.br/"
                    target="_blank"
                    rel="noopener noreferrer"
-                   className="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg transition-colors text-sm"
+                   className="inline-flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg transition-colors text-sm"
                  >
                    <span>Portal Web</span>
                    <ExternalLink className="h-4 w-4" />
@@ -521,7 +526,7 @@ const DataSourceModal = ({ dataSource, isOpen, onClose }) => {
                    href="https://github.com/fabinhojorge/INMET-API-temperature"
                    target="_blank"
                    rel="noopener noreferrer"
-                   className="flex items-center space-x-2 bg-green-600 hover:bg-green-700 text-white px-3 py-2 rounded-lg transition-colors text-sm"
+                   className="inline-flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg transition-colors text-sm"
                  >
                    <span>Biblioteca em Python</span>
                    <ExternalLink className="h-4 w-4" />
@@ -530,7 +535,7 @@ const DataSourceModal = ({ dataSource, isOpen, onClose }) => {
                    href="https://github.com/rodrigolustosa/R-INMET-download"
                    target="_blank"
                    rel="noopener noreferrer"
-                   className="flex items-center space-x-2 bg-purple-600 hover:bg-purple-700 text-white px-3 py-2 rounded-lg transition-colors text-sm"
+                   className="inline-flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg transition-colors text-sm"
                  >
                    <span>Biblioteca em R</span>
                    <ExternalLink className="h-4 w-4" />
@@ -542,7 +547,7 @@ const DataSourceModal = ({ dataSource, isOpen, onClose }) => {
                    href="https://www.directd.com.br/"
                    target="_blank"
                    rel="noopener noreferrer"
-                   className="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg transition-colors text-sm"
+                   className="inline-flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg transition-colors text-sm"
                  >
                    <span>CAR API da Directd</span>
                    <ExternalLink className="h-4 w-4" />
