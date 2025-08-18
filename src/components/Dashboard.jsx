@@ -320,6 +320,291 @@ const Dashboard = () => {
         </div>
       </div>
 
+      {/* Quality Metrics Explanation */}
+      <div className="bg-white rounded-lg shadow-md p-6">
+        <h2 className="text-2xl font-bold text-gray-900 mb-6">Metodologia de Avaliação das Métricas de Qualidade</h2>
+        <p className="text-lg text-gray-600 mb-6">
+          Cada fonte de dados é avaliada através de critérios objetivos e específicos. Veja exatamente como calculamos cada porcentagem:
+        </p>
+        
+        <div className="grid grid-cols-1 gap-8">
+          {/* Confiabilidade */}
+          <div className="border rounded-lg p-6">
+            <div className="flex items-center mb-4">
+              <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mr-4">
+                <span className="text-green-600 font-bold">C</span>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900">Confiabilidade (0-100%)</h3>
+            </div>
+            
+            <div className="mb-4">
+              <h4 className="font-semibold text-gray-800 mb-2">Critérios de Avaliação:</h4>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="bg-gray-50 p-3 rounded">
+                  <span className="font-medium text-gray-700">Tipo de Instituição (40 pontos):</span>
+                  <ul className="text-sm text-gray-600 mt-1 space-y-1">
+                    <li>• Governamental Federal: 35-40 pts</li>
+                    <li>• Acadêmica/Pesquisa: 30-35 pts</li>
+                    <li>• Internacional: 25-35 pts</li>
+                    <li>• Governamental Estadual: 25-30 pts</li>
+                    <li>• Privada Certificada: 20-25 pts</li>
+                    <li>• Colaborativa: 15-20 pts</li>
+                  </ul>
+                </div>
+                <div className="bg-gray-50 p-3 rounded">
+                  <span className="font-medium text-gray-700">Histórico e Reputação (25 pontos):</span>
+                  <ul className="text-sm text-gray-600 mt-1 space-y-1">
+                    <li>• Mais de 20 anos: 20-25 pts</li>
+                    <li>• 10-20 anos: 15-20 pts</li>
+                    <li>• 5-10 anos: 10-15 pts</li>
+                    <li>• Menos de 5 anos: 5-10 pts</li>
+                  </ul>
+                </div>
+                <div className="bg-gray-50 p-3 rounded">
+                  <span className="font-medium text-gray-700">Transparência (20 pontos):</span>
+                  <ul className="text-sm text-gray-600 mt-1 space-y-1">
+                    <li>• Metodologia detalhada: +10 pts</li>
+                    <li>• Código aberto/APIs: +5 pts</li>
+                    <li>• Documentação completa: +5 pts</li>
+                  </ul>
+                </div>
+                <div className="bg-gray-50 p-3 rounded">
+                  <span className="font-medium text-gray-700">Certificações (15 pontos):</span>
+                  <ul className="text-sm text-gray-600 mt-1 space-y-1">
+                    <li>• ISO/Padrões internacionais: +10 pts</li>
+                    <li>• Validação por pares: +5 pts</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-green-100 p-4 rounded-lg">
+              <h4 className="font-semibold text-green-800 mb-2">Exemplo - IBGE (98% de Confiabilidade):</h4>
+              <div className="text-sm text-green-700 space-y-1">
+                <p>• <strong>Instituição (40/40 pts):</strong> Órgão federal oficial, reconhecido constitucionalmente</p>
+                <p>• <strong>Histórico (25/25 pts):</strong> Fundado em 1936, 88 anos de tradição em estatísticas</p>
+                <p>• <strong>Transparência (18/20 pts):</strong> Metodologias publicadas, APIs abertas, falta código aberto</p>
+                <p>• <strong>Certificações (15/15 pts):</strong> Membro do Sistema Estatístico Nacional, padrões internacionais</p>
+                <p><strong>Total: 98/100 = 98%</strong></p>
+              </div>
+            </div>
+          </div>
+
+          {/* Completude */}
+          <div className="border rounded-lg p-6">
+            <div className="flex items-center mb-4">
+              <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                <span className="text-blue-600 font-bold">C</span>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900">Completude (0-100%)</h3>
+            </div>
+
+            <div className="mb-4">
+              <h4 className="font-semibold text-gray-800 mb-2">Critérios de Avaliação:</h4>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="bg-gray-50 p-3 rounded">
+                  <span className="font-medium text-gray-700">Cobertura Geográfica (30 pontos):</span>
+                  <ul className="text-sm text-gray-600 mt-1 space-y-1">
+                    <li>• Global: 25-30 pts</li>
+                    <li>• Nacional completa: 20-25 pts</li>
+                    <li>• Regional/Estadual: 15-20 pts</li>
+                    <li>• Municipal/Local: 10-15 pts</li>
+                  </ul>
+                </div>
+                <div className="bg-gray-50 p-3 rounded">
+                  <span className="font-medium text-gray-700">Série Histórica (25 pontos):</span>
+                  <ul className="text-sm text-gray-600 mt-1 space-y-1">
+                    <li>• Mais de 20 anos: 20-25 pts</li>
+                    <li>• 10-20 anos: 15-20 pts</li>
+                    <li>• 5-10 anos: 10-15 pts</li>
+                    <li>• Menos de 5 anos: 5-10 pts</li>
+                  </ul>
+                </div>
+                <div className="bg-gray-50 p-3 rounded">
+                  <span className="font-medium text-gray-700">Variedade de Dados (25 pontos):</span>
+                  <ul className="text-sm text-gray-600 mt-1 space-y-1">
+                    <li>• Mais de 50 variáveis: 20-25 pts</li>
+                    <li>• 20-50 variáveis: 15-20 pts</li>
+                    <li>• 10-20 variáveis: 10-15 pts</li>
+                    <li>• Menos de 10: 5-10 pts</li>
+                  </ul>
+                </div>
+                <div className="bg-gray-50 p-3 rounded">
+                  <span className="font-medium text-gray-700">Consistência (20 pontos):</span>
+                  <ul className="text-sm text-gray-600 mt-1 space-y-1">
+                    <li>• Sem lacunas: 15-20 pts</li>
+                    <li>• Lacunas mínimas (&lt;5%): 10-15 pts</li>
+                    <li>• Lacunas moderadas: 5-10 pts</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-blue-50 p-4 rounded-lg">
+              <h4 className="font-semibold text-blue-900 mb-2">Exemplo - FAOSTAT (94% de Completude):</h4>
+              <div className="text-sm text-blue-800 space-y-1">
+                <p>• <strong>Cobertura (30/30 pts):</strong> 245 países e territórios, cobertura global completa</p>
+                <p>• <strong>Série Histórica (23/25 pts):</strong> Dados desde 1961 (63 anos), algumas séries menores</p>
+                <p>• <strong>Variedade (25/25 pts):</strong> Mais de 200 indicadores agrícolas diferentes</p>
+                <p>• <strong>Consistência (16/20 pts):</strong> Pequenas lacunas em países com conflitos</p>
+                <p><strong>Total: 94/100 = 94%</strong></p>
+              </div>
+            </div>
+          </div>
+
+          {/* Pontualidade */}
+          <div className="border rounded-lg p-6">
+            <div className="flex items-center mb-4">
+              <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center mr-4">
+                <span className="text-purple-600 font-bold">P</span>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900">Pontualidade (0-100%)</h3>
+            </div>
+
+            <div className="mb-4">
+              <h4 className="font-semibold text-gray-800 mb-2">Critérios de Avaliação:</h4>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="bg-gray-50 p-3 rounded">
+                  <span className="font-medium text-gray-700">Frequência Declarada vs Real (40 pontos):</span>
+                  <ul className="text-sm text-gray-600 mt-1 space-y-1">
+                    <li>• 100% cumprimento: 35-40 pts</li>
+                    <li>• 90-99% cumprimento: 30-35 pts</li>
+                    <li>• 80-89% cumprimento: 25-30 pts</li>
+                    <li>• 70-79% cumprimento: 20-25 pts</li>
+                    <li>• Abaixo de 70%: 0-20 pts</li>
+                  </ul>
+                </div>
+                <div className="bg-gray-50 p-3 rounded">
+                  <span className="font-medium text-gray-700">Tempo de Disponibilização (30 pontos):</span>
+                  <ul className="text-sm text-gray-600 mt-1 space-y-1">
+                    <li>• Tempo real: 25-30 pts</li>
+                    <li>• Até 1 semana: 20-25 pts</li>
+                    <li>• Até 1 mês: 15-20 pts</li>
+                    <li>• Até 3 meses: 10-15 pts</li>
+                    <li>• Mais de 3 meses: 0-10 pts</li>
+                  </ul>
+                </div>
+                <div className="bg-gray-50 p-3 rounded">
+                  <span className="font-medium text-gray-700">Histórico de Atrasos (20 pontos):</span>
+                  <ul className="text-sm text-gray-600 mt-1 space-y-1">
+                    <li>• Nunca atrasou: 15-20 pts</li>
+                    <li>• Atrasos raros: 10-15 pts</li>
+                    <li>• Atrasos ocasionais: 5-10 pts</li>
+                    <li>• Atrasos frequentes: 0-5 pts</li>
+                  </ul>
+                </div>
+                <div className="bg-gray-50 p-3 rounded">
+                  <span className="font-medium text-gray-700">Comunicação (10 pontos):</span>
+                  <ul className="text-sm text-gray-600 mt-1 space-y-1">
+                    <li>• Avisos prévios: +5 pts</li>
+                    <li>• Cronograma público: +5 pts</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-purple-50 p-4 rounded-lg">
+              <h4 className="font-semibold text-purple-900 mb-2">Exemplo - INMET (91% de Pontualidade):</h4>
+              <div className="text-sm text-purple-800 space-y-1">
+                <p>• <strong>Cumprimento (36/40 pts):</strong> 95% das atualizações horárias no prazo</p>
+                <p>• <strong>Disponibilização (25/30 pts):</strong> Dados meteorológicos em tempo real</p>
+                <p>• <strong>Histórico (20/20 pts):</strong> Sistema automatizado, raros atrasos</p>
+                <p>• <strong>Comunicação (10/10 pts):</strong> Status em tempo real, avisos de manutenção</p>
+                <p><strong>Total: 91/100 = 91%</strong></p>
+              </div>
+            </div>
+          </div>
+
+          {/* Precisão */}
+          <div className="border rounded-lg p-6">
+            <div className="flex items-center mb-4">
+              <div className="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center mr-4">
+                <span className="text-orange-600 font-bold">P</span>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900">Precisão (0-100%)</h3>
+            </div>
+
+            <div className="mb-4">
+              <h4 className="font-semibold text-gray-800 mb-2">Critérios de Avaliação:</h4>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="bg-gray-50 p-3 rounded">
+                  <span className="font-medium text-gray-700">Metodologia (30 pontos):</span>
+                  <ul className="text-sm text-gray-600 mt-1 space-y-1">
+                    <li>• Padrões internacionais: 25-30 pts</li>
+                    <li>• Metodologia validada: 20-25 pts</li>
+                    <li>• Metodologia própria: 15-20 pts</li>
+                    <li>• Metodologia não clara: 0-15 pts</li>
+                  </ul>
+                </div>
+                <div className="bg-gray-50 p-3 rounded">
+                  <span className="font-medium text-gray-700">Controle de Qualidade (25 pontos):</span>
+                  <ul className="text-sm text-gray-600 mt-1 space-y-1">
+                    <li>• Validação automática + manual: 20-25 pts</li>
+                    <li>• Validação automática: 15-20 pts</li>
+                    <li>• Validação básica: 10-15 pts</li>
+                    <li>• Sem validação: 0-10 pts</li>
+                  </ul>
+                </div>
+                <div className="bg-gray-50 p-3 rounded">
+                  <span className="font-medium text-gray-700">Resolução (25 pontos):</span>
+                  <ul className="text-sm text-gray-600 mt-1 space-y-1">
+                    <li>• Alta resolução espacial/temporal: 20-25 pts</li>
+                    <li>• Resolução média: 15-20 pts</li>
+                    <li>• Resolução baixa: 10-15 pts</li>
+                    <li>• Resolução muito baixa: 0-10 pts</li>
+                  </ul>
+                </div>
+                <div className="bg-gray-50 p-3 rounded">
+                  <span className="font-medium text-gray-700">Incertezas (20 pontos):</span>
+                  <ul className="text-sm text-gray-600 mt-1 space-y-1">
+                    <li>• Margens de erro declaradas: +10 pts</li>
+                    <li>• Intervalos de confiança: +5 pts</li>
+                    <li>• Validação com dados de campo: +5 pts</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-orange-50 p-4 rounded-lg">
+              <h4 className="font-semibold text-orange-900 mb-2">Exemplo - Copernicus/Sentinel (96% de Precisão):</h4>
+              <div className="text-sm text-orange-800 space-y-1">
+                <p>• <strong>Metodologia (30/30 pts):</strong> Sensores calibrados, padrões ESA/Copernicus</p>
+                <p>• <strong>Controle (24/25 pts):</strong> Validação automática + revisão de especialistas</p>
+                <p>• <strong>Resolução (25/25 pts):</strong> 10m espacial, revisita de 5 dias</p>
+                <p>• <strong>Incertezas (17/20 pts):</strong> Margens de erro publicadas, falta mais validação de campo</p>
+                <p><strong>Total: 96/100 = 96%</strong></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-8 p-6 bg-gray-50 rounded-lg">
+          <h4 className="font-semibold text-gray-800 mb-4">Escala de Classificação Final:</h4>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+            <div className="text-center p-3 bg-green-100 rounded">
+              <div className="text-green-700 font-bold text-lg">90-100%</div>
+              <div className="text-green-600 font-semibold">Excelente</div>
+              <div className="text-gray-600 text-xs">Referência no setor</div>
+            </div>
+            <div className="text-center p-3 bg-blue-100 rounded">
+              <div className="text-blue-700 font-bold text-lg">75-89%</div>
+              <div className="text-blue-600 font-semibold">Bom</div>
+              <div className="text-gray-600 text-xs">Uso profissional</div>
+            </div>
+            <div className="text-center p-3 bg-yellow-100 rounded">
+              <div className="text-yellow-700 font-bold text-lg">60-74%</div>
+              <div className="text-yellow-600 font-semibold">Regular</div>
+              <div className="text-gray-600 text-xs">Uso com cautela</div>
+            </div>
+            <div className="text-center p-3 bg-red-100 rounded">
+              <div className="text-red-700 font-bold text-lg">{'< 60%'}</div>
+              <div className="text-red-600 font-semibold">Inadequado</div>
+              <div className="text-gray-600 text-xs">Evitar uso</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Categories Overview */}
       <div className="bg-white rounded-lg shadow-md p-6">
         <h2 className="text-2xl font-bold text-gray-900 mb-6">Categorias de Dados</h2>
